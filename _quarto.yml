@@ -1,0 +1,55 @@
+project:
+  type: book
+  preview:
+    port: 8090
+
+book:
+  title: "The OpenAP Handbook"
+  author:
+    name: "Junzi Sun"
+    url: https://junzis.com
+    orcid: 0000-0003-3888-1192
+    email: j.sun-1@tudelft.nl
+    degrees:
+      - PhD
+      - MSc
+      - BEng
+    affiliation: "Delft University of Technology"
+  description: "A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts"
+  url: https://openap.dev
+  sidebar:
+    title: false
+    logo: assets/logo.png
+    search: true
+  repo-url: https://github.com/junzis/openap.dev/
+  repo-subdir: book
+  repo-branch: master
+  repo-actions: [edit, issue, source]
+  sharing: [twitter, facebook, linkedin]
+
+  chapters:
+    - index.qmd
+    - start.qmd
+    - aircraft_engine.qmd
+    - drag_thrust.qmd
+    - kinematic.qmd
+    - flight_phases.qmd
+    - trajectory_gen.qmd
+    - fuel_emission.qmd
+    - optimize.qmd
+    - references.qmd
+
+bibliography: references.bib
+bibliographystyle: apa
+csl: apa.csl
+
+format:
+  html:
+    theme:
+      light: cosmo
+      # good themes: default, cosmo, flatly, lumen, minty, pulse, sandstone, united
+    code-fold: false
+    css: assets/custom.css
+    include-in-header:
+      - text: |
+          <link rel = "shortcut icon" href = "assets/favicon.svg" />

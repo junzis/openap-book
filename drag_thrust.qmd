@@ -1,0 +1,125 @@
+# ☯️ Drag and thrust
+
+The OpenAP provides two modules, `drag` and `thrust`, for the calculation of drag force and __maximum available thrust__ force during the flight.
+
+## Compute the aircraft drag
+
+The drag calculation is based on the OpenAP's drag polar model, which is obtained based on open trajectory data and methodology from the paper: 
+[@sun2020estimating](https://repository.tudelft.nl/record/uuid:c3ff6240-e5d7-46fa-a47c-77304f5c1c49).
+
+Knowing the drag polar coefficients - $C_{d0}$ (zero-lift drag coefficient) and $k$ (lift-induced drag coefficient) - of the aircraft, the drag force can be calculated based on the point-mass aircraft performance model:
+
+$$
+\begin{aligned}
+C_l &= \frac{L}{1/2~\rho v^2 S} = \frac{mg}{1/2~\rho v^2 S} \\
+C_d &= C_{d0} + k C_l^2 \\
+D &= C_d \cdot \frac{1}{2} \rho v^2 S
+\end{aligned}
+$$
+
+When an aircraft is climbing and descending, the flight path angle is also considered to calculate the lift force. Hence, by including the vertical speed, the estimation of drag can be different. 
+
+An example calculation using the OpenAP's `drag` module is: 
+
+```{python}
+from openap.drag import Drag
+
+typecode = "A320"
+
+mass = 62_000  # kg
+TAS = 250  # kts
+ALT = 20_000  # ft
+VS = 1000  # ft/min
+
+drag = Drag(ac=typecode)
+
+# clean configuration
+D = drag.clean(mass=mass, tas=TAS, alt=ALT, vs=VS)
+
+print(f"""{typecode} at condition: 
+Mass:{mass}  TAS:{TAS}  ALT:{ALT}  VS:{VS} 
+Clean configuration 
+
+Total drag is {D//1000} kN
+""")
+```
+
+The `drag.clean()` function estimates the drag force when the aircraft is at the clean configuration, which means no flaps or landing gear are deployed. 
+
+During the initial climb and approach, we can also calculate drag considering flaps (providing the flaps setting angle in degrees) and whether the landing gears are extended.
+
+```{python}
+
+mass = 62_000  # kg
+TAS = 150  # kts
+ALT = 1000  # ft
+VS = 1500  # ft/min
+flap_angle = 20  # degree
+
+# with flaps and landing gears
+D = drag.nonclean(
+    mass=mass,
+    tas=TAS,
+    alt=ALT,
+    flap_angle=flap_angle,
+    vs=VS,
+    landing_gear=True,
+)
+
+print(f"""{typecode} at condition: 
+Mass:{mass}  TAS:{TAS}  ALT:{ALT}  VS:{VS} 
+Flap:{flap_angle} deg,  Landing Gear extended 
+
+Total drag is {D//1000} kN
+""")
+
+```
+
+
+## Compute maximum aircraft engine thrust
+
+OpenAP implements the engine thrust model proposed by @bartel2008simplified. Small adjustments to the model was made to improve the computational efficiency.
+
+To calculate the maximum net thrust of an aircraft, we first instantiate the `thrust.Thrust` object:
+
+```{python}
+from openap.thrust import Thrust
+
+thr_a320 = Thrust(ac="A320", eng="CFM56-5B4")
+```
+
+The function `Thrust.takeoff()` function is used to calculate maximum thrust during the take-off at different speed (`kts`) and altitude (`ft`) conditions, for example:
+
+```{python}
+T = thr_a320.takeoff(tas=100, alt=0)
+print(f"Max thrust: {(T/1000).round(2)} kN")
+```
+
+The `Thrust.climb()` function estimates the maximum net thrust during the climb, which requires TAS (`kts`), altitude (`ft`), and rate of climb (`ft/min`). 
+
+An example for A320 climbing at 1000 ft/min at 10,000 ft with TAS 250 kts:
+
+```{python}
+T = thr_a320.climb(tas=250, alt=10000, roc=1000)
+print(f"Max thrust: {(T/1000).round(2)} kN")
+```
+
+The `Thrust.cruise()` function estimates the maximum net thrust during the cruise at different speeds and altitudes. An example is shown as follows.
+
+```{python}
+T = thr_a320.cruise(tas=300, alt=32000)
+print(f"Max thrust: {(T/1000).round(2)} kN")
+```
+
+## Idle thrust
+
+Furthermore, we can use the `Thrust.descent_ide()` function to estimate the idle thrust during the descent at different altitude and speed conditions. 
+
+The idle thrust is modeled as approximately 7% of the maximum thrust at the same altitude and speed.
+
+An example is shown as follows:
+
+```{python}
+T = thr_a320.descent_idle(tas=250, alt=10000)
+print(f"Idle thrust: {(T/1000).round(2)} kN")
+```

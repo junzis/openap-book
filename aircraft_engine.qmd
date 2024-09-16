@@ -1,0 +1,41 @@
+# 🪬 Aircraft and engines
+
+The `prop` package in `openap` allows users to obtain aircraft and engine-related data quickly. We will demonstrate usage through the following example.
+
+## Supported aircraft type codes
+
+First, we need to import the `prop` package from the OpenAP library.
+
+```{python}
+from openap import prop
+from pprint import pprint
+```
+
+We can get a list of available aircraft `openap.prop.available_aircraft()` function:
+
+```{python}
+avaiable_aircraft = prop.available_aircraft()
+
+print(f"Supports {len(avaiable_aircraft)} aircraft types")
+print(avaiable_aircraft)
+```
+
+## Aircraft data
+
+We can get the parameters for one aircraft using `openap.prop.aircraft()` function:
+
+```{python}
+aircraft = prop.aircraft("A320")
+pprint(aircraft)
+```
+
+
+## Engine data
+
+The engine data can be obtained with `openap.prop.engine()` function:
+
+```{python}
+engine = prop.engine("CFM56-5B4")
+engine
+```
+

@@ -1,0 +1,280 @@
+# 🔥 Fuel and Emission
+
+
+OpenAP provides estimations of fuel consumption and emissions based on actual flight trajectory data. The models are based on the following work:
+
+- ICAO Aircraft Engine Emissions Databank [link](https://www.easa.europa.eu/domains/environment/icao-aircraft-engine-emissions-databank) 
+- Polynomial models derived from the [acropole model](https://github.com/DGAC/Acropole)
+
+
+## Accuracy of the fuel model
+
+The accuracy of the fuel estimation is greatly improved in the new OpenAP (v2), which is comparable to the BADA 3 fuel model. This is due to the better tuning using data-driven model, [acropole](https://github.com/DGAC/Acropole), shared by [\@JarryGabriel](https://github.com/JarryGabriel).
+
+In best cases, we see errors below 3%, and in the following A320 example shows an accuracy of 1% compared to the QAR data.
+
+![fuel estimation accuracy](assets/figures/fuel_flow_qar.png)
+
+
+For the in-depth analysis of the accuracy affected by mass, wind, and other parameters for this flight, please see the [example from the traffic library](https://traffic-viz.github.io/navigation/fuel_burn.html).
+
+<br>
+
+## Basic usage of the fuel and emission modules
+
+### Compute aircraft fuel flow:
+
+To estimate fuel flow, you need to provide the aircraft type (e.g., 'A320') through the `openap.FuelFlow` object. The fuel flow model is based on:
+- aircraft's mass (in `kg`), 
+- true airspeed (TAS, in `kts`), 
+- altitude (in `ft`), 
+- and vertical speed (optional, in `ft/min`).
+
+```{python}
+from openap import FuelFlow
+
+# create a fuel flow model for A320
+fuelflow = FuelFlow(ac='A320')
+
+# estimate fuel flow during cruise
+FF = fuelflow.enroute(mass=60000, tas=230, alt=32000)
+
+# estimate fuel flow at climb, with vertical speed (feet/min)
+FF = fuelflow.enroute(mass=60000, tas=200, alt=20000, vs=1000)
+
+# estimate fuel flow at with a given thrust (e.g., derived from drag model)
+FF = fuelflow.at_thrust(acthr=50000, alt=30000)
+
+# estimate fuel flow at takeoff
+FF = fuelflow.takeoff(tas=100, alt=0, throttle=1)
+```
+
+
+### Compute aircraft emissions:
+
+The emission model is based on the fuel flow and aircraft's true airspeed (TAS) and altitude. The input fuel flow is in `kg/s` The emissions include CO2, H2O, NOx, CO, and HC, with units in `g/s`.
+
+```{python}
+from openap import FuelFlow, Emission
+
+fuelflow = FuelFlow(ac="A320")
+emission = Emission(ac="A320")
+
+TAS = 350
+ALT = 30000
+
+FF = fuelflow.enroute(mass=60000, tas=TAS, alt=ALT, vs=0)  # kg/s
+
+CO2 = emission.co2(FF)  # g/s
+H2O = emission.h2o(FF)  # g/s
+NOx = emission.nox(FF, tas=TAS, alt=ALT)  # g/s
+CO = emission.co(FF, tas=TAS, alt=ALT)  # g/s
+HC = emission.hc(FF, tas=TAS, alt=ALT)  # g/s
+```
+
+## Estimate fuel and emission from flight data
+
+In the following example, we estimate the fuel consumption for a given flight trajectory data obtained from the [OpenSky Network](https://opensky-network.org/). The sample data can be downloaded from <https://github.com/junzis/openap/tree/master/examples>.
+
+
+The following code snippets show how to estimate fuel flow and emissions for this example flight trajectory data.
+
+### Data exploration
+
+First, we need to import openap, pandas, and matplotlib libraries.
+
+```{python}
+import pandas as pd
+import openap
+import matplotlib.pyplot as plt
+```
+
+We also need to define aircraft parameters and import data.
+
+```{python}
+mass_takeoff_assumed = 66300  # kg
+
+fuelflow = openap.FuelFlow("A319")
+
+# Load the data
+df = pd.read_csv(
+    "assets/data/flight_a319_opensky.csv",
+    parse_dates=["timestamp"],
+    dtype={"icao24": str},
+)
+
+# Calculate seconds between each timestamp
+df = df.assign(d_ts=lambda d: d.timestamp.diff().dt.total_seconds().bfill())
+```
+
+Let's see what are the features in this flight dataframe:
+
+```{python}
+df
+```
+
+Let's plot the altitude profile of the flight. I will also make the plots more visually appealing.
+
+```{python}
+from matplotlib import dates
+
+import matplotlib
+
+matplotlib.rc("font", size=11)
+matplotlib.rc("font", family="Ubuntu")
+matplotlib.rc("lines", linewidth=2, markersize=8)
+matplotlib.rc("grid", color="darkgray", linestyle=":")
+
+
+def format_ax(ax):
+    ax.xaxis.set_major_formatter(dates.DateFormatter("%H:%M"))
+    ax.spines["right"].set_visible(False)
+    ax.spines["top"].set_visible(False)
+    ax.yaxis.set_label_coords(-0.1, 1.03)
+    ax.yaxis.label.set_rotation(0)
+    ax.yaxis.label.set_ha("left")
+    ax.grid()
+
+
+fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(5, 5), sharex=True)
+
+ax1.plot(df.timestamp, df.altitude)
+ax2.plot(df.timestamp, df.groundspeed)
+ax3.plot(df.timestamp, df.vertical_rate)
+
+ax1.set_ylabel("altitude (ft)")
+ax2.set_ylabel("groundspeed (kts)")
+ax3.set_ylabel("vertical rate (ft/min)")
+
+for ax in (ax1, ax2, ax3):
+    format_ax(ax)
+
+plt.tight_layout()
+plt.show()
+```
+
+### Fuel flow calculation
+
+Next, we iterate over the timestamp to calculate fuel flow and mass during the flight.
+
+```{python}
+mass_current = mass_takeoff_assumed
+
+fuelflow_every_step = []
+fuel_every_step = []
+
+for i, row in df.iterrows():
+    ff = fuelflow.enroute(
+        mass=mass_current,
+        tas=row.groundspeed,
+        alt=row.altitude,
+        vs=row.vertical_rate,
+    )
+    fuel = ff * row.d_ts
+    fuelflow_every_step.append(ff)
+    fuel_every_step.append(ff * row.d_ts)
+    mass_current -= fuel
+
+df = df.assign(fuel_flow=fuelflow_every_step, fuel=fuel_every_step)
+```
+
+Then, we can visualize the fuel flow during the flight.
+
+```{python}
+plt.figure(figsize=(7, 2))
+plt.plot(df.timestamp, df.fuel_flow, color="tab:red")
+plt.ylabel("fuel flow (kg/s)")
+format_ax(plt.gca())
+plt.show()
+```
+
+With the new dataframe, we can calculate total fuel consumption by summing the fuel consumption at overall time steps:
+
+```{python}
+total_fuel = df.fuel.sum().astype(int)
+print(f"Total fuel: {total_fuel} kg")
+```
+
+### Emission calculation
+
+The emission calculations are based on the fuel consumption using the `openap.Emission` class. 
+
+We can calculate the emissions for the entire flight and append them as new columns to the dataframe as follows:
+
+```{python}
+emission = openap.Emission(ac="A319")
+
+df = df.assign(
+    co2_flow=lambda d: emission.co2(d.fuel_flow),
+    h2o_flow=lambda d: emission.h2o(d.fuel_flow),
+    soot_flow=lambda d: emission.soot(d.fuel_flow),
+    sox_flow=lambda d: emission.sox(d.fuel_flow),
+    nox_flow=lambda d: emission.nox(d.fuel_flow, tas=d.groundspeed, alt=d.altitude),
+    co_flow=lambda d: emission.co(d.fuel_flow, tas=d.groundspeed, alt=d.altitude),
+    hc_flow=lambda d: emission.hc(d.fuel_flow, tas=d.groundspeed, alt=d.altitude),
+)
+```
+
+
+Let's visualize the emission flows:
+
+```{python}
+
+fig, axes = plt.subplots(7, 1, figsize=(5, 7), sharex=True)
+
+axes = axes.flatten()
+
+labels = dict(
+    co2_flow="CO2 (g/s)",
+    h2o_flow="H2O (g/s)",
+    soot_flow="Soot (g/s)",
+    sox_flow="SOx (g/s)",
+    nox_flow="NOx (g/s)",
+    co_flow="CO (g/s)",
+    hc_flow="HC (g/s)",
+)
+
+for i, (k, v) in enumerate(labels.items()):
+    axes[i].plot(df.timestamp, df[k], color="tab:brown")
+    axes[i].set_ylabel(v)
+    format_ax(axes[i])
+
+
+plt.tight_layout()
+plt.show()
+```
+
+Note that CO2, H2O, Soot, and SOx are linear correlated to the fuel flow, following the coefficients from the paper [Global Mortality Attributable to Aircraft Cruise Emissions](https://pubs.acs.org/doi/10.1021/es101325r).
+
+### Final data
+
+The emissions at each time step are also calculated as follows. Note that we divide values by 1000 to obtain the emissions in `kg`.
+
+```{python}
+
+df = df.eval(
+    """
+    co2 = co2_flow * d_ts / 1000
+    h2o = h2o_flow * d_ts / 1000
+    soot = soot_flow * d_ts / 1000
+    sox = sox_flow * d_ts / 1000
+    nox = nox_flow * d_ts / 1000
+    co = co_flow * d_ts / 1000
+    hc = hc_flow * d_ts / 1000
+    """
+)
+```
+
+
+
+We can take a look at the final data with fuel flow and emissions columns.
+
+```{python}
+df[["timestamp", "fuel", "co2", "h2o", "soot", "sox", "nox", "co", "hc"]].round(4)
+```
+
+Finally, we can obtain the total fuel consumption and emissions for the entire flight (unit in `kg`).
+
+```{python}
+df[["fuel", "co2", "h2o", "soot", "sox", "nox", "co", "hc"]].sum().round(2)
+```

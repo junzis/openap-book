@@ -1,0 +1,81 @@
+# ㊙️ Flight phase identification
+
+OpenAP includes a module to identify flight phases based on flight data, such as ADS-B data. It uses the fuzzy logic, which is defined in my paper: 
+[@sun2017fdp](http://resolver.tudelft.nl/uuid:af67a6bd-d812-474d-a304-7a594991390b)
+
+Note that the paper was published a while ago; some improvements have been made in the logic since then. I also added a new phase to indicate `level` segments in the flight during the climb and descent. 
+
+## Phase labeling
+We can use `FlightPhase.phaselabel(ts, alt, spd, roc)` function to identify the labels of a given set of flight states. The following flight phases are supported:
+
+```yaml
+GND: on-ground  
+CL:  climb
+DE:  descend
+LVL: level flight
+CR:  cruise
+NA:  unlabeled
+```
+
+Note that the unit for all required parameters is:
+
+```yaml
+ts:  timestamp      second
+alt: altitude       ft
+spd: speed          kts
+roc: vertical rate  ft/min
+```
+
+Following is an example labeling process based on a real flight:
+
+```{python}
+import pandas as pd
+from openap.phase import FlightPhase
+
+df = pd.read_csv("assets/data/flight_a319_opensky.csv", parse_dates=["timestamp"])
+
+ts = (df.timestamp - df.timestamp.iloc[0]).dt.total_seconds()  # second
+alt = df.altitude.values  # ft
+spd = df.groundspeed.values  # kts
+roc = df.vertical_rate.values  # ft/min
+
+fp = FlightPhase()
+
+fp.set_trajectory(ts, alt, spd, roc)
+
+labels = fp.phaselabel()
+print(labels)
+```
+
+We can visualize the identified flight phases:
+
+```{python}
+
+import matplotlib.pyplot as plt
+
+phasecolors = {
+    "GND": "black",
+    "CL": "green",
+    "DE": "blue",
+    "LVL": "cyan",
+    "CR": "purple",
+    "NA": "red",
+}
+
+colors = [phasecolors[lbl] for lbl in labels]
+
+plt.subplot(311)
+plt.scatter(ts, alt, marker=".", c=colors, lw=0)
+plt.ylabel("altitude (ft)")
+
+plt.subplot(312)
+plt.scatter(ts, spd, marker=".", c=colors, lw=0)
+plt.ylabel("speed (kt)")
+
+plt.subplot(313)
+plt.scatter(ts, roc, marker=".", c=colors, lw=0)
+plt.ylabel("roc (fpm)")
+
+plt.show()
+
+```

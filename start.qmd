@@ -1,0 +1,105 @@
+# 🐣 Getting started
+
+
+OpenAP library has two parts: OpenAP model data and Python modules. 
+
+
+## Data
+
+Follow model datasets are all made public, under GPL open-source license:
+
+- Aircraft data: Collected from open literature.
+- Engines data: Primarily from the ICAO emission data bank, including fuel flow and emissions.
+- Drag polar data: Exclusively derived from open data ([reference](https://junzis.com/files/openap_dragpolar.pdf)).
+- Kinematic data: Kinematic model (formally [WRAP](https://github.com/junzis/wrap)) describe speed, altitude, and vertical rate.
+- Navigation data: Airport and waypoints obtained from [X-plane](https://developer.x-plane.com/docs/data-development-documentation/).
+
+
+## Modules
+
+OpenAP Python library includes the following modules, which support a variety of functionalities, including performance models, emission models, trajectory generation, and trajectory optimization:
+
+- `prop`: module for accessing aircraft and engine data 
+- `thrust`: module for computing aircraft maximum thrust
+- `drag`: module for computing aircraft drag
+- `fuel`: module for computing fuel flow
+- `emission`: module for computing aircraft emissions
+- `kinematic`: module for accessing kinematic data
+- `aero`: module for common aeronautical conversions
+- `nav`: module for accessing navigation information
+- `phase`: module for determining climb, cruise, descent, level flight
+- `traj`: module for generating trajectories based on the kinematic model
+
+Other modules that can be installed separately:
+
+- `top`: a package for generating optimal trajectories (see [Trajectory Optimization](/optimize.qmd) chapter)
+
+
+## Install 
+
+### openap
+
+Install the latest stable release from pypi:
+
+```sh
+pip install --upgrade openap
+```
+
+Install the development version from GitHub:
+
+```sh
+pip install --upgrade git+https://github.com/junzis/openap
+```
+
+OpenAP is also published to `conde-forge` repository; you can install the release for conda-forge:
+
+```sh
+mamba install openap -c conda-forge
+```
+
+
+### openap-top
+
+If you want to use the optimization function, you need to install `openap-top` in addition to `openap`, Install the stable release as:
+
+```sh
+pip install --upgrade openap-top
+```
+
+Or, install the development version from my GitHub:
+
+```sh
+pip install --upgrade git+https://github.com/junzis/openap-top
+```
+
+## Import
+
+Most of the functionalities (except aircraft and engine properties) in OpenAP are provided as Python classes. You can import these as follows:
+
+```{python}
+from openap.prop import aircraft, engine
+from openap.drag import Drag
+from openap.thrust import Thrust
+from openap.kinematic import WRAP
+from openap.phase import FlightPhase
+from openap.gen import FlightGenerator
+from openap.fuel import FuelFlow
+from openap.emission import Emission
+
+# when opeap-top is installed
+from openap.top import CompleteFlight, Climb, Cruise, Descent, MultiPhase
+```
+
+You can also import these Classes directly from the `openap` package as:
+
+```{python}
+from openap import (
+    Drag,
+    Thrust,
+    WRAP,
+    FlightPhase,
+    FlightGenerator,
+    FuelFlow,
+    Emission,
+)
+```
