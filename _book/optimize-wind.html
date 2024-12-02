@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Junzi Sun">
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts">
 
-<title>The OpenAP Handbook</title>
+<title>8&nbsp; 🌪️ Wind optimal flights – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,17 +21,52 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./openap.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./optimize-basic.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +103,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <link rel="shortcut icon" href="assets/favicon.svg">
 
 
@@ -84,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimize.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="./optimize-wind.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -140,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -208,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize-wind.html" class="sidebar-item-text sidebar-link">
+  <a href="./optimize-wind.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
@@ -230,45 +267,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#synopsis" id="toc-synopsis" class="nav-link" data-scroll-target="#synopsis">Synopsis</a></li>
-  <li><a href="#about-the-author" id="toc-about-the-author" class="nav-link" data-scroll-target="#about-the-author">About the Author</a></li>
-  </ul></li>
+  <li><a href="#obtaining-wind-with-fastmeteo" id="toc-obtaining-wind-with-fastmeteo" class="nav-link active" data-scroll-target="#obtaining-wind-with-fastmeteo"><span class="header-section-number">8.1</span> Obtaining wind with fastmeteo</a></li>
+  <li><a href="#using-grid-wind-files" id="toc-using-grid-wind-files" class="nav-link" data-scroll-target="#using-grid-wind-files"><span class="header-section-number">8.2</span> Using grid wind files</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap.dev/edit/master/book/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap.dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap.dev/blob/master/book/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap.dev/edit/master/book/optimize-wind.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap.dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap.dev/blob/master/book/optimize-wind.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimize.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="./optimize-wind.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">The OpenAP Handbook</h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></h1>
 </div>
 
-<div>
-  <div class="description">
-    A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts
-  </div>
-</div>
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://junzis.com">Junzi Sun, PhD, MSc, BEng</a> <a href="mailto:j.sun-1@tudelft.nl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-3888-1192" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Delft University of Technology
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -278,26 +294,282 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<section id="synopsis" class="level2">
-<h2 class="anchored" data-anchor-id="synopsis">Synopsis</h2>
-<p>Welcome to the OpenAP handbook, a comprehensive guide to unlocking the full potential of the OpenAP aircraft performance library. This book is designed to help you navigate the vast capabilities of OpenAP, an open-source initiative that has been revolutionizing air transport research since its inception in 2019.</p>
-<p>The first part of this book takes you through the core components that form the foundation of OpenAP. From the fundamentals of aircraft and engine data (Chapter 1) to the intricacies of drag and maximum thrust calculations (Chapter 2), kinematic models (Chapter 3), and flight phase identification (Chapter 4), we delve into the key components that make OpenAP an indispensable tool for researchers, developers, and aviation professionals. You will also learn how to harness OpenAP’s trajectory generation capabilities (Chapter 5) and analyze fuel and emission data (Chapter 6).</p>
-<p>The second part focuses on the Trajectory Optimizer Package (TOP), an extension of OpenAP. Here, you will learn how to generate fuel-optimal and other types of optimal trajectories (Chapter 7). You will discover how to incorporate wind data into your optimizations (Chapter 8). Additionally, you will learn how to use TOP to handle more complex four-dimensional grid costs in your optimization problems, such as contrail formation (Chapter 9).</p>
-<p>Each chapter provides detailed insights into the underlying concepts, methodologies, and best practices, empowering you to make the most of OpenAP. Whether you’re a seasoned expert or new to the field, this manual will help you navigate the OpenAP library effectively. The goal is to equip you with the knowledge and skills necessary to leverage OpenAP in your research. Let’s embark on this journey together and explore the possibilities that OpenAP has to offer.</p>
-<p>Enjoy the reading!</p>
-<p>Junzi</p>
-</section>
-<section id="about-the-author" class="level2">
-<h2 class="anchored" data-anchor-id="about-the-author">About the Author</h2>
-<p>Junzi Sun is an assistant professor at TU Delft, currently working in the CNS/ATM group of the Aerospace Engineering Faculty. He is passionate about open-source, open science, and making air transportation more sustainable.</p>
-<p>He was born in China and completed his bachelor’s degree in telecommunication in Beijing. After that, he moved to Europe and obtained his master’s degree in aerospace engineering from the Polytechnic University of Catalonia. After working in Spain and France for several years, he pursued doctoral research in the Netherlands, where he obtained his Ph.D.&nbsp;and currently works and lives.</p>
-<hr>
-<p>This online book is created with Quarto. To learn more about Quarto books, visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<p>Flight trajectory optimization considering wind conditions is crucial for efficient flight planning. Wind can significantly impact flight time, fuel consumption, and overall flight efficiency. For example, a favorable tailwind can help reduce flight time and fuel burn, while headwinds can have the opposite effect.</p>
+<p>There are two main approaches to incorporate wind data when using ‘openap.top’ trajectory optimization:</p>
+<ol type="1">
+<li><p>The first approach uses the FastMeteo API to access ERA meteorological data stored in cloud-optimized Zarr format on Google Cloud Storage. This method provides efficient access to wind data through API calls without requiring large local datasets. It’s particularly suitable for single flight optimizations where direct data access is preferred.</p></li>
+<li><p>The second approach works with pre-downloaded GRIB files from ECMWF or GFS sources. This method is more suitable for batch processing number of flights with larger RAM resources, though it requires downloading and storing weather data files locally.</p></li>
+</ol>
+<section id="obtaining-wind-with-fastmeteo" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="obtaining-wind-with-fastmeteo"><span class="header-section-number">8.1</span> Obtaining wind with fastmeteo</h2>
+<p>It is also possible to include 3D or 4D wind data in the optimization. The following code provides an example of such a use case. Note that the wind data is obtained using <code>fastmeteo</code> library in this example.</p>
+<div id="9f7c7dc1" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fastmeteo</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="1f31bd94" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>actype <span class="op">=</span> <span class="st">"A320"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> <span class="st">"EHAM"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> <span class="st">"LGAV"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>m0 <span class="op">=</span> <span class="fl">0.85</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we need to get an example wind field data using the <code>fastmeteo</code> library. Note the selected ERA5 data will be cached temporarily at <code>/tmp/era5-zarr</code>.</p>
+<div id="bcea947f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>actype <span class="op">=</span> <span class="st">"A320"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> <span class="st">"EHAM"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> <span class="st">"LGAV"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initial mass as the faction of maximum takeoff mass</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>m0 <span class="op">=</span> <span class="fl">0.85</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get the boundary of the wind field</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> openap.nav.airport(origin)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> openap.nav.airport(destination)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>latmin <span class="op">=</span> <span class="bu">round</span>(<span class="bu">min</span>(o[<span class="st">"lat"</span>], d[<span class="st">"lat"</span>])) <span class="op">-</span> <span class="dv">2</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>latmax <span class="op">=</span> <span class="bu">round</span>(<span class="bu">max</span>(o[<span class="st">"lat"</span>], d[<span class="st">"lat"</span>])) <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>lonmin <span class="op">=</span> <span class="bu">round</span>(<span class="bu">min</span>(o[<span class="st">"lon"</span>], d[<span class="st">"lon"</span>])) <span class="op">-</span> <span class="dv">4</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>lonmax <span class="op">=</span> <span class="bu">round</span>(<span class="bu">max</span>(o[<span class="st">"lon"</span>], d[<span class="st">"lon"</span>])) <span class="op">+</span> <span class="dv">4</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># create the and flatten the wind grid</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>latitudes <span class="op">=</span> np.arange(latmin, latmax, <span class="fl">0.5</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>longitudes <span class="op">=</span> np.arange(lonmin, lonmax, <span class="dv">1</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>altitudes <span class="op">=</span> np.arange(<span class="dv">1000</span>, <span class="dv">46000</span>, <span class="dv">2000</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>timestamps <span class="op">=</span> pd.date_range(<span class="st">"2021-05-01 08:00:00"</span>, <span class="st">"2021-05-01 15:00:00"</span>, freq<span class="op">=</span><span class="st">"1H"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>latitudes, longitudes, altitudes, times <span class="op">=</span> np.meshgrid(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    latitudes, longitudes, altitudes, timestamps</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> pd.DataFrame().assign(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    latitude<span class="op">=</span>latitudes.flatten(),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    longitude<span class="op">=</span>longitudes.flatten(),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    altitude<span class="op">=</span>altitudes.flatten(),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    timestamp<span class="op">=</span>times.flatten(),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain the wind based on the grid</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>fmg <span class="op">=</span> fastmeteo.Grid(local_store<span class="op">=</span><span class="st">"/tmp/era5-zarr"</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>meteo_data <span class="op">=</span> fmg.interpolate(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s take a look at the meteorological data we got:</p>
+<div id="d7544877" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meteo_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">altitude</th>
+<th data-quarto-table-cell-role="th">timestamp</th>
+<th data-quarto-table-cell-role="th">u_component_of_wind</th>
+<th data-quarto-table-cell-role="th">v_component_of_wind</th>
+<th data-quarto-table-cell-role="th">temperature</th>
+<th data-quarto-table-cell-role="th">specific_humidity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>36.0</td>
+<td>1</td>
+<td>1000</td>
+<td>2021-05-01 08:00:00</td>
+<td>4.133623</td>
+<td>3.570823</td>
+<td>287.546767</td>
+<td>0.006717</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>36.0</td>
+<td>1</td>
+<td>1000</td>
+<td>2021-05-01 09:00:00</td>
+<td>5.019323</td>
+<td>2.913781</td>
+<td>288.905607</td>
+<td>0.006309</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>36.0</td>
+<td>1</td>
+<td>1000</td>
+<td>2021-05-01 10:00:00</td>
+<td>6.375478</td>
+<td>1.566804</td>
+<td>289.427981</td>
+<td>0.005825</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>36.0</td>
+<td>1</td>
+<td>1000</td>
+<td>2021-05-01 11:00:00</td>
+<td>6.242283</td>
+<td>0.733652</td>
+<td>290.577190</td>
+<td>0.005545</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>36.0</td>
+<td>1</td>
+<td>1000</td>
+<td>2021-05-01 12:00:00</td>
+<td>6.493321</td>
+<td>-0.154844</td>
+<td>291.026445</td>
+<td>0.005734</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Before passing this wind field to the optimizer, we need to format it correctly. The wind data needs to be in <code>pandas.DataFrame</code> with the following columns: - <code>ts</code>: timestamp in seconds, with <code>0</code> representing the time of departure of the flight - <code>latitude</code>: latitude of all the grid points - <code>longitude</code>: longitude of all the grid points - <code>h</code>: height of the grid points, in meters - <code>u</code>: u component of the wind for each grid point, in m/s - <code>v</code>: v component of the wind for each grid point, in m/s</p>
+<div id="0e393d24" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> (</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    meteo_data.rename(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>{</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"u_component_of_wind"</span>: <span class="st">"u"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"v_component_of_wind"</span>: <span class="st">"v"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    .assign(ts<span class="op">=</span><span class="kw">lambda</span> x: (x.timestamp <span class="op">-</span> x.timestamp.iloc[<span class="dv">0</span>]).dt.total_seconds())</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">eval</span>(<span class="st">"h=altitude * 0.3048"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)[[<span class="st">"ts"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"h"</span>, <span class="st">"u"</span>, <span class="st">"v"</span>]]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>wind.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ts</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">h</th>
+<th data-quarto-table-cell-role="th">u</th>
+<th data-quarto-table-cell-role="th">v</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.0</td>
+<td>36.0</td>
+<td>1</td>
+<td>304.8</td>
+<td>4.133623</td>
+<td>3.570823</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>3600.0</td>
+<td>36.0</td>
+<td>1</td>
+<td>304.8</td>
+<td>5.019323</td>
+<td>2.913781</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>7200.0</td>
+<td>36.0</td>
+<td>1</td>
+<td>304.8</td>
+<td>6.375478</td>
+<td>1.566804</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>10800.0</td>
+<td>36.0</td>
+<td>1</td>
+<td>304.8</td>
+<td>6.242283</td>
+<td>0.733652</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>14400.0</td>
+<td>36.0</td>
+<td>1</td>
+<td>304.8</td>
+<td>6.493321</td>
+<td>-0.154844</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Last, we can run the optimization with the wind field and visulize the result:</p>
+<div id="d9d89858" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>optimizer.enable_wind(wind)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight, windfield<span class="op">=</span>wind, wind_sample<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="optimize-wind_files/figure-html/cell-7-output-1.png" width="937" height="386" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
+<section id="using-grid-wind-files" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="using-grid-wind-files"><span class="header-section-number">8.2</span> Using grid wind files</h2>
+<p>You can also optimize the trajectory with grid atmospheric data, for example, <code>grib</code> or <code>nc</code> files downloaded from the ECMWF or GFS. In <code>TOP</code>, there is a built-in function <code>top.tools.read_grids()</code> that can be used to process grid data files into a <code>DataFrame</code> for the optimizer.</p>
+<div id="4b27e212" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the downloaded ERA5 grib data, the arguments can be a list of files.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> top.tools.read_grids(<span class="st">"tmp/era5_2021-05-01_0800.grib"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>optimizer.enable_wind(wind)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight, windfield<span class="op">=</span>wind, wind_sample<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="optimize-wind_files/figure-html/cell-8-output-1.png" width="938" height="386" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since the grib data from a similar time frame was downloaded, we can observe that the result is similar to the one from the previous section. The advantage is that the code is relatively simple compared to the previous example, which used <code>fastmeteo</code> to download data that covers the region of the flights.</p>
+<p>However, this approach requires a large quantity of grid data to be downloaded first. The <code>read_grids()</code> function also loads the entire grid files into RAM, which can be memory intensive if many grid files are loaded.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -723,10 +995,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./optimize-basic.html" class="pagination-link" aria-label="🍳 Simple optimal flights">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./openap.html" class="pagination-link" aria-label="🚀 OpenAP">
-        <span class="nav-page-text">🚀 OpenAP</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -735,4 +1010,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap.dev/edit/master/book/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap.dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap.dev/blob/master/book/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap.dev/edit/master/book/optimize-wind.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap.dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap.dev/blob/master/book/optimize-wind.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

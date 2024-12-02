@@ -1,3 +1,5 @@
+tmp/
+_freeze/
 /.jekyll-cache
 /.quarto/
 /_*.local

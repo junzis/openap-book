@@ -29,14 +29,19 @@ book:
 
   chapters:
     - index.qmd
-    - start.qmd
-    - aircraft_engine.qmd
-    - drag_thrust.qmd
-    - kinematic.qmd
-    - flight_phases.qmd
-    - trajectory_gen.qmd
-    - fuel_emission.qmd
-    - optimize.qmd
+    - part: openap.qmd
+      chapters: 
+        - aircraft_engine.qmd
+        - drag_thrust.qmd
+        - kinematic.qmd
+        - flight_phases.qmd
+        - trajectory_gen.qmd
+        - fuel_emission.qmd
+    - part: optimize.qmd
+      chapters:
+        - optimize-basic.qmd
+        - optimize-wind.qmd
+    #     - optimize-contrail.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -53,3 +58,6 @@ format:
     include-in-header:
       - text: |
           <link rel = "shortcut icon" href = "assets/favicon.svg" />
+
+execute:
+  freeze: auto

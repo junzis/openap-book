@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts">
 
-<title>The OpenAP Handbook - 6&nbsp; 💅 Trajectory generation</title>
+<title>5&nbsp; 💅 Trajectory generation – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -92,10 +92,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dc4d85dcaf7fee20cc7244a7a6ccf320.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -138,13 +138,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./trajectory_gen.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./trajectory_gen.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -163,23 +163,23 @@ div.csl-indent {
         <div class="sidebar-tools-main">
     <a href="https://github.com/junzis/openap.dev/tree/master/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
-      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
-              <i class="bi bi-bi-twitter pe-1"></i>
+              <i class="bi bi-twitter pe-1"></i>
             Twitter
             </a>
           </li>
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
-              <i class="bi bi-bi-facebook pe-1"></i>
+              <i class="bi bi-facebook pe-1"></i>
             Facebook
             </a>
           </li>
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
-              <i class="bi bi-bi-linkedin pe-1"></i>
+              <i class="bi bi-linkedin pe-1"></i>
             LinkedIn
             </a>
           </li>
@@ -201,54 +201,76 @@ div.csl-indent {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">🐣 Getting started</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./openap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🚀 OpenAP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./aircraft_engine.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">🪬 Aircraft and engines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">🪬 Aircraft and engines</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./drag_thrust.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">☯️ Drag and thrust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">☯️ Drag and thrust</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kinematic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">🌯 Kinematic models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">🌯 Kinematic models</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./flight_phases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./trajectory_gen.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fuel_emission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./optimize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🦸 Trajectory Optimizer</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🦸 Trajectory Optimizer</span></span></a>
+  <a href="./optimize-basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimize-wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -265,20 +287,20 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#complete-flight" id="toc-complete-flight" class="nav-link active" data-scroll-target="#complete-flight"><span class="header-section-number">6.1</span> Complete flight</a></li>
-  <li><a href="#flight-segments-at-different-phases" id="toc-flight-segments-at-different-phases" class="nav-link" data-scroll-target="#flight-segments-at-different-phases"><span class="header-section-number">6.2</span> Flight segments at different phases</a></li>
-  <li><a href="#generate-flight-with-specific-parameters" id="toc-generate-flight-with-specific-parameters" class="nav-link" data-scroll-target="#generate-flight-with-specific-parameters"><span class="header-section-number">6.3</span> Generate flight with specific parameters</a></li>
-  <li><a href="#generate-flights-randomly-sampled-using-the-kinematic-model" id="toc-generate-flights-randomly-sampled-using-the-kinematic-model" class="nav-link" data-scroll-target="#generate-flights-randomly-sampled-using-the-kinematic-model"><span class="header-section-number">6.4</span> Generate flights randomly sampled using the kinematic model</a></li>
-  <li><a href="#add-noise-to-the-flight-data" id="toc-add-noise-to-the-flight-data" class="nav-link" data-scroll-target="#add-noise-to-the-flight-data"><span class="header-section-number">6.5</span> Add noise to the flight data</a></li>
+  <li><a href="#complete-flight" id="toc-complete-flight" class="nav-link active" data-scroll-target="#complete-flight"><span class="header-section-number">5.1</span> Complete flight</a></li>
+  <li><a href="#flight-segments-at-different-phases" id="toc-flight-segments-at-different-phases" class="nav-link" data-scroll-target="#flight-segments-at-different-phases"><span class="header-section-number">5.2</span> Flight segments at different phases</a></li>
+  <li><a href="#generate-flight-with-specific-parameters" id="toc-generate-flight-with-specific-parameters" class="nav-link" data-scroll-target="#generate-flight-with-specific-parameters"><span class="header-section-number">5.3</span> Generate flight with specific parameters</a></li>
+  <li><a href="#generate-flights-randomly-sampled-using-the-kinematic-model" id="toc-generate-flights-randomly-sampled-using-the-kinematic-model" class="nav-link" data-scroll-target="#generate-flights-randomly-sampled-using-the-kinematic-model"><span class="header-section-number">5.4</span> Generate flights randomly sampled using the kinematic model</a></li>
+  <li><a href="#add-noise-to-the-flight-data" id="toc-add-noise-to-the-flight-data" class="nav-link" data-scroll-target="#add-noise-to-the-flight-data"><span class="header-section-number">5.5</span> Add noise to the flight data</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap.dev/edit/master/book/trajectory_gen.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap.dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap.dev/blob/master/book/trajectory_gen.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./trajectory_gen.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></h1>
 </div>
 
 
@@ -297,10 +319,10 @@ div.csl-indent {
 
 <p>Based on the <a href="./kinematic.html">kinematic module</a> from the OpenAP package, we can conveniently generate realistic flight trajectories for different flight phases, knowing the distribution of speed, vertical rates, and altitudes.</p>
 <p>The <code>gen</code> module provides <code>FlightGenerator</code> class to facilitate the generation of flight trajectories.</p>
-<section id="complete-flight" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="complete-flight"><span class="header-section-number">6.1</span> Complete flight</h2>
+<section id="complete-flight" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="complete-flight"><span class="header-section-number">5.1</span> Complete flight</h2>
 <p>To use the flight generator, we need to instantiate the <code>FlightGenerator</code> object by providing the aircraft typecode, as in the following example:</p>
-<div id="4cae674c" class="cell" data-execution_count="1">
+<div id="8f0b62b4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.gen <span class="im">import</span> FlightGenerator</span>
@@ -308,7 +330,7 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fgen <span class="op">=</span> FlightGenerator(ac<span class="op">=</span><span class="st">"a320"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following blocks of code are functions for plotting the trajectories later on.</p>
-<div id="e8a91ee4" class="cell" data-execution_count="2">
+<div id="70964534" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the <code>plot_traj(flight)</code> code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
@@ -354,17 +376,16 @@ div.csl-indent {
 </div>
 <p>To generate a complete trajectory, we can call the <code>FlightGenerator.complete()</code> function by specifying the time step size in <code>seconds</code>. The function outputs a pandas dataframe, containing altitude, flight distance, speed, and vertical_rate.</p>
 <p>See an example as follows:</p>
-<div id="510c2a61" class="cell" data-execution_count="3">
+<div id="bf311d95" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> fgen.complete(dt<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>display(flight)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plot_traj(flight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -506,7 +527,6 @@ div.csl-indent {
 <p>686 rows × 8 columns</p>
 </div>
 </div>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -525,10 +545,10 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="flight-segments-at-different-phases" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="flight-segments-at-different-phases"><span class="header-section-number">6.2</span> Flight segments at different phases</h2>
+<section id="flight-segments-at-different-phases" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="flight-segments-at-different-phases"><span class="header-section-number">5.2</span> Flight segments at different phases</h2>
 <p>We can also generate partial trajectories for only climb, descent, or cruise segments of the flight. The following are three examples.</p>
-<div id="3315fed7" class="cell" data-execution_count="4">
+<div id="f97b8071" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>flight_climb <span class="op">=</span> fgen.climb(dt<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plot_traj(flight_climb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -548,7 +568,7 @@ div.csl-indent {
 <pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
 </div>
 </div>
-<div id="5a465e10" class="cell" data-execution_count="5">
+<div id="f51b8854" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>flight_descent <span class="op">=</span> fgen.descent(dt<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plot_traj(flight_descent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -568,7 +588,7 @@ div.csl-indent {
 <pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
 </div>
 </div>
-<div id="fd5a9e18" class="cell" data-execution_count="6">
+<div id="14ff601b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flight_cruise <span class="op">=</span> fgen.cruise(dt<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plot_traj(flight_cruise)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -589,11 +609,11 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="generate-flight-with-specific-parameters" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="generate-flight-with-specific-parameters"><span class="header-section-number">6.3</span> Generate flight with specific parameters</h2>
+<section id="generate-flight-with-specific-parameters" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="generate-flight-with-specific-parameters"><span class="header-section-number">5.3</span> Generate flight with specific parameters</h2>
 <p>Previously, we generated the most typical flight profile based on the default values in the <code>WRAP</code> kinematic model. However, we can customize the generation by providing specific parameters.</p>
 <p>For example, with the following code, we can specify CAS/Mach setting during the climb and the top of the climb altitude for the trajectory.</p>
-<div id="3a838ac5" class="cell" data-execution_count="7">
+<div id="4166e77b" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>flight_climb_with_params <span class="op">=</span> fgen.climb(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    dt<span class="op">=</span><span class="dv">10</span>,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    cas_const_cl<span class="op">=</span><span class="dv">280</span>,</span>
@@ -620,12 +640,12 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="generate-flights-randomly-sampled-using-the-kinematic-model" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="generate-flights-randomly-sampled-using-the-kinematic-model"><span class="header-section-number">6.4</span> Generate flights randomly sampled using the kinematic model</h2>
+<section id="generate-flights-randomly-sampled-using-the-kinematic-model" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="generate-flights-randomly-sampled-using-the-kinematic-model"><span class="header-section-number">5.4</span> Generate flights randomly sampled using the kinematic model</h2>
 <p>In many use cases, we want to generate a wide range of flight trajectories. The <code>FlightGenerator</code> allows such a possibility. We can generate random and yet realistic trajectories like a breeze.</p>
 <p>You simply need to provide the <code>radom=True</code> argument when generating trajectories. The generator will randomly sample parameters from the proper distribution of each parameter in the <code>WRAP</code> model.</p>
 <p>The following example shows several randomly generated flights at different flight phases and randomly sampled complete trajectories.</p>
-<div id="ce568764" class="cell" data-execution_count="8">
+<div id="c9f9e585" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>climb_flights<span class="op">=</span> [fgen.climb(dt<span class="op">=</span><span class="dv">10</span>, random<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plot_traj(climb_flights, lw<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -646,7 +666,7 @@ div.csl-indent {
 <pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
 </div>
 </div>
-<div id="192588ce" class="cell" data-execution_count="9">
+<div id="82ec2195" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>descent_flights <span class="op">=</span> [fgen.descent(dt<span class="op">=</span><span class="dv">10</span>, random<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plot_traj(descent_flights, lw<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -667,7 +687,7 @@ div.csl-indent {
 <pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
 </div>
 </div>
-<div id="ef4ff2a8" class="cell" data-execution_count="10">
+<div id="d1fc0c72" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cruise_flights <span class="op">=</span> [fgen.cruise(dt<span class="op">=</span><span class="dv">10</span>, random<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>plot_traj(cruise_flights, lw<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -688,7 +708,7 @@ div.csl-indent {
 <pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
 </div>
 </div>
-<div id="ac8f32c8" class="cell" data-execution_count="11">
+<div id="43ec9ea7" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>complete_flights <span class="op">=</span> [fgen.complete(dt<span class="op">=</span><span class="dv">10</span>, random<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plot_traj(complete_flights, lw<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -710,11 +730,11 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="add-noise-to-the-flight-data" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="add-noise-to-the-flight-data"><span class="header-section-number">6.5</span> Add noise to the flight data</h2>
+<section id="add-noise-to-the-flight-data" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="add-noise-to-the-flight-data"><span class="header-section-number">5.5</span> Add noise to the flight data</h2>
 <p>Sometimes, we may also want to add some random noises to the trajectory data. With the <code>FlightGenerator.enable_noise()</code> function, we can make sure Gaussian noises are added to all trajectory points.</p>
 <p>The noise model is based on ADS-B Version 1 and 2, with a NACv (navigation accuracy category - velocity) value of 3 and a NACp (navigation accuracy category - position) value of 10. More details can be found in <span class="citation" data-cites="sun1090mhz">Sun (<a href="references.html#ref-sun1090mhz" role="doc-biblioref">2021, Chapter 9</a>)</span>.</p>
-<div id="90fd0a1b" class="cell" data-execution_count="12">
+<div id="dd0d5e7d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fgen.enable_noise()  <span class="co"># enable Gaussian noise in trajectory data</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>complete_flights <span class="op">=</span> [fgen.complete(dt<span class="op">=</span><span class="dv">10</span>, random<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
@@ -782,18 +802,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -825,7 +834,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -833,7 +864,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1159,12 +1190,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./flight_phases.html" class="pagination-link" aria-label="㊙️ Flight phase identification">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./fuel_emission.html" class="pagination-link" aria-label="🔥 Fuel and Emission">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

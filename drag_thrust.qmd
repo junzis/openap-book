@@ -92,7 +92,7 @@ The function `Thrust.takeoff()` function is used to calculate maximum thrust dur
 
 ```{python}
 T = thr_a320.takeoff(tas=100, alt=0)
-print(f"Max thrust: {(T/1000).round(2)} kN")
+print(f"Max thrust: {round(T/1000, 2)} kN")
 ```
 
 The `Thrust.climb()` function estimates the maximum net thrust during the climb, which requires TAS (`kts`), altitude (`ft`), and rate of climb (`ft/min`). 
@@ -101,14 +101,14 @@ An example for A320 climbing at 1000 ft/min at 10,000 ft with TAS 250 kts:
 
 ```{python}
 T = thr_a320.climb(tas=250, alt=10000, roc=1000)
-print(f"Max thrust: {(T/1000).round(2)} kN")
+print(f"Max thrust: {round(T/1000, 2)} kN")
 ```
 
 The `Thrust.cruise()` function estimates the maximum net thrust during the cruise at different speeds and altitudes. An example is shown as follows.
 
 ```{python}
 T = thr_a320.cruise(tas=300, alt=32000)
-print(f"Max thrust: {(T/1000).round(2)} kN")
+print(f"Max thrust: {round(T/1000, 2)} kN")
 ```
 
 ## Idle thrust
@@ -121,5 +121,5 @@ An example is shown as follows:
 
 ```{python}
 T = thr_a320.descent_idle(tas=250, alt=10000)
-print(f"Idle thrust: {(T/1000).round(2)} kN")
+print(f"Idle thrust: {round(T/1000, 2)} kN")
 ```
