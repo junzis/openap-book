@@ -60,7 +60,7 @@ lonmax = round(max(o["lon"], d["lon"])) + 4
 latitudes = np.arange(latmin, latmax, 0.5)
 longitudes = np.arange(lonmin, lonmax, 1)
 altitudes = np.arange(1000, 46000, 2000)
-timestamps = pd.date_range("2021-05-01 08:00:00", "2021-05-01 15:00:00", freq="1H")
+timestamps = pd.date_range("2021-05-01 08:00:00", "2021-05-01 11:00:00", freq="1H")
 
 latitudes, longitudes, altitudes, times = np.meshgrid(
     latitudes, longitudes, altitudes, timestamps
@@ -118,7 +118,14 @@ optimizer = top.CompleteFlight(actype, origin, destination, m0)
 optimizer.enable_wind(wind)
 flight = optimizer.trajectory(objective="fuel")
 
-top.vis.trajectory(flight, windfield=wind, wind_sample=25)
+top.vis.trajectory(flight, windfield=wind, barb_steps=15)
+plt.show()
+```
+
+If you only want to visualize the map:
+
+```{python}
+top.vis.map(flight, windfield=wind, barb_steps=15)
 plt.show()
 ```
 
@@ -136,7 +143,7 @@ optimizer = top.CompleteFlight(actype, origin, destination, m0)
 optimizer.enable_wind(wind)
 flight = optimizer.trajectory(objective="fuel")
 
-top.vis.trajectory(flight, windfield=wind, wind_sample=25)
+top.vis.trajectory(flight, windfield=wind, barb_steps=25)
 plt.show()
 
 ```

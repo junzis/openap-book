@@ -21,7 +21,7 @@ book:
     title: false
     logo: assets/logo.png
     search: true
-  repo-url: https://github.com/junzis/openap.dev/
+  repo-url: https://github.com/junzis/openap-book/
   repo-subdir: book
   repo-branch: master
   repo-actions: [edit, issue, source]
@@ -30,7 +30,7 @@ book:
   chapters:
     - index.qmd
     - part: openap.qmd
-      chapters: 
+      chapters:
         - aircraft_engine.qmd
         - drag_thrust.qmd
         - kinematic.qmd
@@ -41,7 +41,7 @@ book:
       chapters:
         - optimize-basic.qmd
         - optimize-wind.qmd
-    #     - optimize-contrail.qmd
+        - optimize-costgrid.qmd
     - references.qmd
 
 bibliography: references.bib

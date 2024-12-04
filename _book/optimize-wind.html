@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./optimize-costgrid.html" rel="next">
 <link href="./optimize-basic.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">The OpenAP Handbook</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/junzis/openap.dev/tree/master/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/junzis/openap-book/tree/master/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
       <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -249,6 +249,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimize-costgrid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -270,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#obtaining-wind-with-fastmeteo" id="toc-obtaining-wind-with-fastmeteo" class="nav-link active" data-scroll-target="#obtaining-wind-with-fastmeteo"><span class="header-section-number">8.1</span> Obtaining wind with fastmeteo</a></li>
   <li><a href="#using-grid-wind-files" id="toc-using-grid-wind-files" class="nav-link" data-scroll-target="#using-grid-wind-files"><span class="header-section-number">8.2</span> Using grid wind files</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap.dev/edit/master/book/optimize-wind.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap.dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap.dev/blob/master/book/optimize-wind.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/book/optimize-wind.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/book/optimize-wind.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -303,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="obtaining-wind-with-fastmeteo" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="obtaining-wind-with-fastmeteo"><span class="header-section-number">8.1</span> Obtaining wind with fastmeteo</h2>
 <p>It is also possible to include 3D or 4D wind data in the optimization. The following code provides an example of such a use case. Note that the wind data is obtained using <code>fastmeteo</code> library in this example.</p>
-<div id="9f7c7dc1" class="cell" data-execution_count="1">
+<div id="6e44f9bc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fastmeteo</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -315,14 +321,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1f31bd94" class="cell" data-execution_count="2">
+<div id="bae46948" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>actype <span class="op">=</span> <span class="st">"A320"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> <span class="st">"EHAM"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> <span class="st">"LGAV"</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>m0 <span class="op">=</span> <span class="fl">0.85</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we need to get an example wind field data using the <code>fastmeteo</code> library. Note the selected ERA5 data will be cached temporarily at <code>/tmp/era5-zarr</code>.</p>
-<div id="bcea947f" class="cell" data-execution_count="3">
+<div id="9cd50752" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>actype <span class="op">=</span> <span class="st">"A320"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> <span class="st">"EHAM"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> <span class="st">"LGAV"</span></span>
@@ -343,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>latitudes <span class="op">=</span> np.arange(latmin, latmax, <span class="fl">0.5</span>)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>longitudes <span class="op">=</span> np.arange(lonmin, lonmax, <span class="dv">1</span>)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>altitudes <span class="op">=</span> np.arange(<span class="dv">1000</span>, <span class="dv">46000</span>, <span class="dv">2000</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>timestamps <span class="op">=</span> pd.date_range(<span class="st">"2021-05-01 08:00:00"</span>, <span class="st">"2021-05-01 15:00:00"</span>, freq<span class="op">=</span><span class="st">"1H"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>timestamps <span class="op">=</span> pd.date_range(<span class="st">"2021-05-01 08:00:00"</span>, <span class="st">"2021-05-01 11:00:00"</span>, freq<span class="op">=</span><span class="st">"1H"</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>latitudes, longitudes, altitudes, times <span class="op">=</span> np.meshgrid(</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    latitudes, longitudes, altitudes, timestamps</span>
@@ -362,9 +368,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>meteo_data <span class="op">=</span> fmg.interpolate(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s take a look at the meteorological data we got:</p>
-<div id="d7544877" class="cell" data-execution_count="4">
+<div id="9ff1901d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meteo_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
 
@@ -431,12 +437,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td data-quarto-table-cell-role="th">4</td>
 <td>36.0</td>
 <td>1</td>
-<td>1000</td>
-<td>2021-05-01 12:00:00</td>
-<td>6.493321</td>
-<td>-0.154844</td>
-<td>291.026445</td>
-<td>0.005734</td>
+<td>3000</td>
+<td>2021-05-01 08:00:00</td>
+<td>8.573422</td>
+<td>4.150122</td>
+<td>282.324727</td>
+<td>0.006347</td>
 </tr>
 </tbody>
 </table>
@@ -445,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Before passing this wind field to the optimizer, we need to format it correctly. The wind data needs to be in <code>pandas.DataFrame</code> with the following columns: - <code>ts</code>: timestamp in seconds, with <code>0</code> representing the time of departure of the flight - <code>latitude</code>: latitude of all the grid points - <code>longitude</code>: longitude of all the grid points - <code>h</code>: height of the grid points, in meters - <code>u</code>: u component of the wind for each grid point, in m/s - <code>v</code>: v component of the wind for each grid point, in m/s</p>
-<div id="0e393d24" class="cell" data-execution_count="5">
+<div id="a488319d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> (</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    meteo_data.rename(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>{</span>
@@ -458,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)[[<span class="st">"ts"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"h"</span>, <span class="st">"u"</span>, <span class="st">"v"</span>]]</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>wind.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -513,12 +519,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>14400.0</td>
+<td>0.0</td>
 <td>36.0</td>
 <td>1</td>
-<td>304.8</td>
-<td>6.493321</td>
-<td>-0.154844</td>
+<td>914.4</td>
+<td>8.573422</td>
+<td>4.150122</td>
 </tr>
 </tbody>
 </table>
@@ -527,14 +533,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Last, we can run the optimization with the wind field and visulize the result:</p>
-<div id="d9d89858" class="cell" data-execution_count="6">
+<div id="ac70d164" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>optimizer.enable_wind(wind)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight, windfield<span class="op">=</span>wind, wind_sample<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight, windfield<span class="op">=</span>wind, barb_steps<span class="op">=</span><span class="dv">15</span>)</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -544,24 +550,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>If you only want to visualize the map:</p>
+<div id="eaf73367" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>top.vis.<span class="bu">map</span>(flight, windfield<span class="op">=</span>wind, barb_steps<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="optimize-wind_files/figure-html/cell-8-output-1.png" width="566" height="467" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="using-grid-wind-files" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="using-grid-wind-files"><span class="header-section-number">8.2</span> Using grid wind files</h2>
 <p>You can also optimize the trajectory with grid atmospheric data, for example, <code>grib</code> or <code>nc</code> files downloaded from the ECMWF or GFS. In <code>TOP</code>, there is a built-in function <code>top.tools.read_grids()</code> that can be used to process grid data files into a <code>DataFrame</code> for the optimizer.</p>
-<div id="4b27e212" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the downloaded ERA5 grib data, the arguments can be a list of files.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> top.tools.read_grids(<span class="st">"tmp/era5_2021-05-01_0800.grib"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>optimizer.enable_wind(wind)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight, windfield<span class="op">=</span>wind, wind_sample<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b58d8225" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the downloaded ERA5 grib data, the arguments can be a list of files.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wind <span class="op">=</span> top.tools.read_grids(<span class="st">"tmp/era5_2021-05-01_0800.grib"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>optimizer.enable_wind(wind)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight, windfield<span class="op">=</span>wind, barb_steps<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="optimize-wind_files/figure-html/cell-8-output-1.png" width="938" height="386" class="figure-img"></p>
+<p><img src="optimize-wind_files/figure-html/cell-9-output-1.png" width="938" height="386" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1000,8 +1018,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./optimize-costgrid.html" class="pagination-link" aria-label="🙀 Using cost grids">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1010,4 +1028,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap.dev/edit/master/book/optimize-wind.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap.dev/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap.dev/blob/master/book/optimize-wind.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/book/optimize-wind.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/book/optimize-wind.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
