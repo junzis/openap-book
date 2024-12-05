@@ -7,14 +7,20 @@ Previously, the majority of flight optimizers mentioned in the literature remain
 
 The `TOP` library can consider 3D or 4D wind fields. It can be utilized in various flight phases, either individually or in combination. It provides traditional fuel and cost index objectives alongside climate metrics-based objectives that incorporate global warming or temperature potential. 
 
-Furthermore, I have designed a mechanism to include a complex 4D cost grid in trajectory optimization. This new mechanism allows easy generation of, for example, contrail-optimal trajectories.
+Furthermore, There is a mechanism to include a 3D or 4D cost grid in trajectory optimization. This implementation allows easy generation of, for example, contrail-optimal trajectories, or generate trajectoies that avoids areas with convective weathers.
 
-## Paper
 
-The optimization framework was first published in my following paper:
-[@sun2022top](https://doi.org/10.3390/aerospace9070383)
+## Use cases
 
-Note that there have been quite many improvements and changes to the software code since the paper was published.
+The following chapters demonstrate various optimization scenarios and practical applications:
+
+
+- [Chapter 7](optimize-basic.qmd): explains how you can easily generate fuel and other simple cost-optimal trajectories.
+- [Chapter 8](optimize-wind.qmd): provides two approaches to obtaining wind fields and using them in your optimization.
+- [Chapter 9](optimize-costgrid.qmd): dives deeper into optimization with more complex 3D or 4D grids.
+- [Chapter 10](optimize-contrail.qmd): provides a concrete example of flight optimization considering contrails.
+
+
 
 ## Install
 
@@ -26,8 +32,44 @@ pip install --upgrade openap-top
 
 This will install `openap.top` and related dependencies. 
 
-Alternatively, if you want to install the most recent development version:
+Alternatively, if you want to install the most recent development version (usually it is also recommended to update `openap` to the latest dev version):
 
 ```sh
+pip install --upgrade git+https://github.com/junzis/openap
 pip install --upgrade git+https://github.com/junzis/openap-top
 ```
+
+
+## Paper
+
+The optimization framework was first published in the following paper:
+[@sun2022top](https://doi.org/10.3390/aerospace9070383)
+
+To cite the paper:
+
+```tex
+@article{sun2022top,
+  title = {OpenAP.top: Open Flight Trajectory Optimization for Air Transport and Sustainability Research},
+  author = {Sun, Junzi},
+  journal = {Aerospace},
+  volume = {9},
+  number = {7},
+  pages = {383},
+  year = {2022},
+  month = jul,
+  publisher = {Multidisciplinary Digital Publishing Institute},
+  link = {https://doi.org/10.3390/aerospace9070383},
+  doi = {10.3390/aerospace9070383},
+}
+```
+
+
+:::{.callout-caution}
+While the fundamental principle of trajectory optimization (based on non-linear optimal control) remains unchanged, the software has evolved significantly since the paper's publication.
+
+Key improvements include:
+
+- Enhanced performance models
+- More robust trajectory generation logic, and better convergence
+- Optimized computational performance, much faster 🚀
+:::

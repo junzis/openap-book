@@ -1,8 +1,22 @@
 # 🚀 OpenAP
 
 
-OpenAP library has two parts: OpenAP model data and Python modules. 
+OpenAP is an open-source aircraft performance library that aims to support air transportation research and simulations. It provides aircraft performance models and relevant data, allowing users to calculate key flight parameters such as drag, thrust, and fuel consumption. 
 
+The library also enables users to estimate aircraft emissions, generate flight trajectories based on kinematic parameters, and identify different flight phases. With its modular Python code, OpenAP can be used for various applications, from basic performance calculations to complex trajectory optimization (with the `openap.top` extension). The library combines both empirical data collected from literature, and parameters derived from open sources data. The model and associated Python library has been fairly widely used in academic research, flight simulation, and air traffic management studies.
+
+OpenAP library has two parts: OpenAP model data and Python modules. The model data includes aircraft, engine, drag polar, kinematic, and navigation data. The Python modules provide functionalities for computing aircraft performance, emissions, and trajectories. The library is designed to be user-friendly, flexible, and extensible, allowing users to easily integrate it into their projects.
+
+## Chapters
+
+The user guide for OpenAP is organized into the following chapters:
+
+- [Chapter 1: Aircraft and engines](aircraft_engine.qmd)
+- [Chapter 2: Drag and thrust](drag_thrust.qmd)  
+- [Chapter 3: Kinematic models](kinematic.qmd)
+- [Chapter 4: Flight phase identification](flight_phases.qmd)
+- [Chapter 5: Trajectory generation](trajectory_gen.qmd)
+- [Chapter 6: Fuel and Emission](fuel_emission.qmd)
 
 ## Data
 
@@ -37,46 +51,23 @@ Other modules that can be installed separately:
 
 ## Install 
 
-### openap
-
-Install the latest stable release from pypi:
+Install the stable release from pypi:
 
 ```sh
 pip install --upgrade openap
 ```
 
-Install the development version from GitHub:
+Or, you can also install the latest development version from GitHub:
 
 ```sh
 pip install --upgrade git+https://github.com/junzis/openap
 ```
 
-OpenAP is also published to `conde-forge` repository; you can install the release for conda-forge:
-
-```sh
-mamba install openap -c conda-forge
-```
-
-
-### openap-top
-
-If you want to use the optimization function, you need to install `openap-top` in addition to `openap`, Install the stable release as:
-
-```sh
-pip install --upgrade openap-top
-```
-
-Or, install the development version from my GitHub:
-
-```sh
-pip install --upgrade git+https://github.com/junzis/openap-top
-```
-
-## Import
+## Using OpenAP
 
 Most of the functionalities (except aircraft and engine properties) in OpenAP are provided as Python classes. You can import these as follows:
 
-```{python}
+```python
 from openap.prop import aircraft, engine
 from openap.drag import Drag
 from openap.thrust import Thrust
@@ -92,7 +83,7 @@ from openap.top import CompleteFlight, Climb, Cruise, Descent, MultiPhase
 
 You can also import these Classes directly from the `openap` package as:
 
-```{python}
+```python
 from openap import (
     Drag,
     Thrust,
@@ -103,3 +94,40 @@ from openap import (
     Emission,
 )
 ```
+
+
+## Contribute 
+
+If you encounter any issues, please file a bug report on the [GitHub issue tracker](https://github.com/junzis/openap/issues). You are even more welcomed to contribute to the project by submitting a [pull request](https://github.com/junzis/openap/pulls).
+
+## Book and Paper
+
+The OpenAP is the one outcome of my [PhD research work](https://repository.tudelft.nl/record/uuid:af94d535-1853-4a6c-8b3f-77c98a52346a) (2015-2019). 
+The Python library was first published in the following paper:
+[@sun2022top](https://doi.org/10.3390/aerospace7080104)
+
+To cite the paper:
+
+```tex
+@article{sun2020openap,
+  title = {OpenAP: An open-source aircraft performance model for air transportation studies and simulations},
+  author = {Sun, Junzi and Hoekstra, Jacco and Ellerbroek, Joost},
+  journal = {Aerospace},
+  volume = {7},
+  number = {8},
+  pages = {104},
+  year = {2020},
+  month = jul,
+  publisher = {Multidisciplinary Digital Publishing Institute},
+  link = {https://doi.org/10.3390/aerospace7080104},
+  doi = {10.3390/aerospace7080104},
+}
+```
+
+:::{.callout-caution}
+The libaray has evolved significantly since the paper's publication. Key improvements include:
+
+- Updated aircraft and engine data
+- More accuracte fuel flow and emissions models
+- Symbolic implementation for optimization with CasADi
+:::

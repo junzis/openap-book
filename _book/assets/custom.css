@@ -35,3 +35,10 @@ cell .cell-output:last-of-type {
 tbody tr:hover {
     background: rgba(66, 165, 245, 0.2);
 }
+
+.sidebar-item .active,
+.nav-link.active {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    background: rgba(66, 165, 245, 0.2);
+}
