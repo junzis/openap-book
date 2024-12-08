@@ -37,11 +37,12 @@ book:
         - flight_phases.qmd
         - trajectory_gen.qmd
         - fuel_emission.qmd
-    - part: optimize.qmd
+    - part: optimize/index.qmd
       chapters:
-        - optimize-basic.qmd
-        - optimize-wind.qmd
-        - optimize-costgrid.qmd
+        - optimize/basic.qmd
+        - optimize/wind.qmd
+        - optimize/costgrid.qmd
+        - optimize/contrails.qmd
     - references.qmd
 
 bibliography: references.bib

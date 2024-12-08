@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts">
 
-<title>🚀 OpenAP – The OpenAP Handbook</title>
+<title>7&nbsp; 🍳 Simple optimal flights – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,47 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./aircraft_engine.html" rel="next">
-<link href="./index.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dc4d85dcaf7fee20cc7244a7a6ccf320.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../optimize/wind.html" rel="next">
+<link href="../optimize/index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dc4d85dcaf7fee20cc7244a7a6ccf320.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,10 +103,13 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <link rel="shortcut icon" href="assets/favicon.svg">
 
 
-<link rel="stylesheet" href="assets/custom.css">
+<link rel="stylesheet" href="../assets/custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -138,7 +121,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -152,11 +135,11 @@ div.csl-indent {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./assets/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">The OpenAP Handbook</a> 
+      <a href="../">The OpenAP Handbook</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/junzis/openap-book/tree/master/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
@@ -194,13 +177,13 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./openap.html" class="sidebar-item-text sidebar-link active">
+            <a href="../openap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🚀 OpenAP</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -209,37 +192,37 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./aircraft_engine.html" class="sidebar-item-text sidebar-link">
+  <a href="../aircraft_engine.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">🪬 Aircraft and engines</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./drag_thrust.html" class="sidebar-item-text sidebar-link">
+  <a href="../drag_thrust.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">☯️ Drag and thrust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kinematic.html" class="sidebar-item-text sidebar-link">
+  <a href="../kinematic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">🌯 Kinematic models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./flight_phases.html" class="sidebar-item-text sidebar-link">
+  <a href="../flight_phases.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trajectory_gen.html" class="sidebar-item-text sidebar-link">
+  <a href="../trajectory_gen.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./fuel_emission.html" class="sidebar-item-text sidebar-link">
+  <a href="../fuel_emission.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
   </div>
 </li>
@@ -247,7 +230,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./optimize/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../optimize/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🦸 Trajectory Optimizer</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -256,25 +239,25 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/basic.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/wind.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/wind.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/costgrid.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/costgrid.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/contrails.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/contrails.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🥠 Contrails, but how sure?</span></span></a>
   </div>
 </li>
@@ -282,7 +265,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -296,22 +279,18 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#chapters" id="toc-chapters" class="nav-link active" data-scroll-target="#chapters">Chapters</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a></li>
-  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">Install</a></li>
-  <li><a href="#using-openap" id="toc-using-openap" class="nav-link" data-scroll-target="#using-openap">Using OpenAP</a></li>
-  <li><a href="#contribute" id="toc-contribute" class="nav-link" data-scroll-target="#contribute">Contribute</a></li>
-  <li><a href="#book-and-paper" id="toc-book-and-paper" class="nav-link" data-scroll-target="#book-and-paper">Book and Paper</a></li>
+  <li><a href="#quick-start" id="toc-quick-start" class="nav-link active" data-scroll-target="#quick-start"><span class="header-section-number">7.1</span> Quick start</a></li>
+  <li><a href="#other-objective-functions" id="toc-other-objective-functions" class="nav-link" data-scroll-target="#other-objective-functions"><span class="header-section-number">7.2</span> Other objective functions</a></li>
+  <li><a href="#different-flight-phases" id="toc-different-flight-phases" class="nav-link" data-scroll-target="#different-flight-phases"><span class="header-section-number">7.3</span> Different flight phases</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/book/openap.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/book/openap.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/book/optimize/basic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/book/optimize/basic.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">🚀 OpenAP</h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></h1>
 </div>
 
 
@@ -328,131 +307,242 @@ div.csl-indent {
 </header>
 
 
-<p>OpenAP is an open-source aircraft performance library that aims to support air transportation research and simulations. It provides aircraft performance models and relevant data, allowing users to calculate key flight parameters such as drag, thrust, and fuel consumption.</p>
-<p>The library also enables users to estimate aircraft emissions, generate flight trajectories based on kinematic parameters, and identify different flight phases. With its modular Python code, OpenAP can be used for various applications, from basic performance calculations to complex trajectory optimization (with the <code>openap.top</code> extension). The library combines both empirical data collected from literature, and parameters derived from open sources data. The model and associated Python library has been fairly widely used in academic research, flight simulation, and air traffic management studies.</p>
-<p>OpenAP library has two parts: OpenAP model data and Python modules. The model data includes aircraft, engine, drag polar, kinematic, and navigation data. The Python modules provide functionalities for computing aircraft performance, emissions, and trajectories. The library is designed to be user-friendly, flexible, and extensible, allowing users to easily integrate it into their projects.</p>
-<section id="chapters" class="level2">
-<h2 class="anchored" data-anchor-id="chapters">Chapters</h2>
-<p>The user guide for OpenAP is organized into the following chapters:</p>
-<ul>
-<li><a href="./aircraft_engine.html">Chapter 1: Aircraft and engines</a></li>
-<li><a href="./drag_thrust.html">Chapter 2: Drag and thrust</a><br>
-</li>
-<li><a href="./kinematic.html">Chapter 3: Kinematic models</a></li>
-<li><a href="./flight_phases.html">Chapter 4: Flight phase identification</a></li>
-<li><a href="./trajectory_gen.html">Chapter 5: Trajectory generation</a></li>
-<li><a href="./fuel_emission.html">Chapter 6: Fuel and Emission</a></li>
-</ul>
-</section>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>Follow model datasets are all made public, under GPL open-source license:</p>
-<ul>
-<li>Aircraft data: Collected from open literature.</li>
-<li>Engines data: Primarily from the ICAO emission data bank, including fuel flow and emissions.</li>
-<li>Drag polar data: Exclusively derived from open data (<a href="https://junzis.com/files/openap_dragpolar.pdf">reference</a>).</li>
-<li>Kinematic data: Kinematic model (formally <a href="https://github.com/junzis/wrap">WRAP</a>) describe speed, altitude, and vertical rate.</li>
-<li>Navigation data: Airport and waypoints obtained from <a href="https://developer.x-plane.com/docs/data-development-documentation/">X-plane</a>.</li>
-</ul>
-</section>
-<section id="modules" class="level2">
-<h2 class="anchored" data-anchor-id="modules">Modules</h2>
-<p>OpenAP Python library includes the following modules, which support a variety of functionalities, including performance models, emission models, trajectory generation, and trajectory optimization:</p>
-<ul>
-<li><code>prop</code>: module for accessing aircraft and engine data</li>
-<li><code>thrust</code>: module for computing aircraft maximum thrust</li>
-<li><code>drag</code>: module for computing aircraft drag</li>
-<li><code>fuel</code>: module for computing fuel flow</li>
-<li><code>emission</code>: module for computing aircraft emissions</li>
-<li><code>kinematic</code>: module for accessing kinematic data</li>
-<li><code>aero</code>: module for common aeronautical conversions</li>
-<li><code>nav</code>: module for accessing navigation information</li>
-<li><code>phase</code>: module for determining climb, cruise, descent, level flight</li>
-<li><code>traj</code>: module for generating trajectories based on the kinematic model</li>
-</ul>
-<p>Other modules that can be installed separately:</p>
-<ul>
-<li><code>top</code>: a package for generating optimal trajectories (see <a href="./optimize.qmd">Trajectory Optimization</a> chapter)</li>
-</ul>
-</section>
-<section id="install" class="level2">
-<h2 class="anchored" data-anchor-id="install">Install</h2>
-<p>Install the stable release from pypi:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> openap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Or, you can also install the latest development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> git+https://github.com/junzis/openap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="using-openap" class="level2">
-<h2 class="anchored" data-anchor-id="using-openap">Using OpenAP</h2>
-<p>Most of the functionalities (except aircraft and engine properties) in OpenAP are provided as Python classes. You can import these as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.prop <span class="im">import</span> aircraft, engine</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.drag <span class="im">import</span> Drag</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.thrust <span class="im">import</span> Thrust</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.kinematic <span class="im">import</span> WRAP</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.phase <span class="im">import</span> FlightPhase</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.gen <span class="im">import</span> FlightGenerator</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.fuel <span class="im">import</span> FuelFlow</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.emission <span class="im">import</span> Emission</span>
+<section id="quick-start" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">7.1</span> Quick start</h2>
+<p>Example code to generate a fuel-optimal flight between two airports. First, we need to set up a few parameters, including <code>origin</code>, <code>destination</code>, <code>actype</code>, and <code>m0</code> (initial mass).</p>
+<p>The initial mass <code>m0</code> can be the fraction of the maximum take-off mass (between 0 and 1), or it can be the mass in <code>kg</code> (for example, <code>65000</code> kg).</p>
+<div id="0265334c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>actype <span class="op">=</span> <span class="st">"A320"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> <span class="st">"EHAM"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> <span class="st">"LGAV"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># initial mass as the faction of maximum takeoff mass</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>m0 <span class="op">=</span> <span class="fl">0.85</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this simple example, we will generate a complete flight using <code>top.CompleteFlight()</code>. We will generate a fuel-optimal flight by setting <code>objective</code> to <code>"fuel"</code> in the trajectory generation function.</p>
+<div id="d9587ec7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0<span class="op">=</span>m0)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>flight.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ts</th>
+<th data-quarto-table-cell-role="th">x</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">h</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">altitude</th>
+<th data-quarto-table-cell-role="th">mach</th>
+<th data-quarto-table-cell-role="th">tas</th>
+<th data-quarto-table-cell-role="th">vertical_rate</th>
+<th data-quarto-table-cell-role="th">heading</th>
+<th data-quarto-table-cell-role="th">mass</th>
+<th data-quarto-table-cell-role="th">fuel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.0</td>
+<td>-652425.011696</td>
+<td>840651.921623</td>
+<td>30.480000</td>
+<td>52.316584</td>
+<td>4.746242</td>
+<td>100.0</td>
+<td>0.3000</td>
+<td>198.38</td>
+<td>1155.0</td>
+<td>129.51</td>
+<td>66300.000000</td>
+<td>323.467557</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>240.0</td>
+<td>-633557.291544</td>
+<td>825095.442439</td>
+<td>1436.228097</td>
+<td>52.198625</td>
+<td>5.049372</td>
+<td>4712.0</td>
+<td>0.5000</td>
+<td>325.34</td>
+<td>1655.0</td>
+<td>137.01</td>
+<td>65976.532443</td>
+<td>331.368938</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>479.0</td>
+<td>-606696.232046</td>
+<td>796275.571353</td>
+<td>3450.725380</td>
+<td>51.969890</td>
+<td>5.489660</td>
+<td>11321.0</td>
+<td>0.6869</td>
+<td>436.31</td>
+<td>2155.0</td>
+<td>137.02</td>
+<td>65645.163505</td>
+<td>336.864499</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>719.0</td>
+<td>-571079.731509</td>
+<td>758059.040224</td>
+<td>6073.971848</td>
+<td>51.664098</td>
+<td>6.066591</td>
+<td>19928.0</td>
+<td>0.7589</td>
+<td>466.37</td>
+<td>1655.0</td>
+<td>137.02</td>
+<td>65308.299006</td>
+<td>310.576620</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>959.0</td>
+<td>-532698.817232</td>
+<td>716876.379079</td>
+<td>8088.469130</td>
+<td>51.331487</td>
+<td>6.679653</td>
+<td>26537.0</td>
+<td>0.7970</td>
+<td>476.69</td>
+<td>1155.0</td>
+<td>137.03</td>
+<td>64997.722386</td>
+<td>270.762600</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>In the previous table, we have the final fuel-optimal trajectory. Next, we can visualize the altitude, speed, and vertical rate.</p>
+<div id="fb2ab478" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the plot styles</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"font"</span>, size<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"font"</span>, family<span class="op">=</span><span class="st">"Ubuntu"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"lines"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"grid"</span>, color<span class="op">=</span><span class="st">"darkgray"</span>, linestyle<span class="op">=</span><span class="st">":"</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># when opeap-top is installed</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.top <span class="im">import</span> CompleteFlight, Climb, Cruise, Descent, MultiPhase</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can also import these Classes directly from the <code>openap</code> package as:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> (</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    Drag,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Thrust,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    WRAP,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    FlightPhase,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    FlightGenerator,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    FuelFlow,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    Emission,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># function to make plot nicer</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_ax(ax):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_label_coords(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">1.05</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.label.set_rotation(<span class="dv">0</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.label.set_ha(<span class="st">"left"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    ax.grid()</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2, ax3) <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax1.plot(flight.ts, flight.altitude)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax2.plot(flight.ts, flight.tas)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax3.plot(flight.ts, flight.vertical_rate)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">40000</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">600</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax3.set_ylim(<span class="op">-</span><span class="dv">3000</span>, <span class="dv">3000</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"altitude (ft)"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"true airspeed (kts)"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>ax3.set_ylabel(<span class="st">"vertical rate (ft/min)"</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>ax3.set_xlabel(<span class="st">"time(s)"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> (ax1, ax2, ax3):</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    format_ax(ax)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="basic_files/figure-html/cell-4-output-1.png" width="467" height="371" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="contribute" class="level2">
-<h2 class="anchored" data-anchor-id="contribute">Contribute</h2>
-<p>If you encounter any issues, please file a bug report on the <a href="https://github.com/junzis/openap/issues">GitHub issue tracker</a>. You are even more welcomed to contribute to the project by submitting a <a href="https://github.com/junzis/openap/pulls">pull request</a>.</p>
+<section id="other-objective-functions" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="other-objective-functions"><span class="header-section-number">7.2</span> Other objective functions</h2>
+<p>Instead of the default objective functions, you can also specify different objective functions as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cost index, between 0 - 100</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"ci:30"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># global warming potential</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gwp100"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># global temperature potential</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gtp100"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The final <code>flight</code> object is a pandas DataFrame.</p>
 </section>
-<section id="book-and-paper" class="level2">
-<h2 class="anchored" data-anchor-id="book-and-paper">Book and Paper</h2>
-<p>The OpenAP is the one outcome of my <a href="https://repository.tudelft.nl/record/uuid:af94d535-1853-4a6c-8b3f-77c98a52346a">PhD research work</a> (2015-2019). The Python library was first published in the following paper: <a href="https://doi.org/10.3390/aerospace7080104"><span class="citation" data-cites="sun2022top">Sun (<span>2022</span>)</span></a></p>
-<p>To cite the paper:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>@article{sun2020openap,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  title = {OpenAP: An open-source aircraft performance model for air transportation studies and simulations},</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  author = {Sun, Junzi and Hoekstra, Jacco and Ellerbroek, Joost},</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  journal = {Aerospace},</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  volume = {7},</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  number = {8},</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  pages = {104},</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  year = {2020},</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  month = jul,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  publisher = {Multidisciplinary Digital Publishing Institute},</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  link = {https://doi.org/10.3390/aerospace7080104},</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  doi = {10.3390/aerospace7080104},</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="different-flight-phases" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="different-flight-phases"><span class="header-section-number">7.3</span> Different flight phases</h2>
+<p>Instead of generating a complete flight, we can also generate cruise, climb, and descent flights using <code>top.Crusie</code>, <code>top.Climb</code>, and <code>top.Descent</code> classes.</p>
+<div id="08aa2bee" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cruise_flight <span class="op">=</span> top.Cruise(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>climb_flight <span class="op">=</span> top.Climb(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>descent_flight <span class="op">=</span> top.Descent(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Caution
+<p>Let’s visulize these trajectories:</p>
+<div id="57c80095" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> (<span class="st">"cruise flight"</span>, <span class="st">"climb flight"</span>, <span class="st">"descent flight"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flight <span class="kw">in</span> <span class="bu">enumerate</span>([cruise_flight, climb_flight, descent_flight]):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ax1, ax2, ax3 <span class="op">=</span> axes[:, i]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax1.plot(flight.ts, flight.altitude)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ax2.plot(flight.ts, flight.tas)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax3.plot(flight.ts, flight.vertical_rate)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">"altitude (ft)"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">"true airspeed (kts)"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylabel(<span class="st">"vertical rate (ft/min)"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="dv">0</span>, <span class="dv">40000</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylim(<span class="dv">0</span>, <span class="dv">600</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylim(<span class="op">-</span><span class="dv">3000</span>, <span class="dv">3000</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(labels[i], pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ax3.set_xlabel(<span class="st">"time(s)"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes.flatten():</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    format_ax(ax)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="basic_files/figure-html/cell-6-output-1.png" width="947" height="372" class="figure-img"></p>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The libaray has evolved significantly since the paper’s publication. Key improvements include:</p>
-<ul>
-<li>Updated aircraft and engine data</li>
-<li>More accuracte fuel flow and emissions models</li>
-<li>Symbolic implementation for optimization with CasADi</li>
-</ul>
 </div>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-sun2022top" class="csl-entry" role="listitem">
-Sun, J. (2022). OpenAP. Top: Open flight trajectory optimization for air transport and sustainability research. <em>Aerospace</em>, <em>9</em>(7), 383. <a href="https://doi.org/10.3390/aerospace9070383">https://doi.org/10.3390/aerospace9070383</a>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -878,13 +968,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="../optimize/index.html" class="pagination-link" aria-label="🦸 Trajectory Optimizer">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🦸 Trajectory Optimizer</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./aircraft_engine.html" class="pagination-link" aria-label="🪬 Aircraft and engines">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">🪬 Aircraft and engines</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../optimize/wind.html" class="pagination-link" aria-label="🌪️ Wind optimal flights">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -893,4 +983,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/book/openap.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/book/openap.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/book/optimize/basic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/book/optimize/basic.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

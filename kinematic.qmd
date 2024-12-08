@@ -12,7 +12,9 @@ Following is a list of functions that can be used to access parameters at differ
 from openap.kinematic import WRAP
 
 wrap = WRAP(ac="A320")
+```
 
+```python
 params = wrap.takeoff_speed()
 params = wrap.takeoff_distance()
 params = wrap.takeoff_acceleration()
