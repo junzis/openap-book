@@ -46,7 +46,7 @@ OpenAP Python library includes the following modules, which support a variety of
 
 Other modules that can be installed separately:
 
-- `top`: a package for generating optimal trajectories (see [Trajectory Optimization](/optimize.qmd) chapter)
+- `top`: a package for generating optimal trajectories (see [Trajectory Optimization](/optimize/index.qmd) chapter)
 
 
 ## Install 

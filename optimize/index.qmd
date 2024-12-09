@@ -18,7 +18,7 @@ The following chapters demonstrate various optimization scenarios and practical 
 - [Chapter 7](basic.qmd): explains how you can easily generate fuel and other simple cost-optimal trajectories.
 - [Chapter 8](wind.qmd): provides two approaches to obtaining wind fields and using them in your optimization.
 - [Chapter 9](costgrid.qmd): dives deeper into optimization with more complex 3D or 4D grids.
-- [Chapter 10](contrail.qmd): provides a concrete example of flight optimization considering contrails.
+- [Chapter 10](contrails.qmd): provides a concrete example of flight optimization considering contrails.
 
 
 
