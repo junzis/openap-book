@@ -22,7 +22,7 @@ book:
     logo: assets/logo.png
     search: true
   repo-url: https://github.com/junzis/openap-book/
-  repo-subdir: book
+  # repo-subdir: book
   repo-branch: master
   repo-actions: [edit, issue, source]
   sharing: [twitter, facebook, linkedin]
