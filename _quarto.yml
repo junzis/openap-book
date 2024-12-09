@@ -58,7 +58,7 @@ format:
     css: assets/custom.css
     include-in-header:
       - text: |
-          <link rel = "shortcut icon" href = "assets/favicon.svg" />
+          <link rel = "shortcut icon" href = "/assets/favicon.svg" />
 
 execute:
   freeze: auto
