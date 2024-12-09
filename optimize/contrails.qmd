@@ -1,4 +1,4 @@
-# 🥠 Contrails, but how sure?
+# 🥠 Contrails
 
 Contrails are line-shaped clouds produced by aircraft. They are formed when the water vapor in the exhaust of an airplane engine condenses and freezes. Depending on the atmospheric conditions, contrails are made up of ice crystals and can last for a few seconds to several hours.
 
