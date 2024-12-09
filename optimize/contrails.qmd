@@ -380,9 +380,27 @@ plot_flight(results, df_cost)
 
 ## Uncertainties that makes or breaks the optimization
 
+```{python}
+# | code-fold: true
+
+extra_fuel = int(
+    (results["default"].fuel.sum() - results["fuel optimal"].fuel.sum()).round(-1)
+)
+extra_fuel_percent = int(
+    (
+        (
+            (results["default"].fuel.sum() - results["fuel optimal"].fuel.sum())
+            / results["fuel optimal"].fuel.sum()
+        )
+        * 100
+    ).round()
+)
+
+```
+
 In the previous example, we can see that the optimal trajectory considering **both** contrail and CO2 climate effects differs largely from the fuel optimal trajectory. A large deviation is observed in both the altitude and the route to avoid regions with high contrail cost.
 
-This deviation costs about 850 kg of fuel, which accounts for 12% extra fuel when compared to the optimal case. This is a significant amount of fuel, both in terms of cost and excess CO2 emissions.
+This deviation costs about `{python} extra_fuel` kg of fuel, which accounts for about `{python} extra_fuel_percent`% extra fuel when compared to the optimal case. This is a significant amount of fuel, both in terms of cost and excess CO2 emissions.
 
 In recent studies regarding operational contrail mitigation, we often miss the fact that the contrail cost is highly uncertain. In the paper _The contribution of global aviation to anthropogenic climate forcing for 2000 to 2018_ [@lee2021contribution](https://doi.org/10.1016/j.atmosenv.2020.117834), the authors have pointed out that the uncertainties in the effective radiative forcing caused by contrail cirrus can be between 17 and 98 mW/m2. This is a huge range, but many studies only consider the mean value of 57.4.
 
