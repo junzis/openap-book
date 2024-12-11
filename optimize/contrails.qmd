@@ -247,17 +247,11 @@ In addition to the default combined effect of contrail and CO2, we will build a 
 from openap import top
 
 optimizer = top.Cruise("A320", "EHAM", "LGAV", m0=0.85)
+optimizer.setup(debug=False, max_iteration=2000)
 
 flight_fuel_optimal = optimizer.trajectory(objective="fuel")
 
 interpolant = top.tools.interpolant_from_dataframe(df_cost)
-
-results = {}
-
-scenarios = {
-    "default": [1, 1],
-    "fuel optimal": [0, 1],
-}
 
 
 def objective(x, u, dt, **kwargs):
@@ -276,18 +270,16 @@ def objective(x, u, dt, **kwargs):
     return contrail_cost + co2_cost
 
 
-for scenario, weights in scenarios.items():
-    print(scenario)
-    flight = optimizer.trajectory(
-        objective=objective,
-        interpolant=interpolant,
-        initial_guess=flight_fuel_optimal,
-        h_min=25_000 * openap.aero.ft,
-        scale_contrail=weights[0],
-        scale_co2=weights[1],
-        return_failed=True,
-    )
-    results[scenario] = flight
+flight = optimizer.trajectory(
+    objective=objective,
+    interpolant=interpolant,
+    initial_guess=flight_fuel_optimal,
+    return_failed=True,
+)
+
+results = {}
+results["fuel_optimal"] = flight_fuel_optimal
+results["accf_optimal"] = flight
 
 
 ```
@@ -335,20 +327,8 @@ def plot_flight(results, df_cost, scenarios=None):
         cmap="RdBu_r",
         levels=100,
         transform=ccrs.PlateCarree(),
-        vmin=-df_cost.cost.max() * 0.7,
-        vmax=df_cost.cost.max() * 0.7,
-    )
-
-    fl = 350
-
-    ax.text(
-        0.05,
-        0.95,
-        f"FL{int(fl)}",
-        transform=ax.transAxes,
-        fontsize=14,
-        ha="left",
-        va="top",
+        vmin=-df_cost.cost.max(),
+        vmax=df_cost.cost.max(),
     )
 
     for scenario, flight in results.items():
@@ -375,32 +355,61 @@ def plot_flight(results, df_cost, scenarios=None):
 ```
 
 ```{python}
+# | code-fold: true
+# | code-summary: "cacluate extra fuel"
+
+accf_fuel = results["accf_optimal"].fuel.sum()
+fuel_fuel = results["fuel_optimal"].fuel.sum()
+
+extra_fuel = int((accf_fuel - fuel_fuel).round(-1))
+extra_fuel_percent = int(((accf_fuel / fuel_fuel - 1) * 100).round())
+
+```
+
+```{python}
 plot_flight(results, df_cost)
 ```
 
-## Uncertainties that makes or breaks the optimization
+In this example, we can see that the optimal trajectory considering **both** contrail and CO2 climate effects fly at a very low altitude to avoide regions with high contrail cost. This comes with a great cost in terms of fuel, which is significantly higher than the fuel optimal trajectory. The extra fuel cost is about `{python} extra_fuel` kg, which accounts for about `{python} extra_fuel_percent`% extra fuel when compared to the optimal case.
+
+To perform a more fair comparison, we will constraint the altitude of the desired trajectory to be within the range of the fuel optimal trajectory. This can be done by setting the `h_min` and `h_max` arguments in the `optimizer.trajectory()` function. A margion of 600 meters is added to the minimum and maximum altitude of the fuel optimal trajectory.
 
 ```{python}
-# | code-fold: true
+flight = optimizer.trajectory(
+    objective=objective,
+    interpolant=interpolant,
+    initial_guess=flight_fuel_optimal,
+    h_min=flight_fuel_optimal.h.min() - 600,
+    h_max=flight_fuel_optimal.h.max() + 600,
+    return_failed=True,
+)
 
-extra_fuel = int(
-    (results["default"].fuel.sum() - results["fuel optimal"].fuel.sum()).round(-1)
-)
-extra_fuel_percent = int(
-    (
-        (
-            (results["default"].fuel.sum() - results["fuel optimal"].fuel.sum())
-            / results["fuel optimal"].fuel.sum()
-        )
-        * 100
-    ).round()
-)
+results = {}
+results["fuel_optimal"] = flight_fuel_optimal
+results["accf_optimal"] = flight
 
 ```
 
-In the previous example, we can see that the optimal trajectory considering **both** contrail and CO2 climate effects differs largely from the fuel optimal trajectory. A large deviation is observed in both the altitude and the route to avoid regions with high contrail cost.
+```{python}
+# | code-fold: true
+# | code-summary: "cacluate extra fuel"
 
-This deviation costs about `{python} extra_fuel` kg of fuel, which accounts for about `{python} extra_fuel_percent`% extra fuel when compared to the optimal case. This is a significant amount of fuel, both in terms of cost and excess CO2 emissions.
+accf_fuel = results["accf_optimal"].fuel.sum()
+fuel_fuel = results["fuel_optimal"].fuel.sum()
+
+extra_fuel = int((accf_fuel - fuel_fuel).round(-1))
+extra_fuel_percent = int(((accf_fuel / fuel_fuel - 1) * 100).round())
+```
+
+```{python}
+plot_flight(results, df_cost)
+```
+
+Even in this constrained trajectory, we can see that the _sub-optimal_ trajectory considering both contrail and CO2 climate effects differs largely from the fuel optimal trajectory. A large lateral deviation is observed in both the altitude and the route to avoid regions with high contrail cost.
+
+This deviation costs about `{python} extra_fuel` kg of fuel, which accounts for about `{python} extra_fuel_percent`% extra fuel when compared to the optimal case. This is a still a significant amount of fuel, results in greater monetary cost and excess CO2 emissions.
+
+## Uncertainties that makes or breaks the optimization
 
 In recent studies regarding operational contrail mitigation, we often miss the fact that the contrail cost is highly uncertain. In the paper _The contribution of global aviation to anthropogenic climate forcing for 2000 to 2018_ [@lee2021contribution](https://doi.org/10.1016/j.atmosenv.2020.117834), the authors have pointed out that the uncertainties in the effective radiative forcing caused by contrail cirrus can be between 17 and 98 mW/m2. This is a huge range, but many studies only consider the mean value of 57.4.
 
@@ -410,8 +419,8 @@ First of all, different scenarios and scaling factors for contrail and CO2 are d
 
 ```{python}
 more_scenarios = {
-    "default": [1, 1],
-    "fuel optimal": [0, 1],
+    "fuel_optimal": [0, 1],
+    "accf_optimal": [1, 1],
     "lo_contrail_high_co2": [0.293, 1.166],
     "lo_contrail_lo_co2": [0.293, 0.816],
     "hi_contrail_lo_co2": [1.707, 0.816],
@@ -421,7 +430,7 @@ more_scenarios = {
 
 In the above scenarios, for example, `lo_contrail_high_co2` refers to scaling the contrail impact to a lower bound of 29.3% of the default value, while the CO2 cost is scaled to the upper bound of 116.6% of the default value. In this case, the contrail has a significantly lower impact than what has been assumed in the default case, while the CO2 cost is slightly higher.
 
-The following code will run the optimization for all the scenarios and visualize the results.
+The following code will run the optimization for all the scenarios and visualize the results. Note that the altitude constraints are still applied to the optimizations.
 
 ```{python}
 
@@ -435,12 +444,13 @@ interpolant = top.tools.interpolant_from_dataframe(df_cost)
 more_results = {}
 
 for scenario, weights in more_scenarios.items():
-    print(scenario)
+    print(f"runing scenario: {scenario}")
     flight = optimizer.trajectory(
         objective=objective,
         interpolant=interpolant,
         initial_guess=flight_fuel_optimal,
-        h_min=25_000 * openap.aero.ft,
+        h_min=flight_fuel_optimal.h.min() - 600,
+        h_max=flight_fuel_optimal.h.max() + 600,
         scale_contrail=weights[0],
         scale_co2=weights[1],
         return_failed=True,
