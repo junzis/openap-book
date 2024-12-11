@@ -15,7 +15,9 @@ book:
       - MSc
       - BEng
     affiliation: "Delft University of Technology"
-  description: "A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts"
+  description: "A comprehensive guide on aircraft performance, emission,
+    optimization calculations for air transport researchers and developers.
+    Source code on [GitHub](https://github.com/junzis/openap)."
   url: https://openap.dev
   sidebar:
     title: false
