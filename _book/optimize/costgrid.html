@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts">
 
-<title>9&nbsp; 🙀 Using cost grids – The OpenAP Handbook</title>
+<title>10&nbsp; 🙀 Using cost grids – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,6 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../addons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -240,25 +246,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/costgrid.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/contrails.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,17 +285,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#cost-grid-in-3d" id="toc-cost-grid-in-3d" class="nav-link active" data-scroll-target="#cost-grid-in-3d"><span class="header-section-number">9.1</span> Cost grid in 3D</a></li>
-  <li><a href="#cost-grid-in-4d" id="toc-cost-grid-in-4d" class="nav-link" data-scroll-target="#cost-grid-in-4d"><span class="header-section-number">9.2</span> Cost grid in 4D</a></li>
+  <li><a href="#cost-grid-in-3d" id="toc-cost-grid-in-3d" class="nav-link active" data-scroll-target="#cost-grid-in-3d"><span class="header-section-number">10.1</span> Cost grid in 3D</a></li>
+  <li><a href="#cost-grid-in-4d" id="toc-cost-grid-in-4d" class="nav-link" data-scroll-target="#cost-grid-in-4d"><span class="header-section-number">10.2</span> Cost grid in 4D</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/costgrid.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/costgrid.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></h1>
 </div>
 
 
@@ -309,8 +315,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In many trajectory optimization scenarios, the cost function is area-dependent. For example, we may need to avoid areas of convective weather or regions with sensitive climate conditions. In these cases, the TOP optimizer considers a 3D or 4D cost grid as part of the objective function.</p>
 <p>To find the optimal set of control variables (i.e., speed, heading, and vertical rate), the cost grid is converted into an interpolant. This allows the non-linear optimal control process to evaluate the combined cost based on flight states (time, positions, and altitudes) throughout the entire trajectory. Subject to the constraints defined in the flight dynamics, the optimizer computes a trajectory that minimizes the total cost across the airspace.</p>
 <p>Practically, in order to prevent the trajectory from completely deviating from the fuel-optimal route, the cost is combined with the fuel cost to provide a more realistic trajectory. In this chapter, I will explain how one can use a predefined cost grid (in both 3D and 4D) to perform the optimization of trajectories.</p>
-<section id="cost-grid-in-3d" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="cost-grid-in-3d"><span class="header-section-number">9.1</span> Cost grid in 3D</h2>
+<section id="cost-grid-in-3d" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="cost-grid-in-3d"><span class="header-section-number">10.1</span> Cost grid in 3D</h2>
 <p>To demonstrate the use of 3D cost in flight optimization, we will first set up an example cost grid. The example flight we want to optimize is still based on the one from previous chapters, flight with the origin of <code>EHAM</code> and the destination of <code>LGAV</code>.</p>
 <p>We first generate an artificial 2D cost grid using a Gaussian function, with the <code>x</code> range of <code>(-10, 10)</code> and <code>y</code> range of <code>(-5, 5)</code>. Then the range is transformed to the longitude and latitude bounds for our flight. The 2D cost grids at different levels are dependent on the altitude, where the higher the altitude, the higher the cost.</p>
 <div id="eea2b697" class="cell" data-execution_count="1">
@@ -622,8 +628,8 @@ Note
 </div>
 </div>
 </section>
-<section id="cost-grid-in-4d" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="cost-grid-in-4d"><span class="header-section-number">9.2</span> Cost grid in 4D</h2>
+<section id="cost-grid-in-4d" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="cost-grid-in-4d"><span class="header-section-number">10.2</span> Cost grid in 4D</h2>
 <p>The usage of 4D cost grid is similar to 3D cost grid. The only difference is that the 4D cost grid includes a time dimension.</p>
 <p>In the following example, we extend the 3D cost grid by adding a time dimension. The time dimension can be represented as a sequence of 3D cost grids at different time steps.</p>
 <div id="8af22173" class="cell" data-execution_count="9">
@@ -1353,12 +1359,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../optimize/wind.html" class="pagination-link" aria-label="🌪️ Wind optimal flights">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../optimize/contrails.html" class="pagination-link" aria-label="🥠 Contrails">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

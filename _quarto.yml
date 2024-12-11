@@ -37,6 +37,7 @@ book:
         - flight_phases.qmd
         - trajectory_gen.qmd
         - fuel_emission.qmd
+        - addons.qmd
     - part: optimize/index.qmd
       chapters:
         - optimize/basic.qmd

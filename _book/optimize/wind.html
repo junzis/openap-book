@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts">
 
-<title>8&nbsp; 🌪️ Wind optimal flights – The OpenAP Handbook</title>
+<title>9&nbsp; 🌪️ Wind optimal flights – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/wind.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/wind.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,6 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../addons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -240,25 +246,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/wind.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/costgrid.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/contrails.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,17 +285,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#obtaining-wind-with-fastmeteo" id="toc-obtaining-wind-with-fastmeteo" class="nav-link active" data-scroll-target="#obtaining-wind-with-fastmeteo"><span class="header-section-number">8.1</span> Obtaining wind with fastmeteo</a></li>
-  <li><a href="#using-grid-wind-files" id="toc-using-grid-wind-files" class="nav-link" data-scroll-target="#using-grid-wind-files"><span class="header-section-number">8.2</span> Using grid wind files</a></li>
+  <li><a href="#obtaining-wind-with-fastmeteo" id="toc-obtaining-wind-with-fastmeteo" class="nav-link active" data-scroll-target="#obtaining-wind-with-fastmeteo"><span class="header-section-number">9.1</span> Obtaining wind with fastmeteo</a></li>
+  <li><a href="#using-grid-wind-files" id="toc-using-grid-wind-files" class="nav-link" data-scroll-target="#using-grid-wind-files"><span class="header-section-number">9.2</span> Using grid wind files</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/wind.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/wind.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/wind.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/wind.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></h1>
 </div>
 
 
@@ -312,8 +318,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The first approach uses the FastMeteo API to access ERA meteorological data stored in cloud-optimized Zarr format on Google Cloud Storage. This method provides efficient access to wind data through API calls without requiring large local datasets. It’s particularly suitable for single flight optimizations where direct data access is preferred.</p></li>
 <li><p>The second approach works with pre-downloaded GRIB files from ECMWF or GFS sources. This method is more suitable for batch processing number of flights with larger RAM resources, though it requires downloading and storing weather data files locally.</p></li>
 </ol>
-<section id="obtaining-wind-with-fastmeteo" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="obtaining-wind-with-fastmeteo"><span class="header-section-number">8.1</span> Obtaining wind with fastmeteo</h2>
+<section id="obtaining-wind-with-fastmeteo" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="obtaining-wind-with-fastmeteo"><span class="header-section-number">9.1</span> Obtaining wind with fastmeteo</h2>
 <p>It is also possible to include 3D or 4D wind data in the optimization. The following code provides an example of such a use case. Note that the wind data is obtained using <code>fastmeteo</code> library in this example.</p>
 <div id="071bee77" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fastmeteo</span>
@@ -575,8 +581,8 @@ syncing zarr from google arco-era5, hour: 2021-05-01 11:00:00</code></pre>
 </div>
 </div>
 </section>
-<section id="using-grid-wind-files" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="using-grid-wind-files"><span class="header-section-number">8.2</span> Using grid wind files</h2>
+<section id="using-grid-wind-files" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="using-grid-wind-files"><span class="header-section-number">9.2</span> Using grid wind files</h2>
 <p>You can also optimize the trajectory with grid atmospheric data, for example, <code>grib</code> or <code>nc</code> files downloaded from the ECMWF or GFS. In <code>TOP</code>, there is a built-in function <code>top.tools.read_grids()</code> that can be used to process grid data files into a <code>DataFrame</code> for the optimizer.</p>
 <div id="a9f4bad2" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the downloaded ERA5 grib data, the arguments can be a list of files.</span></span>
@@ -1029,12 +1035,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../optimize/basic.html" class="pagination-link" aria-label="🍳 Simple optimal flights">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../optimize/costgrid.html" class="pagination-link" aria-label="🙀 Using cost grids">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

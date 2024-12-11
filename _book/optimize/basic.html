@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts">
 
-<title>7&nbsp; 🍳 Simple optimal flights – The OpenAP Handbook</title>
+<title>8&nbsp; 🍳 Simple optimal flights – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,6 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../addons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -240,25 +246,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/costgrid.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/contrails.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,18 +285,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#quick-start" id="toc-quick-start" class="nav-link active" data-scroll-target="#quick-start"><span class="header-section-number">7.1</span> Quick start</a></li>
-  <li><a href="#other-objective-functions" id="toc-other-objective-functions" class="nav-link" data-scroll-target="#other-objective-functions"><span class="header-section-number">7.2</span> Other objective functions</a></li>
-  <li><a href="#different-flight-phases" id="toc-different-flight-phases" class="nav-link" data-scroll-target="#different-flight-phases"><span class="header-section-number">7.3</span> Different flight phases</a></li>
+  <li><a href="#quick-start" id="toc-quick-start" class="nav-link active" data-scroll-target="#quick-start"><span class="header-section-number">8.1</span> Quick start</a></li>
+  <li><a href="#other-objective-functions" id="toc-other-objective-functions" class="nav-link" data-scroll-target="#other-objective-functions"><span class="header-section-number">8.2</span> Other objective functions</a></li>
+  <li><a href="#different-flight-phases" id="toc-different-flight-phases" class="nav-link" data-scroll-target="#different-flight-phases"><span class="header-section-number">8.3</span> Different flight phases</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/basic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/basic.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></h1>
 </div>
 
 
@@ -307,8 +313,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quick-start" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">7.1</span> Quick start</h2>
+<section id="quick-start" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">8.1</span> Quick start</h2>
 <p>Example code to generate a fuel-optimal flight between two airports. First, we need to set up a few parameters, including <code>origin</code>, <code>destination</code>, <code>actype</code>, and <code>m0</code> (initial mass).</p>
 <p>The initial mass <code>m0</code> can be the fraction of the maximum take-off mass (between 0 and 1), or it can be the mass in <code>kg</code> (for example, <code>65000</code> kg).</p>
 <div id="0265334c" class="cell" data-execution_count="1">
@@ -485,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="other-objective-functions" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="other-objective-functions"><span class="header-section-number">7.2</span> Other objective functions</h2>
+<section id="other-objective-functions" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="other-objective-functions"><span class="header-section-number">8.2</span> Other objective functions</h2>
 <p>Instead of the default objective functions, you can also specify different objective functions as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cost index, between 0 - 100</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"ci:30"</span>)</span>
@@ -498,8 +504,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gtp100"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The final <code>flight</code> object is a pandas DataFrame.</p>
 </section>
-<section id="different-flight-phases" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="different-flight-phases"><span class="header-section-number">7.3</span> Different flight phases</h2>
+<section id="different-flight-phases" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="different-flight-phases"><span class="header-section-number">8.3</span> Different flight phases</h2>
 <p>Instead of generating a complete flight, we can also generate cruise, climb, and descent flights using <code>top.Crusie</code>, <code>top.Climb</code>, and <code>top.Descent</code> classes.</p>
 <div id="08aa2bee" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cruise_flight <span class="op">=</span> top.Cruise(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
@@ -974,7 +980,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="../optimize/wind.html" class="pagination-link" aria-label="🌪️ Wind optimal flights">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

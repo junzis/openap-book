@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers, developers, and enthusiasts">
 
-<title>4&nbsp; ㊙️ Flight phase identification – The OpenAP Handbook</title>
+<title>7&nbsp; 🪤 Add-ons – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,27 +55,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -85,8 +65,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./trajectory_gen.html" rel="next">
-<link href="./kinematic.html" rel="prev">
+<link href="./optimize/index.html" rel="next">
+<link href="./fuel_emission.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +118,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./flight_phases.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./addons.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -227,7 +207,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./flight_phases.html" class="sidebar-item-text sidebar-link active">
+  <a href="./flight_phases.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span></a>
   </div>
 </li>
@@ -245,7 +225,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./addons.html" class="sidebar-item-text sidebar-link">
+  <a href="./addons.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></span></a>
   </div>
 </li>
@@ -302,16 +282,22 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#phase-labeling" id="toc-phase-labeling" class="nav-link active" data-scroll-target="#phase-labeling"><span class="header-section-number">4.1</span> Phase labeling</a></li>
+  <li><a href="#bada-4" id="toc-bada-4" class="nav-link active" data-scroll-target="#bada-4"><span class="header-section-number">7.1</span> BADA 4</a>
+  <ul class="collapse">
+  <li><a href="#drag" id="toc-drag" class="nav-link" data-scroll-target="#drag"><span class="header-section-number">7.1.1</span> Drag</a></li>
+  <li><a href="#thrust" id="toc-thrust" class="nav-link" data-scroll-target="#thrust"><span class="header-section-number">7.1.2</span> Thrust</a></li>
+  <li><a href="#fuel" id="toc-fuel" class="nav-link" data-scroll-target="#fuel"><span class="header-section-number">7.1.3</span> Fuel</a></li>
+  <li><a href="#vectorized-calculations" id="toc-vectorized-calculations" class="nav-link" data-scroll-target="#vectorized-calculations"><span class="header-section-number">7.1.4</span> Vectorized calculations</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/flight_phases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/flight_phases.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/addons.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/addons.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./flight_phases.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./addons.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></h1>
 </div>
 
 
@@ -328,87 +314,103 @@ div.csl-indent {
 </header>
 
 
-<p>OpenAP includes a module to identify flight phases based on flight data, such as ADS-B data. It uses the fuzzy logic, which is defined in my paper: <a href="http://resolver.tudelft.nl/uuid:af67a6bd-d812-474d-a304-7a594991390b"><span class="citation" data-cites="sun2017fdp">Sun et al. (<span>2017</span>)</span></a></p>
-<p>Note that the paper was published a while ago; some improvements have been made in the logic since then. I also added a new phase to indicate <code>level</code> segments in the flight during the climb and descent.</p>
-<section id="phase-labeling" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="phase-labeling"><span class="header-section-number">4.1</span> Phase labeling</h2>
-<p>We can use <code>FlightPhase.phaselabel(ts, alt, spd, roc)</code> function to identify the labels of a given set of flight states. The following flight phases are supported:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">GND</span><span class="kw">:</span><span class="at"> on-ground  </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CL</span><span class="kw">:</span><span class="at">  climb</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DE</span><span class="kw">:</span><span class="at">  descend</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">LVL</span><span class="kw">:</span><span class="at"> level flight</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">CR</span><span class="kw">:</span><span class="at">  cruise</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">NA</span><span class="kw">:</span><span class="at">  unlabeled</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that the unit for all required parameters is:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ts</span><span class="kw">:</span><span class="at">  timestamp      second</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">alt</span><span class="kw">:</span><span class="at"> altitude       ft</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">spd</span><span class="kw">:</span><span class="at"> speed          kts</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">roc</span><span class="kw">:</span><span class="at"> vertical rate  ft/min</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Following is an example labeling process based on a real flight:</p>
-<div id="83265cdc" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.phase <span class="im">import</span> FlightPhase</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"assets/data/flight_a319_opensky.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"timestamp"</span>])</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> (df.timestamp <span class="op">-</span> df.timestamp.iloc[<span class="dv">0</span>]).dt.total_seconds()  <span class="co"># second</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> df.altitude.values  <span class="co"># ft</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>spd <span class="op">=</span> df.groundspeed.values  <span class="co"># kts</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>roc <span class="op">=</span> df.vertical_rate.values  <span class="co"># ft/min</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> FlightPhase()</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>fp.set_trajectory(ts, alt, spd, roc)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> fp.phaselabel()</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CL', 'CL', 'CR', 'CR', 'CL', 'CR', 'CL', 'CL', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'NA']</code></pre>
+<section id="bada-4" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="bada-4"><span class="header-section-number">7.1</span> BADA 4</h2>
+<p>The OpenAP library can also be used to interact with BADA performance models.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
-<p>We can visualize the identified flight phases:</p>
-<div id="5e60d184" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>phasecolors <span class="op">=</span> {</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GND"</span>: <span class="st">"black"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CL"</span>: <span class="st">"green"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DE"</span>: <span class="st">"blue"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LVL"</span>: <span class="st">"cyan"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CR"</span>: <span class="st">"purple"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NA"</span>: <span class="st">"red"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [phasecolors[lbl] <span class="cf">for</span> lbl <span class="kw">in</span> labels]</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">311</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, alt, marker<span class="op">=</span><span class="st">"."</span>, c<span class="op">=</span>colors, lw<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"altitude (ft)"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">312</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, spd, marker<span class="op">=</span><span class="st">"."</span>, c<span class="op">=</span>colors, lw<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"speed (kt)"</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">313</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, roc, marker<span class="op">=</span><span class="st">"."</span>, c<span class="op">=</span>colors, lw<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"roc (fpm)"</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="flight_phases_files/figure-html/cell-3-output-1.png" width="613" height="411" class="figure-img"></p>
-</figure>
+<div class="callout-body-container callout-body">
+<p>In order to user this, you must first obtain a lincense and BADA4 data from EUROCONTROL.</p>
 </div>
 </div>
+<p>The code for calculating drag, thrust, and fuel models from BADA4 are implemented in OpenAP. The interface is similar to the one used for the open-source OpenAP models.</p>
+<p>To use the BADA4 models, you first need to import the module from addons, and then specify the path to the BADA4 tables on your local system.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.addon <span class="im">import</span> bada4</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bada_path <span class="op">=</span> <span class="st">"path/to/bada_4.x/tables"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="drag" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="drag"><span class="header-section-number">7.1.1</span> Drag</h3>
+<p>In the following example, we show how to use the BADA4 models to calculate the drag of an aircraft at a specific flight condition with clean configuration.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>drag <span class="op">=</span> bada4.Drag(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>drag.clean(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">12_000</span>)  <span class="co"># kg, kt, ft -&gt; N</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the aircraft type can be ICAO typecode like <code>A320</code> or with subtypes like <code>A320-231</code>.</p>
+</section>
+<section id="thrust" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="thrust"><span class="header-section-number">7.1.2</span> Thrust</h3>
+<p>To calculate the <em>maximum</em> thrust at climb conditions, you can use the following code:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>thrust <span class="op">=</span> bada4.Thrust(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>thrust.climb(tas<span class="op">=</span><span class="dv">250</span>, alt<span class="op">=</span><span class="dv">10_000</span>)  <span class="co"># kg, kt, ft -&gt; N</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For max thrust at cruise conditions:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>thrust.cruise(tas<span class="op">=</span><span class="dv">350</span>, alt<span class="op">=</span><span class="dv">30_000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For idle thrust:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>thrust.idle(tas<span class="op">=</span><span class="dv">250</span>, alt<span class="op">=</span><span class="dv">15_000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fuel" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="fuel"><span class="header-section-number">7.1.3</span> Fuel</h3>
+<p>The fuel model interface is also similar to OpenAP’s own fuel flow model interfaces. An example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fuel_bada <span class="op">=</span> bada4.FuelFlow(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fuel_bada.enroute(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">350</span>, alt<span class="op">=</span><span class="dv">35_000</span>)  <span class="co"># kg, kt, ft -&gt; kg/s</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="vectorized-calculations" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="vectorized-calculations"><span class="header-section-number">7.1.4</span> Vectorized calculations</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The input parameters can be provided as list or numpy arrays. All the calcualtions are verctorized and hence extremly fast.</p>
+</div>
+</div>
+<p>In the following example, we show how to calculate the fuel flow from a flight data file obtained from opensky state vectors. First, we read the data file and calculate the time step between each row.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.addon <span class="im">import</span> bada4</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>typecode <span class="op">=</span> <span class="st">"A319"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fuel_bada <span class="op">=</span> bada4.FuelFlow(typecode, bada_path)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"path/to/your/fightdata.csv"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> df.timestamp.diff().bfill().dt.total_seconds()  <span class="co"># time step in seconds</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># assume 85% of MTOW as initial mass</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>mass0 <span class="op">=</span> openap.prop.aircraft(typecode)[<span class="st">"mtow"</span>] <span class="op">*</span> <span class="fl">0.85</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then we calculate the fuel flow at each time step and sum the total fuel consumed.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first pass to get an initial guess with reference mass</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fuel_flow_initial_guess <span class="op">=</span> fuel_bada.enroute(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    mass<span class="op">=</span>mass0,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    tas<span class="op">=</span>df.groundspeed,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    alt<span class="op">=</span>df.altitude,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    vs<span class="op">=</span>df.vertical_rate,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>).flatten()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># correct the mass at each time step</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>mass <span class="op">=</span> mass0 <span class="op">-</span> (fuel_flow_initial_guess <span class="op">*</span> dt).cumsum()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># second pass with corrected mass</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>fuel_flow <span class="op">=</span> fuel_bada.enroute(</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    mass<span class="op">=</span>mass, tas<span class="op">=</span>df.groundspeed, alt<span class="op">=</span>df.altitude, vs<span class="op">=</span>df.vertical_rate</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>).flatten()</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>total_fuel <span class="op">=</span> <span class="bu">sum</span>(fuel_flow <span class="op">*</span> dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The cacluation takes approximately <code>4.6 ms ± 33.7 μs</code> for a flight dataframe with ~ 7,000 rows on a<code>Ryzen 7 7840HS</code> CPU.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-sun2017fdp" class="csl-entry" role="listitem">
-Sun, J., Ellerbroek, J., &amp; Hoekstra, J. (2017). Flight extraction and phase identification for large automatic dependent surveillance–broadcast datasets. <em>Journal of Aerospace Information Systems</em>, <em>14</em>(10), 566–571. <a href="https://doi.org/10.2514/1.I010520">https://doi.org/10.2514/1.I010520</a>
-</div>
-</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -834,13 +836,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./kinematic.html" class="pagination-link" aria-label="🌯 Kinematic models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">🌯 Kinematic models</span></span>
+      <a href="./fuel_emission.html" class="pagination-link" aria-label="🔥 Fuel and Emission">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./trajectory_gen.html" class="pagination-link" aria-label="💅 Trajectory generation">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./optimize/index.html" class="pagination-link" aria-label="🦸 Trajectory Optimizer">
+        <span class="nav-page-text">🦸 Trajectory Optimizer</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -849,4 +851,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/flight_phases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/flight_phases.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/addons.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/addons.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
