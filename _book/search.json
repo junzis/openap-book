@@ -312,7 +312,7 @@
     "href": "fuel_emission.html",
     "title": "6  🔥 Fuel and Emission",
     "section": "",
-    "text": "6.1 Accuracy of the fuel model\nThe accuracy of the fuel estimation is greatly improved in the new OpenAP (v2), which is comparable to the BADA 3 fuel model. This is due to the better tuning using data-driven model, acropole, shared by @JarryGabriel.",
+    "text": "6.1 Accuracy of the fuel model\nThe accuracy of the fuel estimation is greatly improved in the new OpenAP (v2), which is comparable to the BADA 3 fuel model. This is due to the better tuning using data-driven model, acropole, shared by @JarryGabriel.\nThe acropole model only support a few aircraft types, while the OpenAP extends the model to a wide range of aircraft types based on a customized calibration model based on engine parameters.\nThe following figure shows the comparison between the fuel flow estimation from OpenAP and the QAR data. In the end of this page, you can find the code snippet to generate this comparison.",
     "crumbs": [
       "🚀 OpenAP",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>🔥 Fuel and Emission</span>"
@@ -323,7 +323,7 @@
     "href": "fuel_emission.html#accuracy-of-the-fuel-model",
     "title": "6  🔥 Fuel and Emission",
     "section": "",
-    "text": "fuel estimation accuracy",
+    "text": "fuel estimation compared to QAR data",
     "crumbs": [
       "🚀 OpenAP",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>🔥 Fuel and Emission</span>"
@@ -356,7 +356,7 @@
     "href": "fuel_emission.html#qar-data-comparison",
     "title": "6  🔥 Fuel and Emission",
     "section": "6.4 QAR data comparison",
-    "text": "6.4 QAR data comparison\nThe following code snippet shows how to compare the fuel flow estimation from OpenAP with the QAR data. This QAR data is an example flight from traffic library.\n\nfuelflow = openap.FuelFlow(ac=\"A320\")\n\n# Load the data\ndf = pd.read_csv(\"data/flight_a320_qar.csv\", parse_dates=[\"timestamp\"])\n\nff_estimate = fuelflow.enroute(\n    mass=df.weight, tas=df.TAS, alt=df.altitude, vs=df.vertical_rate\n)\n\ndiff = abs(ff_estimate.sum() - df.fuelflow.sum()) / df.fuelflow.sum() * 100\n\nplt.figure(figsize=(7, 3))\nplt.plot(df.timestamp, df.fuelflow, lw=1, label=\"QAR\")\nplt.plot(df.timestamp, ff_estimate, lw=1, label=\"OpenAP\")\nplt.ylabel(\"fuel flow (kg/s)\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nThe difference between the estimated fuel flow and the QAR data is np.float64(4.29)%.",
+    "text": "6.4 QAR data comparison\nThe following code snippet shows how to compare the fuel flow estimation from OpenAP with the QAR data. This QAR data is an example flight from traffic library.\n\nfuelflow = openap.FuelFlow(ac=\"A320\")\n\n# Load the data\ndf = pd.read_csv(\"data/flight_a320_qar.csv\", parse_dates=[\"timestamp\"])\n\nff_estimate = fuelflow.enroute(\n    mass=df.weight, tas=df.TAS, alt=df.altitude, vs=df.vertical_rate\n)\n\ndiff = abs(ff_estimate.sum() - df.fuelflow.sum()) / df.fuelflow.sum() * 100\n\nplt.figure(figsize=(7, 3))\nplt.plot(df.timestamp, df.fuelflow, lw=1, label=\"QAR\")\nplt.plot(df.timestamp, ff_estimate, lw=1, label=\"OpenAP\")\nplt.ylabel(\"fuel flow (kg/s)\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nThe difference between the estimated fuel flow and the QAR data is 4.29%.",
     "crumbs": [
       "🚀 OpenAP",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>🔥 Fuel and Emission</span>"

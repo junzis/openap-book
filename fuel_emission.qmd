@@ -11,7 +11,11 @@ OpenAP provides estimations of fuel consumption and emissions based on actual fl
 
 The accuracy of the fuel estimation is greatly improved in the new OpenAP (v2), which is comparable to the BADA 3 fuel model. This is due to the better tuning using data-driven model, [acropole](https://github.com/DGAC/Acropole), shared by [\@JarryGabriel](https://github.com/JarryGabriel).
 
-![fuel estimation accuracy](assets/figures/fuel_flow_qar.png)
+The `acropole` model only support a few aircraft types, while the OpenAP extends the model to  a wide range of aircraft types based on a customized calibration model based on engine parameters.
+
+The following figure shows the comparison between the fuel flow estimation from OpenAP and the QAR data. In the end of this page, you can find the code snippet to generate this comparison.
+
+![fuel estimation compared to QAR data](assets/figures/fuel_flow_qar.png)
 
 <br>
 
@@ -298,4 +302,4 @@ plt.legend()
 plt.show()
 ```
 
-The difference between the estimated fuel flow and the QAR data is `{python} diff.round(2)`%.
+The difference between the estimated fuel flow and the QAR data is  `{python} float(diff.round(2))`%.
