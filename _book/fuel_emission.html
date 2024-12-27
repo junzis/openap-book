@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.32">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>6&nbsp; 🔥 Fuel and Emission – The OpenAP Handbook</title>
+<title>The OpenAP Handbook - 6&nbsp; 🔥 Fuel and Emission</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dc4d85dcaf7fee20cc7244a7a6ccf320.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,13 +118,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./fuel_emission.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -143,23 +143,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main">
     <a href="https://github.com/junzis/openap-book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
-      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
-              <i class="bi bi-twitter pe-1"></i>
+              <i class="bi bi-bi-twitter pe-1"></i>
             Twitter
             </a>
           </li>
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
-              <i class="bi bi-facebook pe-1"></i>
+              <i class="bi bi-bi-facebook pe-1"></i>
             Facebook
             </a>
           </li>
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
-              <i class="bi bi-linkedin pe-1"></i>
+              <i class="bi bi-bi-linkedin pe-1"></i>
             LinkedIn
             </a>
           </li>
@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./openap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🚀 OpenAP</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./optimize/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🦸 Trajectory Optimizer</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -298,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#emission-calculation" id="toc-emission-calculation" class="nav-link" data-scroll-target="#emission-calculation"><span class="header-section-number">6.3.3</span> Emission calculation</a></li>
   <li><a href="#final-data" id="toc-final-data" class="nav-link" data-scroll-target="#final-data"><span class="header-section-number">6.3.4</span> Final data</a></li>
   </ul></li>
+  <li><a href="#qar-data-comparison" id="toc-qar-data-comparison" class="nav-link" data-scroll-target="#qar-data-comparison"><span class="header-section-number">6.4</span> QAR data comparison</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/fuel_emission.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/fuel_emission.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -331,14 +332,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="accuracy-of-the-fuel-model" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="accuracy-of-the-fuel-model"><span class="header-section-number">6.1</span> Accuracy of the fuel model</h2>
 <p>The accuracy of the fuel estimation is greatly improved in the new OpenAP (v2), which is comparable to the BADA 3 fuel model. This is due to the better tuning using data-driven model, <a href="https://github.com/DGAC/Acropole">acropole</a>, shared by <a href="https://github.com/JarryGabriel">@JarryGabriel</a>.</p>
-<p>In best cases, we see errors below 3%, and in the following A320 example shows an accuracy of 1% compared to the QAR data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/figures/fuel_flow_qar.png" class="img-fluid figure-img"></p>
 <figcaption>fuel estimation accuracy</figcaption>
 </figure>
 </div>
-<p>For the in-depth analysis of the accuracy affected by mass, wind, and other parameters for this flight, please see the <a href="https://traffic-viz.github.io/navigation/fuel_burn.html">example from the traffic library</a>.</p>
 <p><br></p>
 </section>
 <section id="basic-usage-of-the-fuel-and-emission-modules" class="level2" data-number="6.2">
@@ -346,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="compute-aircraft-fuel-flow" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="compute-aircraft-fuel-flow"><span class="header-section-number">6.2.1</span> Compute aircraft fuel flow:</h3>
 <p>To estimate fuel flow, you need to provide the aircraft type (e.g., ‘A320’) through the <code>openap.FuelFlow</code> object. The fuel flow model is based on: - aircraft’s mass (in <code>kg</code>), - true airspeed (TAS, in <code>kts</code>), - altitude (in <code>ft</code>), - and vertical speed (optional, in <code>ft/min</code>).</p>
-<div id="e22a2bfd" class="cell" data-execution_count="1">
+<div id="756e2e32" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> FuelFlow</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a fuel flow model for A320</span></span>
@@ -368,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="compute-aircraft-emissions" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="compute-aircraft-emissions"><span class="header-section-number">6.2.2</span> Compute aircraft emissions:</h3>
 <p>The emission model is based on the fuel flow and aircraft’s true airspeed (TAS) and altitude. The input fuel flow is in <code>kg/s</code> The emissions include CO2, H2O, NOx, CO, and HC, with units in <code>g/s</code>.</p>
-<div id="dbd44d7b" class="cell" data-execution_count="2">
+<div id="bf1d4036" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> FuelFlow, Emission</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fuelflow <span class="op">=</span> FuelFlow(ac<span class="op">=</span><span class="st">"A320"</span>)</span>
@@ -394,20 +393,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-exploration" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="data-exploration"><span class="header-section-number">6.3.1</span> Data exploration</h3>
 <p>First, we need to import openap, pandas, and matplotlib libraries.</p>
-<div id="98309829" class="cell" data-execution_count="3">
+<div id="ca88dca8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We also need to define aircraft parameters and import data.</p>
-<div id="d685d660" class="cell" data-execution_count="4">
+<div id="470a1bd4" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mass_takeoff_assumed <span class="op">=</span> <span class="dv">66300</span>  <span class="co"># kg</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fuelflow <span class="op">=</span> openap.FuelFlow(<span class="st">"A319"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"assets/data/flight_a319_opensky.csv"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/flight_a319_opensky.csv"</span>,</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    parse_dates<span class="op">=</span>[<span class="st">"timestamp"</span>],</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    dtype<span class="op">=</span>{<span class="st">"icao24"</span>: <span class="bu">str</span>},</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -416,13 +415,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.assign(d_ts<span class="op">=</span><span class="kw">lambda</span> d: d.timestamp.diff().dt.total_seconds().bfill())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s see what are the features in this flight dataframe:</p>
-<div id="bc1c81b2" class="cell" data-execution_count="5">
+<div id="e7c69736" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
+<div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -625,8 +625,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
 <p>Let’s plot the altitude profile of the flight. I will also make the plots more visually appealing.</p>
-<div id="44c0e7b4" class="cell" data-execution_count="6">
+<div id="8ea96591" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> dates</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
@@ -674,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fuel-flow-calculation" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="fuel-flow-calculation"><span class="header-section-number">6.3.2</span> Fuel flow calculation</h3>
 <p>Next, we iterate over the timestamp to calculate fuel flow and mass during the flight.</p>
-<div id="d09d262e" class="cell" data-execution_count="7">
+<div id="3a857232" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mass_current <span class="op">=</span> mass_takeoff_assumed</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fuelflow_every_step <span class="op">=</span> []</span>
@@ -695,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.assign(fuel_flow<span class="op">=</span>fuelflow_every_step, fuel<span class="op">=</span>fuel_every_step)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, we can visualize the fuel flow during the flight.</p>
-<div id="e6c66d4d" class="cell" data-execution_count="8">
+<div id="0334c042" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">2</span>))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.plot(df.timestamp, df.fuel_flow, color<span class="op">=</span><span class="st">"tab:red"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"fuel flow (kg/s)"</span>)</span>
@@ -710,11 +711,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>With the new dataframe, we can calculate total fuel consumption by summing the fuel consumption at overall time steps:</p>
-<div id="85c3bd1e" class="cell" data-execution_count="9">
+<div id="94d898f4" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>total_fuel <span class="op">=</span> df.fuel.<span class="bu">sum</span>().astype(<span class="bu">int</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total fuel: </span><span class="sc">{</span>total_fuel<span class="sc">}</span><span class="ss"> kg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Total fuel: 5052 kg</code></pre>
+<pre><code>Total fuel: 3841 kg</code></pre>
 </div>
 </div>
 </section>
@@ -722,7 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="emission-calculation"><span class="header-section-number">6.3.3</span> Emission calculation</h3>
 <p>The emission calculations are based on the fuel consumption using the <code>openap.Emission</code> class.</p>
 <p>We can calculate the emissions for the entire flight and append them as new columns to the dataframe as follows:</p>
-<div id="a047d88a" class="cell" data-execution_count="10">
+<div id="e5d065f7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>emission <span class="op">=</span> openap.Emission(ac<span class="op">=</span><span class="st">"A319"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.assign(</span>
@@ -736,7 +737,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s visualize the emission flows:</p>
-<div id="3b38bb5f" class="cell" data-execution_count="11">
+<div id="710ce211" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">7</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">7</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.flatten()</span>
@@ -772,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="final-data" class="level3" data-number="6.3.4">
 <h3 data-number="6.3.4" class="anchored" data-anchor-id="final-data"><span class="header-section-number">6.3.4</span> Final data</h3>
 <p>The emissions at each time step are also calculated as follows. Note that we divide values by 1000 to obtain the emissions in <code>kg</code>.</p>
-<div id="303d1147" class="cell" data-execution_count="12">
+<div id="6ab7a50d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.<span class="bu">eval</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">    co2 = co2_flow * d_ts / 1000</span></span>
@@ -786,13 +787,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can take a look at the final data with fuel flow and emissions columns.</p>
-<div id="0023976e" class="cell" data-execution_count="13">
+<div id="b82a795a" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"timestamp"</span>, <span class="st">"fuel"</span>, <span class="st">"co2"</span>, <span class="st">"h2o"</span>, <span class="st">"soot"</span>, <span class="st">"sox"</span>, <span class="st">"nox"</span>, <span class="st">"co"</span>, <span class="st">"hc"</span>]].<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
+<div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -811,62 +813,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>2018-01-02 19:53:00+00:00</td>
-<td>81.3691</td>
-<td>257.1265</td>
-<td>100.0840</td>
-<td>0.0024</td>
-<td>0.0976</td>
-<td>1.2232</td>
-<td>0.0993</td>
-<td>0.0027</td>
+<td>84.5375</td>
+<td>267.1385</td>
+<td>103.9811</td>
+<td>0.0025</td>
+<td>0.1014</td>
+<td>1.3049</td>
+<td>0.0892</td>
+<td>0.0026</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>2018-01-02 19:54:00+00:00</td>
-<td>61.1136</td>
-<td>193.1191</td>
-<td>75.1698</td>
+<td>59.4300</td>
+<td>187.7989</td>
+<td>73.0989</td>
 <td>0.0018</td>
-<td>0.0733</td>
-<td>0.7674</td>
-<td>0.1380</td>
-<td>0.0027</td>
+<td>0.0713</td>
+<td>0.7334</td>
+<td>0.1397</td>
+<td>0.0026</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>2018-01-02 19:55:00+00:00</td>
-<td>57.3222</td>
-<td>181.1380</td>
-<td>70.5063</td>
-<td>0.0017</td>
-<td>0.0688</td>
-<td>0.6956</td>
-<td>0.1402</td>
+<td>54.0898</td>
+<td>170.9238</td>
+<td>66.5305</td>
+<td>0.0016</td>
+<td>0.0649</td>
+<td>0.6335</td>
+<td>0.1421</td>
 <td>0.0026</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>2018-01-02 19:56:00+00:00</td>
-<td>88.5218</td>
-<td>279.7288</td>
-<td>108.8818</td>
+<td>91.0999</td>
+<td>287.8755</td>
+<td>112.0528</td>
 <td>0.0027</td>
-<td>0.1062</td>
-<td>1.4456</td>
-<td>0.0554</td>
-<td>0.0025</td>
+<td>0.1093</td>
+<td>1.5188</td>
+<td>0.0434</td>
+<td>0.0024</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>2018-01-02 19:57:00+00:00</td>
-<td>85.7259</td>
-<td>270.8939</td>
-<td>105.4429</td>
-<td>0.0026</td>
-<td>0.1029</td>
-<td>1.3834</td>
-<td>0.0540</td>
-<td>0.0025</td>
+<td>88.7208</td>
+<td>280.3577</td>
+<td>109.1266</td>
+<td>0.0027</td>
+<td>0.1065</td>
+<td>1.4676</td>
+<td>0.0391</td>
+<td>0.0024</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
@@ -883,62 +885,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td data-quarto-table-cell-role="th">111</td>
 <td>2018-01-02 21:44:00+00:00</td>
-<td>27.3882</td>
-<td>86.5467</td>
-<td>33.6875</td>
-<td>0.0008</td>
-<td>0.0329</td>
-<td>0.2163</td>
-<td>0.3043</td>
-<td>0.0143</td>
+<td>6.7503</td>
+<td>21.3311</td>
+<td>8.3029</td>
+<td>0.0002</td>
+<td>0.0081</td>
+<td>0.0284</td>
+<td>0.2678</td>
+<td>0.0160</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">112</td>
 <td>2018-01-02 21:45:00+00:00</td>
-<td>26.7537</td>
-<td>84.5418</td>
-<td>32.9071</td>
-<td>0.0008</td>
-<td>0.0321</td>
-<td>0.2061</td>
-<td>0.3411</td>
-<td>0.0170</td>
+<td>5.5660</td>
+<td>17.5885</td>
+<td>6.8462</td>
+<td>0.0002</td>
+<td>0.0067</td>
+<td>0.0236</td>
+<td>0.2156</td>
+<td>0.0129</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">113</td>
 <td>2018-01-02 21:46:00+00:00</td>
-<td>26.5316</td>
-<td>83.8399</td>
-<td>32.6339</td>
-<td>0.0008</td>
-<td>0.0318</td>
-<td>0.2016</td>
-<td>0.3610</td>
-<td>0.0184</td>
+<td>5.1859</td>
+<td>16.3875</td>
+<td>6.3787</td>
+<td>0.0002</td>
+<td>0.0062</td>
+<td>0.0221</td>
+<td>0.1962</td>
+<td>0.0117</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">114</td>
 <td>2018-01-02 21:47:00+00:00</td>
-<td>25.4723</td>
-<td>80.4924</td>
-<td>31.3309</td>
-<td>0.0008</td>
-<td>0.0306</td>
-<td>0.1865</td>
-<td>0.3963</td>
-<td>0.0210</td>
+<td>3.2038</td>
+<td>10.1240</td>
+<td>3.9407</td>
+<td>0.0001</td>
+<td>0.0038</td>
+<td>0.0137</td>
+<td>0.1187</td>
+<td>0.0071</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">115</td>
 <td>2018-01-02 21:48:00+00:00</td>
-<td>28.2236</td>
-<td>89.1865</td>
-<td>34.7150</td>
-<td>0.0008</td>
-<td>0.0339</td>
-<td>0.2214</td>
-<td>0.3331</td>
-<td>0.0165</td>
+<td>8.4690</td>
+<td>26.7619</td>
+<td>10.4168</td>
+<td>0.0003</td>
+<td>0.0102</td>
+<td>0.0364</td>
+<td>0.3089</td>
+<td>0.0185</td>
 </tr>
 </tbody>
 </table>
@@ -947,24 +949,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
 <p>Finally, we can obtain the total fuel consumption and emissions for the entire flight (unit in <code>kg</code>).</p>
-<div id="d860b2c7" class="cell" data-execution_count="14">
+<div id="d215b99e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"fuel"</span>, <span class="st">"co2"</span>, <span class="st">"h2o"</span>, <span class="st">"soot"</span>, <span class="st">"sox"</span>, <span class="st">"nox"</span>, <span class="st">"co"</span>, <span class="st">"hc"</span>]].<span class="bu">sum</span>().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>fuel     5052.25
-co2     15965.10
-h2o      6214.27
-soot        0.15
-sox         6.06
-nox        55.09
-co         18.27
-hc          0.46
+<pre><code>fuel     3841.92
+co2     12140.48
+h2o      4725.57
+soot        0.12
+sox         4.61
+nox        39.18
+co         17.28
+hc          0.43
 dtype: float64</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="qar-data-comparison" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="qar-data-comparison"><span class="header-section-number">6.4</span> QAR data comparison</h2>
+<p>The following code snippet shows how to compare the fuel flow estimation from OpenAP with the QAR data. This QAR data is an example flight from <code>traffic</code> library.</p>
+<div id="0e870be3" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fuelflow <span class="op">=</span> openap.FuelFlow(ac<span class="op">=</span><span class="st">"A320"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/flight_a320_qar.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"timestamp"</span>])</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>ff_estimate <span class="op">=</span> fuelflow.enroute(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    mass<span class="op">=</span>df.weight, tas<span class="op">=</span>df.TAS, alt<span class="op">=</span>df.altitude, vs<span class="op">=</span>df.vertical_rate</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> <span class="bu">abs</span>(ff_estimate.<span class="bu">sum</span>() <span class="op">-</span> df.fuelflow.<span class="bu">sum</span>()) <span class="op">/</span> df.fuelflow.<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">3</span>))</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.plot(df.timestamp, df.fuelflow, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"QAR"</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.plot(df.timestamp, ff_estimate, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"OpenAP"</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"fuel flow (kg/s)"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fuel_emission_files/figure-html/cell-16-output-1.png" width="590" height="265" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The difference between the estimated fuel flow and the QAR data is np.float64(4.29)%.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1003,7 +1037,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1035,29 +1080,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1065,7 +1088,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
