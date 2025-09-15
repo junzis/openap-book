@@ -7,7 +7,25 @@ Previously, the majority of flight optimizers mentioned in the literature remain
 
 The `TOP` library can consider 3D or 4D wind fields. It can be utilized in various flight phases, either individually or in combination. It provides traditional fuel and cost index objectives alongside climate metrics-based objectives that incorporate global warming or temperature potential. 
 
-Furthermore, There is a mechanism to include a 3D or 4D cost grid in trajectory optimization. This implementation allows easy generation of, for example, contrail-optimal trajectories, or generate trajectoies that avoids areas with convective weathers.
+Furthermore, There is a mechanism to include a 3D or 4D cost grid in trajectory optimization. This implementation allows easy generation of, for example, contrail-optimal trajectories, or generate trajectories that avoid areas with convective weathers.
+
+## Supported aircraft types
+
+The `TOP` library supports a wide range of aircraft types, however, the most accurate performance models are available for the following aircraft:
+
+Narrow-body aircraft:
+
+- `A20N`, `A21N`, `A319`, `A320`, `A321`
+- `B38M`, `B39M`, `B737`, `B738`, `B739`
+- `E190`, `E195`
+
+Wide-body aircraft:
+
+- `A332`, `A333`
+
+:::{.callout-caution}
+The optimizer also supports other aircraft types in the OpenAP library, but the performance models for these aircraft may not be as accurate.
+:::
 
 
 ## Use cases

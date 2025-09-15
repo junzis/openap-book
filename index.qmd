@@ -16,11 +16,11 @@ Enjoy the reading!
 Junzi
 
 
-## About the Author
+## About the Authors
 
-Junzi Sun is an assistant professor at TU Delft, currently working in the CNS/ATM group of the Aerospace Engineering Faculty. He is passionate about open-source, open science, and making air transportation more sustainable.
+Junzi Sun is an assistant professor in the CNS/ATM group at the TU Delft Faculty of Aerospace Engineering. His research focuses on aircraft surveillance and performance modeling, data science and AI, and aviation sustainability. Passionate about open-source and open science, he aims to make air transportation more sustainable. Born in China, he earned his bachelor's in telecommunication in Beijing before moving to Europe for his master's in aerospace engineering at the Polytechnic University of Catalonia. After working in Spain and France, he completed his doctoral research in the Netherlands, where he currently works and lives.
 
-He was born in China and completed his bachelor's degree in telecommunication in Beijing. After that, he moved to Europe and obtained his master's degree in aerospace engineering from the Polytechnic University of Catalonia. After working in Spain and France for several years, he pursued doctoral research in the Netherlands, where he obtained his Ph.D. and currently works and lives.
+Jacco Hoekstra is a professor in ATM at TU Delft with a focus on enhancing aviation safety, efficiency, and sustainability. As the Chair of CNS/ATM, his research employs simulation, signal processing, and big data to create solutions for avoiding in-flight hazards. He is recognized for contributions to airborne separation assurance, data link technology, and 4D trajectory-based operations. His formal roles include the Dean of the Faculty of Aerospace Engineering and the Head of the Air Transport Division at the Netherlands Aerospace Laboratory.
 
 
 ---
