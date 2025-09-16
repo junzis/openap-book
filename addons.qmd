@@ -5,7 +5,7 @@
 The OpenAP library can also be used to interact with BADA performance models. 
 
 :::{.callout-important}
-In order to user this, you must first obtain a lincense and BADA4 data from EUROCONTROL.
+In order to use this, you must first obtain a lincense and BADA4 data from EUROCONTROL.
 :::
 
 The code for calculating drag, thrust, and fuel models from BADA4 are implemented in OpenAP. The interface is similar to the one used for the open-source OpenAP models. 
