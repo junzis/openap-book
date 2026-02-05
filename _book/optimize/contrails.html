@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>11&nbsp; 🥠 Contrails – The OpenAP Handbook</title>
+<title>12&nbsp; 🥠 Contrails – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,18 +86,19 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
+<link href="../api/index.html" rel="next">
 <link href="../optimize/costgrid.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ade4f9005d343dcf87927695bea7f6f3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-82f5f95ae74b4834605088d8c0b5b820.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -143,7 +144,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/contrails.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/contrails.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,7 +159,8 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">The OpenAP Handbook</a> 
@@ -250,8 +252,14 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../contrail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../addons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></span></a>
   </div>
 </li>
       </ul>
@@ -268,25 +276,108 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/costgrid.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/contrails.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../api/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📖 API Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/prop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/thrust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/drag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/fuelflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/emission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/wrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/flightphase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/flightgenerator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/aero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/geo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/contrail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/backends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
   </div>
 </li>
       </ul>
@@ -307,19 +398,19 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#building-the-cost-grid" id="toc-building-the-cost-grid" class="nav-link active" data-scroll-target="#building-the-cost-grid"><span class="header-section-number">11.1</span> Building the cost grid</a></li>
-  <li><a href="#the-contrail-grid" id="toc-the-contrail-grid" class="nav-link" data-scroll-target="#the-contrail-grid"><span class="header-section-number">11.2</span> The contrail grid</a></li>
-  <li><a href="#optimization-for-both-contrail-and-co2" id="toc-optimization-for-both-contrail-and-co2" class="nav-link" data-scroll-target="#optimization-for-both-contrail-and-co2"><span class="header-section-number">11.3</span> Optimization for both contrail and CO2</a></li>
-  <li><a href="#uncertainties-that-makes-or-breaks-the-optimization" id="toc-uncertainties-that-makes-or-breaks-the-optimization" class="nav-link" data-scroll-target="#uncertainties-that-makes-or-breaks-the-optimization"><span class="header-section-number">11.4</span> Uncertainties that makes or breaks the optimization</a></li>
+  <li><a href="#building-the-cost-grid" id="toc-building-the-cost-grid" class="nav-link active" data-scroll-target="#building-the-cost-grid"><span class="header-section-number">12.1</span> Building the cost grid</a></li>
+  <li><a href="#the-contrail-grid" id="toc-the-contrail-grid" class="nav-link" data-scroll-target="#the-contrail-grid"><span class="header-section-number">12.2</span> The contrail grid</a></li>
+  <li><a href="#optimization-for-both-contrail-and-co2" id="toc-optimization-for-both-contrail-and-co2" class="nav-link" data-scroll-target="#optimization-for-both-contrail-and-co2"><span class="header-section-number">12.3</span> Optimization for both contrail and CO2</a></li>
+  <li><a href="#uncertainties-that-makes-or-breaks-the-optimization" id="toc-uncertainties-that-makes-or-breaks-the-optimization" class="nav-link" data-scroll-target="#uncertainties-that-makes-or-breaks-the-optimization"><span class="header-section-number">12.4</span> Uncertainties that makes or breaks the optimization</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/contrails.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/contrails.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/contrails.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/contrails.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></h1>
 </div>
 
 
@@ -339,25 +430,25 @@ div.csl-indent {
 <p>Contrails are line-shaped clouds produced by aircraft. They are formed when the water vapor in the exhaust of an airplane engine condenses and freezes. Depending on the atmospheric conditions, contrails are made up of ice crystals and can last for a few seconds to several hours.</p>
 <p>Similar to cirrus clouds, contrails can trap heat in the atmosphere, which has a warming effect. They can also reflect sunlight back into space, which can have a cooling effect. The net effect of contrails on the climate is still a topic of ongoing research. But many companies and policymakers have already been pushing the adoption of contrail optimization.</p>
 <p>I have more skepticism about its operational maturity, as a lot of the uncertainties are yet to be addressed. But it is a good example to show how the <code>TOP</code> library can be used to perform this kind of optimization. In this chapter, we will explain how we can combine the knowledge of the previously explained wind cost grid to optimize a trajectory to study the trade-off between contrail and fuel.</p>
-<section id="building-the-cost-grid" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="building-the-cost-grid"><span class="header-section-number">11.1</span> Building the cost grid</h2>
+<section id="building-the-cost-grid" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="building-the-cost-grid"><span class="header-section-number">12.1</span> Building the cost grid</h2>
 <p>In the previous chapter, we have built a cost grid that represents the cost of flying in a certain region. Here we want to construct a cost grid that represents the climate cost of contrails and CO2 emissions, which are converted to temperature response based on their effective radiative forcing (ERF) in W/m2.</p>
 <p>The source of the example data is obtained from the paper <a href="https://doi.org/10.5194/gmd-16-3313-2023"><span class="citation" data-cites="yin2023predicting">Yin et al. (<span>2023</span>)</span></a>. The data is based on the ECMWF data and is used to calculate the contrail temperature response (ATR20) in <code>K/km</code>. The data is available in the netCDF format and is stored in the 3D grid of latitude, longitude, and pressure level.</p>
 <p>First, we will download the associated data with the paper using the following code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">'https://opendap.4tu.nl/thredds/fileServer/data2/djht/bea8a3fe-e34c-4598-9f94-c5a5c63348e5/1/contrail_original.nc'</span>, <span class="st">'tmp/contrail.nc'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">'https://opendap.4tu.nl/thredds/fileServer/data2/djht/bea8a3fe-e34c-4598-9f94-c5a5c63348e5/1/contrail_original.nc'</span>, <span class="st">'tmp/contrail.nc'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, we will read the data and convert it to a cost grid. We will use only the data from December 18, 2015 as example, which is also the date used in the paper.</p>
 <div id="e369296b" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(<span class="st">"tmp/contrail.nc"</span>).sel(time<span class="op">=</span><span class="st">"2015-12-18"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(<span class="st">"tmp/contrail.nc"</span>).sel(time<span class="op">=</span><span class="st">"2015-12-18"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this dataset, the levels are defined using L31 model from ECMWF. In order to convert the pressure levels to height, we use the following corresponding pressure altitude in <code>hPa</code>, which will be used to calculate the height in <code>m</code>:</p>
 <div id="3d214357" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>L31 level to pressure in hPa</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>level_pressure <span class="op">=</span> [</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>level_pressure <span class="op">=</span> [</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.0000</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">10.0000</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">30.0000</span>,</span>
@@ -390,7 +481,7 @@ div.csl-indent {
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fl">971.6610</span>,</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="fl">995.6532</span>,</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1009.3396</span>,</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The following code will convert the contrail temperature response to a cost grid.</p>
@@ -408,7 +499,7 @@ Note
 </div>
 </div>
 <div id="d8d8fcb9" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -432,12 +523,12 @@ Note
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>)[[<span class="st">"time"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"hPa"</span>, <span class="st">"height"</span>, <span class="st">"cost"</span>]]</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>df_cost_world.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>df_cost_world.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -451,7 +542,7 @@ Note
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
+<th data-quarto-table-cell-role="th">6</th>
 <td>2015-12-18</td>
 <td>87.8638</td>
 <td>0.0</td>
@@ -460,7 +551,7 @@ Note
 <td>0.000000e+00</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
+<th data-quarto-table-cell-role="th">7</th>
 <td>2015-12-18</td>
 <td>87.8638</td>
 <td>0.0</td>
@@ -469,7 +560,7 @@ Note
 <td>0.000000e+00</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
+<th data-quarto-table-cell-role="th">8</th>
 <td>2015-12-18</td>
 <td>87.8638</td>
 <td>0.0</td>
@@ -478,7 +569,7 @@ Note
 <td>9.405122e-13</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
+<th data-quarto-table-cell-role="th">9</th>
 <td>2015-12-18</td>
 <td>87.8638</td>
 <td>0.0</td>
@@ -487,7 +578,7 @@ Note
 <td>8.791347e-13</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
+<th data-quarto-table-cell-role="th">10</th>
 <td>2015-12-18</td>
 <td>87.8638</td>
 <td>0.0</td>
@@ -503,7 +594,7 @@ Note
 </div>
 <p>Before we use the data for optimization, let’s reproduce the example from the paper with the cost grid for Europe at 250 hPa, which is approximately 10,700m. The selected EU region is defined as 30-70 latitude and -20 to 40 longitude.</p>
 <div id="76a9124a" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cartopy <span class="im">import</span> crs <span class="im">as</span> ccrs</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cartopy.feature <span class="im">import</span> BORDERS</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -544,7 +635,7 @@ Note
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        transform<span class="op">=</span>ccrs.PlateCarree(),</span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        vmin<span class="op">=-</span>df_cost_eu_250hpa.cost.<span class="bu">max</span>(),</span>
 <span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        vmax<span class="op">=</span>df_cost_eu_250hpa.cost.<span class="bu">max</span>(),</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -554,8 +645,8 @@ Note
 </div>
 </div>
 </section>
-<section id="the-contrail-grid" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="the-contrail-grid"><span class="header-section-number">11.2</span> The contrail grid</h2>
+<section id="the-contrail-grid" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="the-contrail-grid"><span class="header-section-number">12.2</span> The contrail grid</h2>
 <p>Since the grid is sparse in the time dimension, with data at 00:00, 06:00, 12:00, and 18:00, we will only use the data at 12:00 for the optimization, which simplifies the cost grid to 3D. We will also smooth the grid using a Gaussian filter.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -571,7 +662,7 @@ Note
 </div>
 </div>
 <div id="1383b2e1" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> gaussian_filter</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> gaussian_filter</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_cost <span class="op">=</span> df_cost_world.query(</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"-20&lt;longitude&lt;40 and 30&lt;latitude&lt;70 and time.dt.hour==12"</span></span>
@@ -584,11 +675,11 @@ Note
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>cost_ <span class="op">=</span> gaussian_filter(cost, sigma<span class="op">=</span><span class="dv">1</span>, mode<span class="op">=</span><span class="st">"nearest"</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df_cost <span class="op">=</span> df_cost.assign(cost<span class="op">=</span>cost_.flatten())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df_cost <span class="op">=</span> df_cost.assign(cost<span class="op">=</span>cost_.flatten())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, we can plot the smoothed cost grid for different heights.</p>
 <div id="525e5e52" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>), subplot_kw<span class="op">=</span><span class="bu">dict</span>(projection<span class="op">=</span>proj))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>), subplot_kw<span class="op">=</span><span class="bu">dict</span>(projection<span class="op">=</span>proj))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>heights <span class="op">=</span> df_cost.height.unique()</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>skip_levels <span class="op">=</span> <span class="dv">15</span></span>
@@ -625,7 +716,7 @@ Note
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.03</span>, <span class="fl">0.9</span>, <span class="ss">f"FL</span><span class="sc">{</span><span class="bu">int</span>(fl)<span class="sc">}</span><span class="ss">"</span>, transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -635,15 +726,15 @@ Note
 </div>
 </div>
 </section>
-<section id="optimization-for-both-contrail-and-co2" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="optimization-for-both-contrail-and-co2"><span class="header-section-number">11.3</span> Optimization for both contrail and CO2</h2>
+<section id="optimization-for-both-contrail-and-co2" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="optimization-for-both-contrail-and-co2"><span class="header-section-number">12.3</span> Optimization for both contrail and CO2</h2>
 <p>Now we can use the cost grid to optimize a trajectory. Again, we use the example flight from Amsterdam (<code>EHAM</code>) to Athens (<code>LGAV</code>).</p>
 <p>The final cost function is the combination of temperature response (ATR20) from both contrails and CO2 emissions.</p>
 <p>The unit of the contrail temperature response from the paper is in <code>K/km</code>; however, the optimizer requires the cost to be divided by time, thus we need to convert the unit to <code>K/s</code>. In this case, we first define the cost to be not time-dependent. Then, we multiply the cost by the true airspeed of the aircraft with a conversion factor of <code>1e-3</code>, which is the speed of the aircraft in <code>km/s</code>.</p>
 <p>For the CO2 emissions, we use the conversion factor of <code>7.03e-15 K/kg</code> to convert the fuel flow (<code>kg/s</code>) to temperature response (<code>K/s</code>).</p>
 <p>In addition to the default combined effect of contrail and CO2, we will build a fuel optimal trajectory as a comparison. The fuel optimal trajectory is obtained by setting the contrail cost to zero.</p>
 <div id="2b00d866" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.Cruise(<span class="st">"A320"</span>, <span class="st">"EHAM"</span>, <span class="st">"LGAV"</span>, m0<span class="op">=</span><span class="fl">0.85</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>optimizer.setup(debug<span class="op">=</span><span class="va">False</span>, max_iteration<span class="op">=</span><span class="dv">2000</span>)</span>
@@ -678,13 +769,13 @@ Note
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"fuel_optimal"</span>] <span class="op">=</span> flight_fuel_optimal</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next we can visualize the final flight trajectory. Note that the cost grid at FL350 is shown in the background.</p>
 <div id="6d8ea49d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code of plot_flight() used for visulization</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_flight(results, df_cost, scenarios<span class="op">=</span><span class="va">None</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_flight(results, df_cost, scenarios<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    proj <span class="op">=</span> ccrs.TransverseMercator(central_longitude<span class="op">=</span><span class="dv">10</span>, central_latitude<span class="op">=</span><span class="dv">50</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
@@ -743,21 +834,21 @@ Note
 <span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
 <span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="6bac4104" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>cacluate extra fuel</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>accf_fuel <span class="op">=</span> results[<span class="st">"accf_optimal"</span>].fuel.<span class="bu">sum</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>accf_fuel <span class="op">=</span> results[<span class="st">"accf_optimal"</span>].fuel.<span class="bu">sum</span>()</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fuel_fuel <span class="op">=</span> results[<span class="st">"fuel_optimal"</span>].fuel.<span class="bu">sum</span>()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>extra_fuel <span class="op">=</span> <span class="bu">int</span>((accf_fuel <span class="op">-</span> fuel_fuel).<span class="bu">round</span>(<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>extra_fuel_percent <span class="op">=</span> <span class="bu">int</span>(((accf_fuel <span class="op">/</span> fuel_fuel <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>extra_fuel_percent <span class="op">=</span> <span class="bu">int</span>(((accf_fuel <span class="op">/</span> fuel_fuel <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="9f8447b1" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot_flight(results, df_cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot_flight(results, df_cost)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -769,7 +860,7 @@ Note
 <p>In this example, we can see that the optimal trajectory considering <strong>both</strong> contrail and CO2 climate effects fly at a very low altitude to avoide regions with high contrail cost. This comes with a great cost in terms of fuel, which is significantly higher than the fuel optimal trajectory. The extra fuel cost is about 1710 kg, which accounts for about 24% extra fuel when compared to the optimal case.</p>
 <p>To perform a more fair comparison, we will constraint the altitude of the desired trajectory to be within the range of the fuel optimal trajectory. This can be done by setting the <code>h_min</code> and <code>h_max</code> arguments in the <code>optimizer.trajectory()</code> function. A margion of 600 meters is added to the minimum and maximum altitude of the fuel optimal trajectory.</p>
 <div id="c7ec078e" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    objective<span class="op">=</span>objective,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    interpolant<span class="op">=</span>interpolant,</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    initial_guess<span class="op">=</span>flight_fuel_optimal,</span>
@@ -780,20 +871,20 @@ Note
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"fuel_optimal"</span>] <span class="op">=</span> flight_fuel_optimal</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="a8e601ea" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>cacluate extra fuel</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>accf_fuel <span class="op">=</span> results[<span class="st">"accf_optimal"</span>].fuel.<span class="bu">sum</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>accf_fuel <span class="op">=</span> results[<span class="st">"accf_optimal"</span>].fuel.<span class="bu">sum</span>()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fuel_fuel <span class="op">=</span> results[<span class="st">"fuel_optimal"</span>].fuel.<span class="bu">sum</span>()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>extra_fuel <span class="op">=</span> <span class="bu">int</span>((accf_fuel <span class="op">-</span> fuel_fuel).<span class="bu">round</span>(<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>extra_fuel_percent <span class="op">=</span> <span class="bu">int</span>(((accf_fuel <span class="op">/</span> fuel_fuel <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>extra_fuel_percent <span class="op">=</span> <span class="bu">int</span>(((accf_fuel <span class="op">/</span> fuel_fuel <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="d41d2881" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_flight(results, df_cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_flight(results, df_cost)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -805,25 +896,25 @@ Note
 <p>Even in this constrained trajectory, we can see that the <em>sub-optimal</em> trajectory considering both contrail and CO2 climate effects differs largely from the fuel optimal trajectory. A large lateral deviation is observed in both the altitude and the route to avoid regions with high contrail cost.</p>
 <p>This deviation costs about 570 kg of fuel, which accounts for about 8% extra fuel when compared to the optimal case. This is a still a significant amount of fuel, results in greater monetary cost and excess CO2 emissions.</p>
 </section>
-<section id="uncertainties-that-makes-or-breaks-the-optimization" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="uncertainties-that-makes-or-breaks-the-optimization"><span class="header-section-number">11.4</span> Uncertainties that makes or breaks the optimization</h2>
+<section id="uncertainties-that-makes-or-breaks-the-optimization" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="uncertainties-that-makes-or-breaks-the-optimization"><span class="header-section-number">12.4</span> Uncertainties that makes or breaks the optimization</h2>
 <p>In recent studies regarding operational contrail mitigation, we often miss the fact that the contrail cost is highly uncertain. In the paper <em>The contribution of global aviation to anthropogenic climate forcing for 2000 to 2018</em> <a href="https://doi.org/10.1016/j.atmosenv.2020.117834"><span class="citation" data-cites="lee2021contribution">Lee et al. (<span>2021</span>)</span></a>, the authors have pointed out that the uncertainties in the effective radiative forcing caused by contrail cirrus can be between 17 and 98 mW/m2. This is a huge range, but many studies only consider the mean value of 57.4.</p>
 <p>This large scale of uncertainties can lead to completely different optimal trajectories. In the following example, we will show how the optimization results can be affected by the uncertainties in the contrail cost.</p>
 <p>First of all, different scenarios and scaling factors for contrail and CO2 are defined as follows:</p>
 <div id="98e6bb87" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>more_scenarios <span class="op">=</span> {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>more_scenarios <span class="op">=</span> {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"fuel_optimal"</span>: [<span class="dv">0</span>, <span class="dv">1</span>],</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accf_optimal"</span>: [<span class="dv">1</span>, <span class="dv">1</span>],</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lo_contrail_high_co2"</span>: [<span class="fl">0.293</span>, <span class="fl">1.166</span>],</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lo_contrail_lo_co2"</span>: [<span class="fl">0.293</span>, <span class="fl">0.816</span>],</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hi_contrail_lo_co2"</span>: [<span class="fl">1.707</span>, <span class="fl">0.816</span>],</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hi_contrail_hi_co2"</span>: [<span class="fl">1.707</span>, <span class="fl">1.166</span>],</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the above scenarios, for example, <code>lo_contrail_high_co2</code> refers to scaling the contrail impact to a lower bound of 29.3% of the default value, while the CO2 cost is scaled to the upper bound of 116.6% of the default value. In this case, the contrail has a significantly lower impact than what has been assumed in the default case, while the CO2 cost is slightly higher.</p>
 <p>The following code will run the optimization for all the scenarios and visualize the results. Note that the altitude constraints are still applied to the optimizations.</p>
 <div id="693eb3a3" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.Cruise(<span class="st">"A320"</span>, <span class="st">"EHAM"</span>, <span class="st">"LGAV"</span>, m0<span class="op">=</span><span class="fl">0.85</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>optimizer.setup(debug<span class="op">=</span><span class="va">False</span>, max_iteration<span class="op">=</span><span class="dv">2000</span>)</span>
@@ -844,7 +935,7 @@ Note
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        scale_co2<span class="op">=</span>weights[<span class="dv">1</span>],</span>
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        return_failed<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    more_results[scenario] <span class="op">=</span> flight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    more_results[scenario] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>runing scenario: fuel_optimal
 runing scenario: accf_optimal
@@ -855,7 +946,7 @@ runing scenario: hi_contrail_hi_co2</code></pre>
 </div>
 </div>
 <div id="78b04d88" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_flight(more_results, df_cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_flight(more_results, df_cost)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -930,13 +1021,14 @@ Yin, F., Grewe, V., Castino, F., Rao, P., Matthes, S., Dahlmann, K., Dietmüller
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1281,12 +1373,12 @@ Yin, F., Grewe, V., Castino, F., Rao, P., Matthes, S., Dahlmann, K., Dietmüller
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../optimize/costgrid.html" class="pagination-link" aria-label="🙀 Using cost grids">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/index.html" class="pagination-link" aria-label="📖 API Reference">
+        <span class="nav-page-text">📖 API Reference</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

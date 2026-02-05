@@ -1,0 +1,93 @@
+# 🏷️ FlightPhase
+
+Fuzzy logic-based flight phase identification.
+
+### `FlightPhase()`
+
+Initialize a FlightPhase object.
+
+**Parameters:**
+
+None
+
+**Returns:**
+
+FlightPhase object
+
+### `set_trajectory(ts, alt, spd, roc)`
+
+Set trajectory data for phase identification.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `ts` | array-like | Timestamps (seconds) |
+| `alt` | array-like | Altitude (ft) |
+| `spd` | array-like | True airspeed (kt) |
+| `roc` | array-like | Rate of climb (ft/min). Negative for descent. |
+
+**Returns:**
+
+None
+
+### `phaselabel(twindow=60)`
+
+Determine flight phase labels using fuzzy logic.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `twindow` | int | Time window in seconds. Default 60. |
+
+**Returns:**
+
+list of labels:
+
+- `GND` — Ground
+- `CL` — Climb
+- `DE` — Descent
+- `CR` — Cruise
+- `LVL` — Level flight
+
+### `flight_phase_indices()`
+
+Get indices where different flight phases start.
+
+**Parameters:**
+
+None
+
+**Returns:**
+
+dict with keys:
+
+- `TO` — Takeoff
+- `IC` — Initial climb
+- `CL` — Climb
+- `CR` — Cruise
+- `DE` — Descent
+- `FA` — Final approach
+- `LD` — Landing
+
+Example:
+
+The following example demonstrates using FlightGenerator to create a trajectory, then FlightPhase to identify phases:
+
+```{python}
+from openap import FlightGenerator, FlightPhase
+
+gen = FlightGenerator("A320")
+flight = gen.complete(random=False)
+
+fp = FlightPhase()
+fp.set_trajectory(
+    flight.t.values,
+    flight.altitude.values,
+    flight.groundspeed.values,
+    flight.vertical_rate.values,
+)
+labels = fp.phaselabel()
+set(labels)
+```

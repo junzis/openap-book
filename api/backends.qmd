@@ -1,0 +1,105 @@
+# 🔧 Backends
+
+OpenAP supports three interchangeable computation backends that enable different computational paradigms while maintaining the same API. All performance classes (`Thrust`, `Drag`, `FuelFlow`, `Emission`) and utility classes (`Aero`, `Geo`) accept a `backend` parameter, allowing you to choose the computational framework that best suits your needs.
+
+The backend system abstracts mathematical operations through a common protocol, enabling seamless switching between NumPy's numerical computation, CasADi's symbolic computation for optimization, and JAX's automatic differentiation with GPU acceleration.
+
+**NumpyBackend (default)**
+
+The default backend uses pure NumPy for numerical computation. It requires no additional dependencies beyond OpenAP's core requirements and is suitable for standard aircraft performance calculations, trajectory analysis, and batch processing.
+
+When no backend is explicitly specified, `NumpyBackend` is automatically used:
+
+```{python}
+from openap import FuelFlow
+
+ff = FuelFlow("A320")  # Uses NumpyBackend by default
+fuel_flow = ff.enroute(mass=60000, tas=250, alt=30000)
+print(f"Fuel flow: {fuel_flow:.2f} kg/s")
+```
+
+**CasadiBackend**
+
+The CasADi backend enables symbolic computation, automatic differentiation, and seamless integration with nonlinear programming (NLP) solvers such as IPOPT. This backend is essential for trajectory optimization and is used by the `openap-top` package.
+
+**Installation:**
+```bash
+pip install openap[casadi]
+```
+
+**Usage:**
+```python
+from openap import FuelFlow
+from openap.backends import CasadiBackend
+
+ff = FuelFlow("A320", backend=CasadiBackend())
+fuel_flow = ff.enroute(mass=60000, tas=250, alt=30000)
+```
+
+The symbolic expressions returned can be used directly in CasADi optimization problems, enabling gradient-based trajectory optimization with automatic differentiation.
+
+**JaxBackend**
+
+The JAX backend provides automatic differentiation, just-in-time (JIT) compilation, and GPU/TPU acceleration support. It's ideal for machine learning applications, large-scale batch processing, and research requiring efficient gradient computation.
+
+**Installation:**
+```bash
+pip install openap[jax]
+```
+
+**Usage:**
+```python
+from openap import FuelFlow
+from openap.backends import JaxBackend
+
+ff = FuelFlow("A320", backend=JaxBackend())
+fuel_flow = ff.enroute(mass=60000, tas=250, alt=30000)
+```
+
+JAX's JIT compilation can significantly accelerate repeated computations, while its automatic differentiation enables efficient gradient-based analysis.
+
+**MathBackend Protocol**
+
+All backends implement the `MathBackend` protocol, which defines a common interface for mathematical operations. This ensures consistent behavior across different computational frameworks.
+
+| Method | Description |
+|--------|-------------|
+| `sqrt(x)` | Square root |
+| `exp(x)` | Exponential function |
+| `log(x)` | Natural logarithm |
+| `power(x, y)` | Power operation x^y |
+| `sin(x)`, `cos(x)`, `tan(x)` | Trigonometric functions |
+| `arcsin(x)`, `arccos(x)`, `arctan(x)` | Inverse trigonometric functions |
+| `arctan2(y, x)` | Two-argument arctangent |
+| `abs(x)` | Absolute value |
+| `where(cond, x, y)` | Conditional selection (if cond then x else y) |
+| `maximum(x, y)`, `minimum(x, y)` | Element-wise maximum/minimum |
+| `clip(x, min, max)` | Clip values to range [min, max] |
+| `interp(x, xp, fp)` | Linear interpolation |
+| `linspace(start, stop, num)` | Generate evenly spaced values |
+| `fmod(x, y)` | Floating-point modulo operation |
+| `pi` | Mathematical constant π (property) |
+
+**Convenience Modules**
+
+For easier workflow, OpenAP provides convenience modules that automatically configure the backend:
+
+**CasADi convenience module:**
+```python
+import openap.casadi as oc
+
+ff = oc.FuelFlow("A320")  # Automatically uses CasadiBackend
+drag = oc.Drag("A320")
+thrust = oc.Thrust("A320")
+```
+
+**JAX convenience module:**
+```python
+import openap.jax as oj
+
+ff = oj.FuelFlow("A320")  # Automatically uses JaxBackend
+drag = oj.Drag("A320")
+thrust = oj.Thrust("A320")
+```
+
+These convenience modules import all main OpenAP classes pre-configured with the appropriate backend, simplifying code when working exclusively with one computational framework.

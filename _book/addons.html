@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>7&nbsp; 🪤 Add-ons – The OpenAP Handbook</title>
+<title>8&nbsp; Add-ons – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,17 +67,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./optimize/index.html" rel="next">
-<link href="./fuel_emission.html" rel="prev">
+<link href="./contrail.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ade4f9005d343dcf87927695bea7f6f3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-82f5f95ae74b4834605088d8c0b5b820.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./addons.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./addons.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,7 +136,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./assets/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./assets/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./assets/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">The OpenAP Handbook</a> 
@@ -227,8 +229,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./contrail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./addons.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></span></a>
   </div>
 </li>
       </ul>
@@ -245,25 +253,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimize/basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimize/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimize/costgrid.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimize/contrails.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./api/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📖 API Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/prop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/thrust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/drag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/fuelflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/emission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/wrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/flightphase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/flightgenerator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/aero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/geo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/contrail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/backends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
   </div>
 </li>
       </ul>
@@ -284,22 +375,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#bada-4" id="toc-bada-4" class="nav-link active" data-scroll-target="#bada-4"><span class="header-section-number">7.1</span> BADA 4</a>
+  <li><a href="#bada3" id="toc-bada3" class="nav-link active" data-scroll-target="#bada3"><span class="header-section-number">8.1</span> BADA3</a>
   <ul class="collapse">
-  <li><a href="#drag" id="toc-drag" class="nav-link" data-scroll-target="#drag"><span class="header-section-number">7.1.1</span> Drag</a></li>
-  <li><a href="#thrust" id="toc-thrust" class="nav-link" data-scroll-target="#thrust"><span class="header-section-number">7.1.2</span> Thrust</a></li>
-  <li><a href="#fuel" id="toc-fuel" class="nav-link" data-scroll-target="#fuel"><span class="header-section-number">7.1.3</span> Fuel</a></li>
-  <li><a href="#vectorized-calculations" id="toc-vectorized-calculations" class="nav-link" data-scroll-target="#vectorized-calculations"><span class="header-section-number">7.1.4</span> Vectorized calculations</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">8.1.1</span> Setup</a></li>
+  <li><a href="#drag" id="toc-drag" class="nav-link" data-scroll-target="#drag"><span class="header-section-number">8.1.2</span> Drag</a></li>
+  <li><a href="#thrust" id="toc-thrust" class="nav-link" data-scroll-target="#thrust"><span class="header-section-number">8.1.3</span> Thrust</a></li>
+  <li><a href="#fuel-flow" id="toc-fuel-flow" class="nav-link" data-scroll-target="#fuel-flow"><span class="header-section-number">8.1.4</span> Fuel Flow</a></li>
+  <li><a href="#isa-temperature-deviation" id="toc-isa-temperature-deviation" class="nav-link" data-scroll-target="#isa-temperature-deviation"><span class="header-section-number">8.1.5</span> ISA Temperature Deviation</a></li>
   </ul></li>
+  <li><a href="#bada4" id="toc-bada4" class="nav-link" data-scroll-target="#bada4"><span class="header-section-number">8.2</span> BADA4</a>
+  <ul class="collapse">
+  <li><a href="#setup-1" id="toc-setup-1" class="nav-link" data-scroll-target="#setup-1"><span class="header-section-number">8.2.1</span> Setup</a></li>
+  <li><a href="#drag-1" id="toc-drag-1" class="nav-link" data-scroll-target="#drag-1"><span class="header-section-number">8.2.2</span> Drag</a></li>
+  <li><a href="#thrust-1" id="toc-thrust-1" class="nav-link" data-scroll-target="#thrust-1"><span class="header-section-number">8.2.3</span> Thrust</a></li>
+  <li><a href="#fuel-flow-1" id="toc-fuel-flow-1" class="nav-link" data-scroll-target="#fuel-flow-1"><span class="header-section-number">8.2.4</span> Fuel Flow</a></li>
+  </ul></li>
+  <li><a href="#vectorized-calculations" id="toc-vectorized-calculations" class="nav-link" data-scroll-target="#vectorized-calculations"><span class="header-section-number">8.3</span> Vectorized Calculations</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/addons.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/addons.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./addons.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./addons.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></h1>
 </div>
 
 
@@ -316,9 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="bada-4" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="bada-4"><span class="header-section-number">7.1</span> BADA 4</h2>
-<p>The OpenAP library can also be used to interact with BADA performance models.</p>
+<p>OpenAP can interface with EUROCONTROL’s BADA (Base of Aircraft Data) performance models. Both BADA3 and BADA4 are supported, providing alternative drag, thrust, and fuel flow calculations.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -329,42 +427,130 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In order to user this, you must first obtain a lincense and BADA4 data from EUROCONTROL.</p>
+<p>To use these modules, you must first obtain a license and BADA data from EUROCONTROL.</p>
 </div>
 </div>
-<p>The code for calculating drag, thrust, and fuel models from BADA4 are implemented in OpenAP. The interface is similar to the one used for the open-source OpenAP models.</p>
-<p>To use the BADA4 models, you first need to import the module from addons, and then specify the path to the BADA4 tables on your local system.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.addon <span class="im">import</span> bada4</span>
+<section id="bada3" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="bada3"><span class="header-section-number">8.1</span> BADA3</h2>
+<p>BADA3 uses a coefficient-based model with different parameters for various flight phases. The data is stored in OPF (Operations Performance File) format.</p>
+<section id="setup" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">8.1.1</span> Setup</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.addon <span class="im">import</span> bada3</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bada_path <span class="op">=</span> <span class="st">"path/to/bada_4.x/tables"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="drag" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="drag"><span class="header-section-number">7.1.1</span> Drag</h3>
-<p>In the following example, we show how to use the BADA4 models to calculate the drag of an aircraft at a specific flight condition with clean configuration.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>drag <span class="op">=</span> bada4.Drag(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bada_path <span class="op">=</span> <span class="st">"path/to/bada_3.x"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="drag" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="drag"><span class="header-section-number">8.1.2</span> Drag</h3>
+<p>Calculate drag force in clean and non-clean configurations:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>drag <span class="op">=</span> bada3.Drag(<span class="st">"A320"</span>, bada_path)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>drag.clean(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">12_000</span>)  <span class="co"># kg, kt, ft -&gt; N</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that the aircraft type can be ICAO typecode like <code>A320</code> or with subtypes like <code>A320-231</code>.</p>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean configuration (cruise)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>drag.clean(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">35_000</span>)  <span class="co"># kg, kts, ft -&gt; N</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-clean configuration (approach or landing)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>drag.nonclean(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">150</span>, alt<span class="op">=</span><span class="dv">3_000</span>, phase<span class="op">=</span><span class="st">"AP"</span>)  <span class="co"># approach</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>drag.nonclean(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">140</span>, alt<span class="op">=</span><span class="dv">1_000</span>, phase<span class="op">=</span><span class="st">"LD"</span>, landing_gear<span class="op">=</span><span class="va">True</span>)  <span class="co"># landing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>phase</code> parameter accepts:</p>
+<ul>
+<li><code>"AP"</code> - Approach configuration</li>
+<li><code>"LD"</code> - Landing configuration</li>
+</ul>
 </section>
-<section id="thrust" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="thrust"><span class="header-section-number">7.1.2</span> Thrust</h3>
-<p>To calculate the <em>maximum</em> thrust at climb conditions, you can use the following code:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>thrust <span class="op">=</span> bada4.Thrust(<span class="st">"A320"</span>, bada_path)</span>
+<section id="thrust" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="thrust"><span class="header-section-number">8.1.3</span> Thrust</h3>
+<p>BADA3 provides thrust calculations for different flight phases:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>thrust <span class="op">=</span> bada3.Thrust(<span class="st">"A320"</span>, bada_path)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>thrust.climb(tas<span class="op">=</span><span class="dv">250</span>, alt<span class="op">=</span><span class="dv">10_000</span>)  <span class="co"># kg, kt, ft -&gt; N</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For max thrust at cruise conditions:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>thrust.cruise(tas<span class="op">=</span><span class="dv">350</span>, alt<span class="op">=</span><span class="dv">30_000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For idle thrust:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>thrust.idle(tas<span class="op">=</span><span class="dv">250</span>, alt<span class="op">=</span><span class="dv">15_000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum climb thrust</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>thrust.climb(tas<span class="op">=</span><span class="dv">280</span>, alt<span class="op">=</span><span class="dv">20_000</span>)  <span class="co"># kts, ft -&gt; N</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum cruise thrust (95% of climb thrust)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>thrust.cruise(tas<span class="op">=</span><span class="dv">450</span>, alt<span class="op">=</span><span class="dv">35_000</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Takeoff thrust</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>thrust.takeoff(tas<span class="op">=</span><span class="dv">150</span>, alt<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Idle (descent) thrust - requires configuration</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>thrust.idle(tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">25_000</span>, config<span class="op">=</span><span class="st">"CR"</span>)  <span class="co"># cruise descent</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>thrust.idle(tas<span class="op">=</span><span class="dv">200</span>, alt<span class="op">=</span><span class="dv">5_000</span>, config<span class="op">=</span><span class="st">"AP"</span>)   <span class="co"># approach</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>thrust.idle(tas<span class="op">=</span><span class="dv">150</span>, alt<span class="op">=</span><span class="dv">1_000</span>, config<span class="op">=</span><span class="st">"LD"</span>)   <span class="co"># landing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>config</code> parameter for idle thrust:</p>
+<ul>
+<li><code>"CR"</code> - Cruise/clean configuration</li>
+<li><code>"AP"</code> - Approach configuration</li>
+<li><code>"LD"</code> - Landing configuration</li>
+</ul>
 </section>
-<section id="fuel" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="fuel"><span class="header-section-number">7.1.3</span> Fuel</h3>
-<p>The fuel model interface is also similar to OpenAP’s own fuel flow model interfaces. An example:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fuel_bada <span class="op">=</span> bada4.FuelFlow(<span class="st">"A320"</span>, bada_path)</span>
+<section id="fuel-flow" class="level3" data-number="8.1.4">
+<h3 data-number="8.1.4" class="anchored" data-anchor-id="fuel-flow"><span class="header-section-number">8.1.4</span> Fuel Flow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fuel <span class="op">=</span> bada3.FuelFlow(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Enroute fuel flow (cruise, corrected)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fuel.enroute(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">450</span>, alt<span class="op">=</span><span class="dv">35_000</span>)  <span class="co"># kg, kts, ft -&gt; kg/s</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Nominal fuel flow (before cruise correction)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>fuel.nominal(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">450</span>, alt<span class="op">=</span><span class="dv">35_000</span>, vs<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Idle fuel flow</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>fuel.idle(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">25_000</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Approach/landing fuel flow</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>fuel.approach(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">150</span>, alt<span class="op">=</span><span class="dv">3_000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="isa-temperature-deviation" class="level3" data-number="8.1.5">
+<h3 data-number="8.1.5" class="anchored" data-anchor-id="isa-temperature-deviation"><span class="header-section-number">8.1.5</span> ISA Temperature Deviation</h3>
+<p>All thrust and fuel calculations support ISA temperature deviation using the <code>dT</code> parameter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hot day scenario (+15K above ISA)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>thrust.climb(tas<span class="op">=</span><span class="dv">280</span>, alt<span class="op">=</span><span class="dv">20_000</span>, dT<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fuel.enroute(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">450</span>, alt<span class="op">=</span><span class="dv">35_000</span>, vs<span class="op">=</span><span class="dv">500</span>, dT<span class="op">=</span><span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="bada4" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="bada4"><span class="header-section-number">8.2</span> BADA4</h2>
+<p>BADA4 uses a more sophisticated polynomial model with higher fidelity, especially for modern aircraft. The data is stored in XML format.</p>
+<section id="setup-1" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="setup-1"><span class="header-section-number">8.2.1</span> Setup</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.addon <span class="im">import</span> bada4</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fuel_bada.enroute(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">350</span>, alt<span class="op">=</span><span class="dv">35_000</span>)  <span class="co"># kg, kt, ft -&gt; kg/s</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bada_path <span class="op">=</span> <span class="st">"path/to/bada_4.x/tables"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="vectorized-calculations" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="vectorized-calculations"><span class="header-section-number">7.1.4</span> Vectorized calculations</h3>
+<section id="drag-1" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="drag-1"><span class="header-section-number">8.2.2</span> Drag</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>drag <span class="op">=</span> bada4.Drag(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>drag.clean(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">35_000</span>)  <span class="co"># kg, kts, ft -&gt; N</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The aircraft type can be ICAO typecode like <code>A320</code> or with subtypes like <code>A320-231</code>.</p>
+</section>
+<section id="thrust-1" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="thrust-1"><span class="header-section-number">8.2.3</span> Thrust</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>thrust <span class="op">=</span> bada4.Thrust(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum climb thrust (MCMB rating)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>thrust.climb(tas<span class="op">=</span><span class="dv">280</span>, alt<span class="op">=</span><span class="dv">20_000</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum cruise thrust (MCRZ rating)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>thrust.cruise(tas<span class="op">=</span><span class="dv">450</span>, alt<span class="op">=</span><span class="dv">35_000</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Takeoff thrust</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>thrust.takeoff(tas<span class="op">=</span><span class="dv">150</span>, alt<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Idle thrust (LIDL rating)</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>thrust.idle(tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">25_000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="fuel-flow-1" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="fuel-flow-1"><span class="header-section-number">8.2.4</span> Fuel Flow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fuel <span class="op">=</span> bada4.FuelFlow(<span class="st">"A320"</span>, bada_path)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Enroute fuel flow</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>fuel.enroute(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">450</span>, alt<span class="op">=</span><span class="dv">35_000</span>)  <span class="co"># kg, kts, ft -&gt; kg/s</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Idle fuel flow</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>fuel.idle(mass<span class="op">=</span><span class="dv">60000</span>, tas<span class="op">=</span><span class="dv">300</span>, alt<span class="op">=</span><span class="dv">25_000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The enroute method automatically switches to idle fuel flow when vertical speed is below -250 ft/min.</p>
+</section>
+</section>
+<section id="vectorized-calculations" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="vectorized-calculations"><span class="header-section-number">8.3</span> Vectorized Calculations</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -375,44 +561,43 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The input parameters can be provided as list or numpy arrays. All the calcualtions are verctorized and hence extremly fast.</p>
+<p>All BADA models support vectorized calculations. Input parameters can be provided as lists or numpy arrays for fast batch processing.</p>
 </div>
 </div>
 <p>In the following example, we show how to calculate the fuel flow from a flight data file obtained from opensky state vectors. First, we read the data file and calculate the time step between each row.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.addon <span class="im">import</span> bada4</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>typecode <span class="op">=</span> <span class="st">"A319"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fuel_bada <span class="op">=</span> bada4.FuelFlow(typecode, bada_path)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"path/to/your/fightdata.csv"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> df.timestamp.diff().bfill().dt.total_seconds()  <span class="co"># time step in seconds</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># assume 85% of MTOW as initial mass</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>mass0 <span class="op">=</span> openap.prop.aircraft(typecode)[<span class="st">"mtow"</span>] <span class="op">*</span> <span class="fl">0.85</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.addon <span class="im">import</span> bada4</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>typecode <span class="op">=</span> <span class="st">"A319"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>fuel_bada <span class="op">=</span> bada4.FuelFlow(typecode, bada_path)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"path/to/your/fightdata.csv"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> df.timestamp.diff().bfill().dt.total_seconds()  <span class="co"># time step in seconds</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># assume 85% of MTOW as initial mass</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>mass0 <span class="op">=</span> openap.prop.aircraft(typecode)[<span class="st">"mtow"</span>] <span class="op">*</span> <span class="fl">0.85</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then we calculate the fuel flow at each time step and sum the total fuel consumed.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first pass to get an initial guess with reference mass</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fuel_flow_initial_guess <span class="op">=</span> fuel_bada.enroute(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    mass<span class="op">=</span>mass0,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    tas<span class="op">=</span>df.groundspeed,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    alt<span class="op">=</span>df.altitude,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    vs<span class="op">=</span>df.vertical_rate,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>).flatten()</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># correct the mass at each time step</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>mass <span class="op">=</span> mass0 <span class="op">-</span> (fuel_flow_initial_guess <span class="op">*</span> dt).cumsum()</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># second pass with corrected mass</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>fuel_flow <span class="op">=</span> fuel_bada.enroute(</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    mass<span class="op">=</span>mass, tas<span class="op">=</span>df.groundspeed, alt<span class="op">=</span>df.altitude, vs<span class="op">=</span>df.vertical_rate</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>).flatten()</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>total_fuel <span class="op">=</span> <span class="bu">sum</span>(fuel_flow <span class="op">*</span> dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first pass to get an initial guess with reference mass</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fuel_flow_initial_guess <span class="op">=</span> fuel_bada.enroute(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    mass<span class="op">=</span>mass0,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    tas<span class="op">=</span>df.groundspeed,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    alt<span class="op">=</span>df.altitude,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    vs<span class="op">=</span>df.vertical_rate,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>).flatten()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># correct the mass at each time step</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>mass <span class="op">=</span> mass0 <span class="op">-</span> (fuel_flow_initial_guess <span class="op">*</span> dt).cumsum()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># second pass with corrected mass</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>fuel_flow <span class="op">=</span> fuel_bada.enroute(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    mass<span class="op">=</span>mass, tas<span class="op">=</span>df.groundspeed, alt<span class="op">=</span>df.altitude, vs<span class="op">=</span>df.vertical_rate</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>).flatten()</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>total_fuel <span class="op">=</span> <span class="bu">sum</span>(fuel_flow <span class="op">*</span> dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The cacluation takes approximately <code>4.6 ms ± 33.7 μs</code> for a flight dataframe with ~ 7,000 rows on a<code>Ryzen 7 7840HS</code> CPU.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -467,13 +652,14 @@ Tip
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -817,8 +1003,8 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./fuel_emission.html" class="pagination-link" aria-label="🔥 Fuel and Emission">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span>
+      <a href="./contrail.html" class="pagination-link" aria-label="Contrails">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -1,0 +1,86 @@
+# 🪬 prop
+
+The `prop` module provides access to aircraft and engine property data.
+
+```{python}
+from openap import prop
+from pprint import pprint
+```
+
+### `available_aircraft(use_synonym=False)`
+
+Get a list of available aircraft types in OpenAP.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `use_synonym` | `bool` | Include synonyms in the list. Default: `False` |
+
+**Returns:** `List[str]` — List of ICAO aircraft type codes
+
+```{python}
+# Get first 10 available aircraft types
+prop.available_aircraft()[:10]
+```
+
+### `aircraft(ac, use_synonym=False)`
+
+Get detailed performance parameters for a specific aircraft type.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `ac` | `str` | ICAO aircraft type code (e.g., "A320") |
+| `use_synonym` | `bool` | Use synonym if aircraft not found. Default: `False` |
+
+**Returns:** `Dict[str, Any]` — Dictionary containing performance parameters including maximum takeoff weight (mtow), maximum landing weight (mlw), operating empty weight (oew), dimensions, engine information, and other aircraft specifications.
+
+```{python}
+# Get aircraft details for A320
+aircraft_data = prop.aircraft("A320")
+pprint(aircraft_data)
+```
+
+### `aircraft_engine_options(ac)`
+
+Get the list of engine options available for a specific aircraft type.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `ac` | `str` | ICAO aircraft type code (e.g., "A320") |
+
+**Returns:** `List[str]` — List of engine type strings
+
+```{python}
+# Get engine options for A320
+prop.aircraft_engine_options("A320")
+```
+
+### `search_engine(eng)`
+
+Search for engines that match the given prefix string.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `eng` | `str` | Engine type prefix (e.g., "CFM56") |
+
+**Returns:** `List[str]` or `None` — List of matching engine types, or `None` if no matches found
+
+```{python}
+# Search for CFM56 engines
+prop.search_engine("CFM56")
+```
+
+### `engine(eng)`
+
+Get detailed parameters for a specific engine type.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `eng` | `str` | Engine type (e.g., "CFM56-5B6") |
+
+**Returns:** `Dict[str, Any]` — Dictionary containing engine specifications including thrust, fuel flow, specific fuel consumption, and other performance parameters.
+
+```{python}
+# Get engine details for CFM56-5B4
+engine_data = prop.engine("CFM56-5B4")
+pprint(engine_data)
+```

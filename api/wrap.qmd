@@ -1,0 +1,100 @@
+# 🌯 WRAP
+
+Kinematic performance model providing pre-computed statistical flight parameters for different flight phases.
+
+### `WRAP(ac)`
+
+Create a WRAP model for a specific aircraft type.
+
+**Parameters:**
+
+- `ac` (str): ICAO aircraft type code (e.g., "A320")
+
+**Takeoff**
+
+| Method | Description |
+|--------|-------------|
+| `takeoff_speed()` | Takeoff speed |
+| `takeoff_distance()` | Takeoff distance |
+| `takeoff_acceleration()` | Takeoff acceleration |
+
+**Initial climb**
+
+| Method | Description |
+|--------|-------------|
+| `initclimb_vcas()` | Initial climb CAS |
+| `initclimb_vs()` | Initial climb vertical rate |
+
+**Climb**
+
+| Method | Description |
+|--------|-------------|
+| `climb_range()` | Climb range distance |
+| `climb_const_vcas()` | Speed for constant CAS climb |
+| `climb_const_mach()` | Speed during constant Mach climb |
+| `climb_cross_alt_concas()` | Crossover altitude when constant CAS starts |
+| `climb_cross_alt_conmach()` | Crossover altitude from CAS to Mach |
+| `climb_vs_pre_concas()` | Vertical rate before constant CAS |
+| `climb_vs_concas()` | Vertical rate during constant CAS |
+| `climb_vs_conmach()` | Vertical rate during constant Mach |
+
+**Cruise**
+
+| Method | Description |
+|--------|-------------|
+| `cruise_range()` | Cruise range |
+| `cruise_alt()` | Average cruise altitude |
+| `cruise_init_alt()` | Initial cruise altitude |
+| `cruise_max_alt()` | Maximum cruise altitude |
+| `cruise_mach()` | Average cruise Mach |
+| `cruise_max_mach()` | Maximum cruise Mach |
+| `cruise_mean_vcas()` | Mean cruise CAS |
+
+**Descent**
+
+| Method | Description |
+|--------|-------------|
+| `descent_range()` | Descent range |
+| `descent_const_mach()` | Speed during constant Mach descent |
+| `descent_const_vcas()` | Speed during constant CAS descent |
+| `descent_cross_alt_conmach()` | Crossover altitude from Mach to CAS |
+| `descent_cross_alt_concas()` | Crossover altitude when constant CAS ends |
+| `descent_vs_conmach()` | Vertical rate during constant Mach descent |
+| `descent_vs_concas()` | Vertical rate during constant CAS descent |
+| `descent_vs_post_concas()` | Vertical rate after constant CAS |
+
+**Approach and landing**
+
+| Method | Description |
+|--------|-------------|
+| `finalapp_vcas()` | Final approach CAS |
+| `finalapp_vs()` | Final approach vertical speed |
+| `landing_speed()` | Landing speed |
+| `landing_distance()` | Landing (braking) distance |
+| `landing_acceleration()` | Landing deceleration |
+
+**Return format**
+
+All methods return a dictionary with three keys:
+
+```python
+{"default": ..., "minimum": ..., "maximum": ...}
+```
+
+The values represent typical default values and the statistical minimum and maximum observed in real flight data.
+
+Example:
+
+```{python}
+import openap
+
+# Create WRAP model for A320
+wrap = openap.WRAP("A320")
+
+# Get takeoff speed statistics
+print("Takeoff speed:", wrap.takeoff_speed())
+
+# Get cruise parameters
+print("Cruise Mach:", wrap.cruise_mach())
+print("Cruise altitude:", wrap.cruise_alt())
+```

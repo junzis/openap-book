@@ -1,0 +1,119 @@
+# 🌍 geo
+
+Geographic and navigation calculations.
+
+:::callout-note
+All inputs and outputs use degrees for latitude/longitude and meters for distance/altitude.
+:::
+
+### `distance(lat1, lon1, lat2, lon2, h=0)`
+
+Calculate the great-circle distance between two points using the Haversine formula.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `lat1` | float | Start latitude (degrees) |
+| `lon1` | float | Start longitude (degrees) |
+| `lat2` | float | End latitude (degrees) |
+| `lon2` | float | End longitude (degrees) |
+| `h` | float | Altitude (meters). Default: 0 |
+
+**Returns:** Distance (meters)
+
+```{python}
+from openap import geo
+
+# Distance from Amsterdam to New York
+d = geo.distance(52.31, 4.76, 40.64, -73.78)
+print(f"Distance: {d/1000:.0f} km")
+```
+
+---
+
+### `bearing(lat1, lon1, lat2, lon2)`
+
+Calculate the initial bearing between two points.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `lat1` | float | Start latitude (degrees) |
+| `lon1` | float | Start longitude (degrees) |
+| `lat2` | float | End latitude (degrees) |
+| `lon2` | float | End longitude (degrees) |
+
+**Returns:** Bearing (degrees), range 0-360
+
+```{python}
+from openap import geo
+
+# Bearing from Amsterdam to New York
+brg = geo.bearing(52.31, 4.76, 40.64, -73.78)
+print(f"Bearing: {brg:.1f} degrees")
+```
+
+---
+
+### `latlon(lat1, lon1, d, brg, h=0)`
+
+Compute the destination point given a start point, distance, and bearing.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `lat1` | float | Start latitude (degrees) |
+| `lon1` | float | Start longitude (degrees) |
+| `d` | float | Distance (meters) |
+| `brg` | float | Bearing (degrees) |
+| `h` | float | Altitude (meters). Default: 0 |
+
+**Returns:** Tuple (latitude, longitude) in degrees
+
+```{python}
+from openap import geo
+
+# Destination point 1000 km from Amsterdam at bearing 270° (west)
+lat, lon = geo.latlon(52.31, 4.76, 1000000, 270)
+print(f"Destination: {lat:.2f}°, {lon:.2f}°")
+```
+
+---
+
+### `solar_zenith_angle(lat, lon, timestamp)`
+
+Calculate the solar zenith angle at a given location and time.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `lat` | float | Latitude (degrees, -90 to 90) |
+| `lon` | float | Longitude (degrees, -180 to 180) |
+| `timestamp` | datetime | UTC datetime or pandas Timestamp (or array) |
+
+**Returns:** Solar zenith angle (degrees). 0 = sun overhead, 90 = sun at horizon, >90 = nighttime
+
+```{python}
+from openap import geo
+from datetime import datetime
+
+# Solar zenith angle at Amsterdam on a specific date/time
+timestamp = datetime(2024, 6, 21, 12, 0, 0)  # Summer solstice, noon UTC
+angle = geo.solar_zenith_angle(52.31, 4.76, timestamp)
+print(f"Solar zenith angle: {angle:.1f}°")
+```
+
+---
+
+**Usage**
+
+The `geo` module can be used in two ways:
+
+1. **Module-level functions** (recommended for most use cases):
+   ```python
+   from openap import geo
+   d = geo.distance(lat1, lon1, lat2, lon2)
+   ```
+
+2. **Class interface** (for advanced users who need specific backends):
+   ```python
+   from openap import Geo
+   g = Geo(backend="numpy")  # or "cupy" for GPU
+   d = g.distance(lat1, lon1, lat2, lon2)
+   ```

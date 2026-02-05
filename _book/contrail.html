@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
+
+<title>7&nbsp; Contrails – The OpenAP Handbook</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./addons.html" rel="next">
+<link href="./fuel_emission.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-82f5f95ae74b4834605088d8c0b5b820.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="shortcut icon" href="./assets/favicon.svg">
+
+
+<link rel="stylesheet" href="assets/custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./contrail.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./assets/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">The OpenAP Handbook</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/junzis/openap-book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./openap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🚀 OpenAP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aircraft_engine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">🪬 Aircraft and engines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./drag_thrust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">☯️ Drag and thrust</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kinematic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">🌯 Kinematic models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./flight_phases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trajectory_gen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fuel_emission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contrail.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./addons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./optimize/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🦸 Trajectory Optimizer</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimize/basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimize/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimize/costgrid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimize/contrails.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./api/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📖 API Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/prop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/thrust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/drag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/fuelflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/emission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/wrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/flightphase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/flightgenerator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/aero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/geo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/contrail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./api/backends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">7.1</span> Overview</a></li>
+  <li><a href="#saturation-pressure" id="toc-saturation-pressure" class="nav-link" data-scroll-target="#saturation-pressure"><span class="header-section-number">7.2</span> Saturation Pressure</a>
+  <ul class="collapse">
+  <li><a href="#over-liquid-water" id="toc-over-liquid-water" class="nav-link" data-scroll-target="#over-liquid-water"><span class="header-section-number">7.2.1</span> Over liquid water</a></li>
+  <li><a href="#over-ice" id="toc-over-ice" class="nav-link" data-scroll-target="#over-ice"><span class="header-section-number">7.2.2</span> Over ice</a></li>
+  </ul></li>
+  <li><a href="#relative-humidity" id="toc-relative-humidity" class="nav-link" data-scroll-target="#relative-humidity"><span class="header-section-number">7.3</span> Relative Humidity</a>
+  <ul class="collapse">
+  <li><a href="#converting-between-water-and-ice-reference" id="toc-converting-between-water-and-ice-reference" class="nav-link" data-scroll-target="#converting-between-water-and-ice-reference"><span class="header-section-number">7.3.1</span> Converting between water and ice reference</a></li>
+  </ul></li>
+  <li><a href="#schmidt-appleman-criterion" id="toc-schmidt-appleman-criterion" class="nav-link" data-scroll-target="#schmidt-appleman-criterion"><span class="header-section-number">7.4</span> Schmidt-Appleman Criterion</a>
+  <ul class="collapse">
+  <li><a href="#critical-temperature-for-contrail-formation" id="toc-critical-temperature-for-contrail-formation" class="nav-link" data-scroll-target="#critical-temperature-for-contrail-formation"><span class="header-section-number">7.4.1</span> Critical temperature for contrail formation</a></li>
+  <li><a href="#effect-of-propulsion-efficiency" id="toc-effect-of-propulsion-efficiency" class="nav-link" data-scroll-target="#effect-of-propulsion-efficiency"><span class="header-section-number">7.4.2</span> Effect of propulsion efficiency</a></li>
+  <li><a href="#persistent-contrails" id="toc-persistent-contrails" class="nav-link" data-scroll-target="#persistent-contrails"><span class="header-section-number">7.4.3</span> Persistent contrails</a></li>
+  </ul></li>
+  <li><a href="#radiative-forcing" id="toc-radiative-forcing" class="nav-link" data-scroll-target="#radiative-forcing"><span class="header-section-number">7.5</span> Radiative Forcing</a>
+  <ul class="collapse">
+  <li><a href="#shortwave-radiative-forcing" id="toc-shortwave-radiative-forcing" class="nav-link" data-scroll-target="#shortwave-radiative-forcing"><span class="header-section-number">7.5.1</span> Shortwave radiative forcing</a></li>
+  <li><a href="#longwave-radiative-forcing" id="toc-longwave-radiative-forcing" class="nav-link" data-scroll-target="#longwave-radiative-forcing"><span class="header-section-number">7.5.2</span> Longwave radiative forcing</a></li>
+  <li><a href="#net-radiative-forcing" id="toc-net-radiative-forcing" class="nav-link" data-scroll-target="#net-radiative-forcing"><span class="header-section-number">7.5.3</span> Net radiative forcing</a></li>
+  </ul></li>
+  <li><a href="#contrail-optical-evolution" id="toc-contrail-optical-evolution" class="nav-link" data-scroll-target="#contrail-optical-evolution"><span class="header-section-number">7.6</span> Contrail Optical Evolution</a></li>
+  <li><a href="#practical-example-contrail-formation-check" id="toc-practical-example-contrail-formation-check" class="nav-link" data-scroll-target="#practical-example-contrail-formation-check"><span class="header-section-number">7.7</span> Practical Example: Contrail Formation Check</a></li>
+  <li><a href="#loading-olr-data" id="toc-loading-olr-data" class="nav-link" data-scroll-target="#loading-olr-data"><span class="header-section-number">7.8</span> Loading OLR Data</a></li>
+  <li><a href="#physical-constants" id="toc-physical-constants" class="nav-link" data-scroll-target="#physical-constants"><span class="header-section-number">7.9</span> Physical Constants</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.10</span> References</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/contrail.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/contrail.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./contrail.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Contrails (condensation trails) are line-shaped ice clouds produced by aircraft engine exhaust. The <code>openap.contrail</code> module provides functions to calculate contrail formation conditions and their climate impact through radiative forcing.</p>
+<section id="overview" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">7.1</span> Overview</h2>
+<p>The module includes functions for:</p>
+<ul>
+<li><strong>Saturation pressure</strong>: Water vapor saturation over liquid water and ice (Murphy &amp; Koop 2005)</li>
+<li><strong>Relative humidity</strong>: Conversions between specific humidity and relative humidity</li>
+<li><strong>Critical temperature</strong>: Schmidt-Appleman criterion for contrail formation</li>
+<li><strong>Radiative forcing</strong>: Shortwave (cooling) and longwave (warming) effects</li>
+</ul>
+<div id="dd80a6c5" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> contrail</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="saturation-pressure" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="saturation-pressure"><span class="header-section-number">7.2</span> Saturation Pressure</h2>
+<p>Saturation vapor pressure is the pressure at which water vapor is in equilibrium with liquid water or ice at a given temperature. These functions use the Murphy &amp; Koop (2005) formulations.</p>
+<section id="over-liquid-water" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="over-liquid-water"><span class="header-section-number">7.2.1</span> Over liquid water</h3>
+<p>Valid for temperatures from 123 K to 332 K:</p>
+<div id="245e4e3c" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Temperature in Kelvin (typical cruise altitude: ~220 K)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.array([<span class="dv">210</span>, <span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">240</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Saturation pressure over liquid water (Pa)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>p_sat_water <span class="op">=</span> contrail.saturation_pressure_over_water(T)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t, p <span class="kw">in</span> <span class="bu">zip</span>(T, p_sat_water):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"T = </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> K: </span><span class="sc">{</span>p<span class="sc">:.2f}</span><span class="ss"> Pa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>T = 210 K: 1.23 Pa
+T = 220 K: 4.36 Pa
+T = 230 K: 13.55 Pa
+T = 240 K: 37.67 Pa</code></pre>
+</div>
+</div>
+</section>
+<section id="over-ice" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="over-ice"><span class="header-section-number">7.2.2</span> Over ice</h3>
+<p>Valid for temperatures from 110 K to 273 K:</p>
+<div id="e6eb7ece" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saturation pressure over ice (Pa)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p_sat_ice <span class="op">=</span> contrail.saturation_pressure_over_ice(T)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t, p <span class="kw">in</span> <span class="bu">zip</span>(T, p_sat_ice):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"T = </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> K: </span><span class="sc">{</span>p<span class="sc">:.2f}</span><span class="ss"> Pa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>T = 210 K: 0.70 Pa
+T = 220 K: 2.65 Pa
+T = 230 K: 8.95 Pa
+T = 240 K: 27.27 Pa</code></pre>
+</div>
+</div>
+<p>The ratio of these pressures determines contrail persistence:</p>
+<div id="317cb0b6" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ratio <span class="op">=</span> p_sat_water <span class="op">/</span> p_sat_ice</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t, r <span class="kw">in</span> <span class="bu">zip</span>(T, ratio):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"T = </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> K: p_water/p_ice = </span><span class="sc">{</span>r<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>T = 210 K: p_water/p_ice = 1.757
+T = 220 K: p_water/p_ice = 1.643
+T = 230 K: p_water/p_ice = 1.514
+T = 240 K: p_water/p_ice = 1.381</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="relative-humidity" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="relative-humidity"><span class="header-section-number">7.3</span> Relative Humidity</h2>
+<p>Convert between specific humidity (kg water / kg air) and relative humidity.</p>
+<div id="03978d5f" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Typical cruise conditions</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>specific_humidity <span class="op">=</span> <span class="fl">0.00005</span>  <span class="co"># kg/kg (very dry at cruise altitude)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">25000</span>  <span class="co"># Pa (~FL350)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="dv">220</span>  <span class="co"># K</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Relative humidity with respect to ice</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>rhi <span class="op">=</span> contrail.relative_humidity(specific_humidity, pressure, temperature, to<span class="op">=</span><span class="st">"ice"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Relative humidity (ice): </span><span class="sc">{</span>rhi<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Relative humidity with respect to water</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>rhw <span class="op">=</span> contrail.relative_humidity(specific_humidity, pressure, temperature, to<span class="op">=</span><span class="st">"water"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Relative humidity (water): </span><span class="sc">{</span>rhw<span class="sc">:.1%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Relative humidity (ice): 75.7%
+Relative humidity (water): 46.1%</code></pre>
+</div>
+</div>
+<section id="converting-between-water-and-ice-reference" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="converting-between-water-and-ice-reference"><span class="header-section-number">7.3.1</span> Converting between water and ice reference</h3>
+<p>When atmospheric data provides relative humidity with respect to water, you can convert to ice:</p>
+<div id="4fd6b061" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert RH w.r.t. water to RH w.r.t. ice</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>rhi_converted <span class="op">=</span> contrail.rhw2rhi(rhw, temperature)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RH (water) = </span><span class="sc">{</span>rhw<span class="sc">:.1%}</span><span class="ss"> -&gt; RH (ice) = </span><span class="sc">{</span>rhi_converted<span class="sc">:.1%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RH (water) = 46.1% -&gt; RH (ice) = 75.7%</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="schmidt-appleman-criterion" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="schmidt-appleman-criterion"><span class="header-section-number">7.4</span> Schmidt-Appleman Criterion</h2>
+<p>The Schmidt-Appleman criterion determines when contrails can form. It calculates the critical temperature below which the aircraft exhaust plume becomes saturated with respect to water, allowing ice crystals to form.</p>
+<section id="critical-temperature-for-contrail-formation" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="critical-temperature-for-contrail-formation"><span class="header-section-number">7.4.1</span> Critical temperature for contrail formation</h3>
+<div id="c16f4287" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pressure at different flight levels</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pressures <span class="op">=</span> np.array([<span class="dv">20000</span>, <span class="dv">25000</span>, <span class="dv">30000</span>, <span class="dv">35000</span>])  <span class="co"># Pa</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate critical temperature (default propulsion efficiency = 0.4)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>T_crit <span class="op">=</span> contrail.critical_temperature_water(pressures)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p, t <span class="kw">in</span> <span class="bu">zip</span>(pressures, T_crit):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    fl <span class="op">=</span> <span class="bu">round</span>(<span class="dv">44330</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> (p<span class="op">/</span><span class="dv">101325</span>)<span class="op">**</span><span class="fl">0.19</span>) <span class="op">/</span> <span class="fl">0.3048</span> <span class="op">/</span> <span class="dv">100</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"FL</span><span class="sc">{</span>fl<span class="sc">:03d}</span><span class="ss"> (</span><span class="sc">{</span>p<span class="op">/</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss"> hPa): T_crit = </span><span class="sc">{</span>t<span class="sc">:.1f}</span><span class="ss"> K (</span><span class="sc">{</span>t<span class="op">-</span><span class="fl">273.15</span><span class="sc">:.1f}</span><span class="ss"> °C)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>FL386 (200 hPa): T_crit = 230.5 K (-42.7 °C)
+FL340 (250 hPa): T_crit = 232.8 K (-40.3 °C)
+FL300 (300 hPa): T_crit = 234.8 K (-38.4 °C)
+FL266 (350 hPa): T_crit = 236.5 K (-36.7 °C)</code></pre>
+</div>
+</div>
+</section>
+<section id="effect-of-propulsion-efficiency" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="effect-of-propulsion-efficiency"><span class="header-section-number">7.4.2</span> Effect of propulsion efficiency</h3>
+<p>Modern engines with higher propulsion efficiency produce contrails more easily (higher critical temperature):</p>
+<div id="88a225a6" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">25000</span>  <span class="co"># Pa</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Different engine efficiencies</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>efficiencies <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.45</span>]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> eta <span class="kw">in</span> efficiencies:</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    T_crit <span class="op">=</span> contrail.critical_temperature_water(pressure, propulsion_efficiency<span class="op">=</span>eta)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"η = </span><span class="sc">{</span>eta<span class="sc">}</span><span class="ss">: T_crit = </span><span class="sc">{</span>T_crit<span class="sc">:.1f}</span><span class="ss"> K (</span><span class="sc">{</span>T_crit<span class="op">-</span><span class="fl">273.15</span><span class="sc">:.1f}</span><span class="ss"> °C)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>η = 0.3: T_crit = 231.2 K (-42.0 °C)
+η = 0.35: T_crit = 232.0 K (-41.2 °C)
+η = 0.4: T_crit = 232.8 K (-40.3 °C)
+η = 0.45: T_crit = 233.7 K (-39.4 °C)</code></pre>
+</div>
+</div>
+</section>
+<section id="persistent-contrails" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="persistent-contrails"><span class="header-section-number">7.4.3</span> Persistent contrails</h3>
+<p>Contrails persist when the atmosphere is supersaturated with respect to ice. The <code>critical_temperature_water_and_ice</code> function returns both thresholds:</p>
+<div id="f5216dd2" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> <span class="dv">25000</span>  <span class="co"># Pa</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>T_crit_water, T_crit_ice <span class="op">=</span> contrail.critical_temperature_water_and_ice(pressure)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Contrail formation: T &lt; </span><span class="sc">{</span>T_crit_water<span class="sc">:.1f}</span><span class="ss"> K (</span><span class="sc">{</span>T_crit_water<span class="op">-</span><span class="fl">273.15</span><span class="sc">:.1f}</span><span class="ss"> °C)"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Contrail persistence: T &lt; </span><span class="sc">{</span>T_crit_ice<span class="sc">:.1f}</span><span class="ss"> K (</span><span class="sc">{</span>T_crit_ice<span class="op">-</span><span class="fl">273.15</span><span class="sc">:.1f}</span><span class="ss"> °C)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contrail formation: T &lt; 232.8 K (-40.3 °C)
+Contrail persistence: T &lt; 226.3 K (-46.9 °C)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="radiative-forcing" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="radiative-forcing"><span class="header-section-number">7.5</span> Radiative Forcing</h2>
+<p>Contrails affect Earth’s radiative balance through two mechanisms:</p>
+<ul>
+<li><strong>Shortwave (SW)</strong>: Reflect incoming solar radiation (cooling effect, negative RF)</li>
+<li><strong>Longwave (LW)</strong>: Trap outgoing thermal radiation (warming effect, positive RF)</li>
+</ul>
+<section id="shortwave-radiative-forcing" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="shortwave-radiative-forcing"><span class="header-section-number">7.5.1</span> Shortwave radiative forcing</h3>
+<p>Depends on solar geometry and contrail optical properties:</p>
+<div id="5122dc0d" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solar zenith angle (0° = overhead, 90° = horizon)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>zenith <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>])  <span class="co"># degrees</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrail optical depth (typical: 0.1-0.5)</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Background cirrus optical depth</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>tau_c <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>rf_sw <span class="op">=</span> contrail.rf_shortwave(zenith, tau, tau_c)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> z, rf <span class="kw">in</span> <span class="bu">zip</span>(zenith, rf_sw):</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">"night"</span> <span class="cf">if</span> z <span class="op">&gt;</span> <span class="dv">90</span> <span class="cf">else</span> <span class="st">"day"</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Zenith = </span><span class="sc">{</span>z<span class="sc">:3d}</span><span class="ss">° (</span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">): RF_SW = </span><span class="sc">{</span>rf<span class="sc">:7.2f}</span><span class="ss"> W/m²"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Zenith =   0° (day): RF_SW =   -8.81 W/m²
+Zenith =  30° (day): RF_SW =   -9.70 W/m²
+Zenith =  60° (day): RF_SW =  -16.32 W/m²
+Zenith =  80° (day): RF_SW =  -20.77 W/m²
+Zenith = 100° (night): RF_SW =    0.00 W/m²</code></pre>
+</div>
+</div>
+<p>Note that shortwave forcing is zero at night (zenith &gt; 90°) and negative (cooling) during daytime.</p>
+</section>
+<section id="longwave-radiative-forcing" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="longwave-radiative-forcing"><span class="header-section-number">7.5.2</span> Longwave radiative forcing</h3>
+<p>Depends on outgoing longwave radiation (OLR) and temperature:</p>
+<div id="f03787ab" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Outgoing longwave radiation (typical: 200-300 W/m²)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>olr <span class="op">=</span> <span class="dv">250</span>  <span class="co"># W/m²</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrail temperature</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> np.array([<span class="dv">210</span>, <span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">240</span>])  <span class="co"># K</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>rf_lw <span class="op">=</span> contrail.rf_longwave(olr, temperatures)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t, rf <span class="kw">in</span> <span class="bu">zip</span>(temperatures, rf_lw):</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"T = </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> K: RF_LW = </span><span class="sc">{</span>rf<span class="sc">:.1f}</span><span class="ss"> W/m²"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>T = 210 K: RF_LW = 137.8 W/m²
+T = 220 K: RF_LW = 118.4 W/m²
+T = 230 K: RF_LW = 99.1 W/m²
+T = 240 K: RF_LW = 79.7 W/m²</code></pre>
+</div>
+</div>
+<p>Longwave forcing is always positive (warming) and increases with colder contrails.</p>
+</section>
+<section id="net-radiative-forcing" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="net-radiative-forcing"><span class="header-section-number">7.5.3</span> Net radiative forcing</h3>
+<p>The net effect combines both components:</p>
+<div id="312c654b" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daytime scenario</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>zenith_day <span class="op">=</span> <span class="dv">45</span>  <span class="co"># degrees</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>tau_c <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>olr <span class="op">=</span> <span class="dv">250</span>  <span class="co"># W/m²</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="dv">220</span>  <span class="co"># K</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>rf_net_day <span class="op">=</span> contrail.rf_net(zenith_day, tau, tau_c, olr, temperature)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>rf_sw_day <span class="op">=</span> contrail.rf_shortwave(zenith_day, tau, tau_c)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>rf_lw_day <span class="op">=</span> contrail.rf_longwave(olr, temperature)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Daytime (zenith = </span><span class="sc">{</span>zenith_day<span class="sc">}</span><span class="ss">°):"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SW: </span><span class="sc">{</span>rf_sw_day<span class="sc">:.1f}</span><span class="ss"> W/m² (cooling)"</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  LW: </span><span class="sc">{</span>rf_lw_day<span class="sc">:.1f}</span><span class="ss"> W/m² (warming)"</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Net: </span><span class="sc">{</span>rf_net_day<span class="sc">:.1f}</span><span class="ss"> W/m²"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Daytime (zenith = 45°):
+  SW: -12.1 W/m² (cooling)
+  LW: 118.4 W/m² (warming)
+  Net: 106.4 W/m²</code></pre>
+</div>
+</div>
+<div id="b1727fb9" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nighttime scenario</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>zenith_night <span class="op">=</span> <span class="dv">120</span>  <span class="co"># degrees (sun below horizon)</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>rf_net_night <span class="op">=</span> contrail.rf_net(zenith_night, tau, tau_c, olr, temperature)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>rf_sw_night <span class="op">=</span> contrail.rf_shortwave(zenith_night, tau, tau_c)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Nighttime (zenith = </span><span class="sc">{</span>zenith_night<span class="sc">}</span><span class="ss">°):"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  SW: </span><span class="sc">{</span>rf_sw_night<span class="sc">:.1f}</span><span class="ss"> W/m² (no cooling)"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  LW: </span><span class="sc">{</span>rf_lw_day<span class="sc">:.1f}</span><span class="ss"> W/m² (warming)"</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Net: </span><span class="sc">{</span>rf_net_night<span class="sc">:.1f}</span><span class="ss"> W/m²"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Nighttime (zenith = 120°):
+  SW: 0.0 W/m² (no cooling)
+  LW: 118.4 W/m² (warming)
+  Net: 118.4 W/m²</code></pre>
+</div>
+</div>
+<p>This explains why nighttime contrails have a stronger warming effect—there’s no shortwave cooling to offset the longwave warming.</p>
+</section>
+</section>
+<section id="contrail-optical-evolution" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="contrail-optical-evolution"><span class="header-section-number">7.6</span> Contrail Optical Evolution</h2>
+<p>Contrails evolve over time, spreading and changing their optical properties:</p>
+<div id="7f79656a" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>]  <span class="co"># hours</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Age (h) | tau   | width (m) | tau_c"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--------|-------|-----------|------"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> age <span class="kw">in</span> ages:</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    tau, width, tau_c <span class="op">=</span> contrail.contrail_optical_properties(age)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>age<span class="sc">:4.1f}</span><span class="ss">  | </span><span class="sc">{</span>tau<span class="sc">:.2f}</span><span class="ss">  |   </span><span class="sc">{</span>width<span class="sc">:5.0f}</span><span class="ss">   | </span><span class="sc">{</span>tau_c<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Age (h) | tau   | width (m) | tau_c
+--------|-------|-----------|------
+   0.5  | 0.40  |     500   | 0.360
+   1.5  | 0.60  |    1500   | 0.540
+   3.0  | 0.68  |    3500   | 0.612
+   5.0  | 0.70  |    6500   | 0.630
+   8.0  | 0.71  |   10500   | 0.639</code></pre>
+</div>
+</div>
+</section>
+<section id="practical-example-contrail-formation-check" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="practical-example-contrail-formation-check"><span class="header-section-number">7.7</span> Practical Example: Contrail Formation Check</h2>
+<p>Determine if contrails will form for a given flight condition:</p>
+<div id="79683a7b" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Flight conditions</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>altitude <span class="op">=</span> <span class="dv">35000</span>  <span class="co"># ft</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>temperature_isa_deviation <span class="op">=</span> <span class="dv">0</span>  <span class="co"># K</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get atmospheric conditions</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>h_m <span class="op">=</span> altitude <span class="op">*</span> openap.aero.ft</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> openap.aero.pressure(h_m)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> openap.aero.temperature(h_m, temperature_isa_deviation)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate critical temperature</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>T_crit <span class="op">=</span> contrail.critical_temperature_water(pressure, propulsion_efficiency<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check formation</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>will_form <span class="op">=</span> temperature <span class="op">&lt;</span> T_crit</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Flight level: FL</span><span class="sc">{</span>altitude<span class="op">//</span><span class="dv">100</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pressure: </span><span class="sc">{</span>pressure<span class="sc">:.0f}</span><span class="ss"> Pa (</span><span class="sc">{</span>pressure<span class="op">/</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss"> hPa)"</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ambient temperature: </span><span class="sc">{</span>temperature<span class="sc">:.1f}</span><span class="ss"> K (</span><span class="sc">{</span>temperature<span class="op">-</span><span class="fl">273.15</span><span class="sc">:.1f}</span><span class="ss"> °C)"</span>)</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Critical temperature: </span><span class="sc">{</span>T_crit<span class="sc">:.1f}</span><span class="ss"> K (</span><span class="sc">{</span>T_crit<span class="op">-</span><span class="fl">273.15</span><span class="sc">:.1f}</span><span class="ss"> °C)"</span>)</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Contrails will form: </span><span class="sc">{</span>will_form<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Flight level: FL350
+Pressure: 23836 Pa (238 hPa)
+Ambient temperature: 218.8 K (-54.3 °C)
+Critical temperature: 232.3 K (-40.8 °C)
+Contrails will form: True</code></pre>
+</div>
+</div>
+</section>
+<section id="loading-olr-data" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="loading-olr-data"><span class="header-section-number">7.8</span> Loading OLR Data</h2>
+<p>For climate impact calculations with real atmospheric data, use <code>load_olr</code> to interpolate OLR from netCDF files:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load OLR data (requires xarray)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>olr_values <span class="op">=</span> contrail.load_olr(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    filepath<span class="op">=</span><span class="st">"path/to/olr_data.nc"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    lat<span class="op">=</span><span class="fl">52.3</span>,    <span class="co"># latitude</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    lon<span class="op">=</span><span class="fl">4.8</span>,     <span class="co"># longitude</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    time<span class="op">=</span><span class="st">"2024-01-15T12:00:00"</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="physical-constants" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="physical-constants"><span class="header-section-number">7.9</span> Physical Constants</h2>
+<p>The module provides several physical constants used in the calculations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 19%">
+<col style="width: 16%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Constant</th>
+<th>Value</th>
+<th>Unit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ei_water</code></td>
+<td>1.2232</td>
+<td>kg/kg</td>
+<td>Water vapor emission index</td>
+</tr>
+<tr class="even">
+<td><code>spec_combustion_heat</code></td>
+<td>43×10⁶</td>
+<td>J/kg</td>
+<td>Specific combustion heat of jet fuel</td>
+</tr>
+<tr class="odd">
+<td><code>gas_constant_water_vapor</code></td>
+<td>461.51</td>
+<td>J/(kg·K)</td>
+<td>Gas constant for water vapor</td>
+</tr>
+<tr class="even">
+<td><code>gas_constant_dry_air</code></td>
+<td>287.05</td>
+<td>J/(kg·K)</td>
+<td>Gas constant for dry air</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="references" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="references"><span class="header-section-number">7.10</span> References</h2>
+<ul>
+<li>Murphy, D. M. and Koop, T. (2005). Review of the vapour pressures of ice and supercooled water for atmospheric applications. Q. J. R. Meteorol. Soc., 131, 1539-1565.</li>
+<li>Schumann, U. (1996). On conditions for contrail formation from aircraft exhausts. Meteorol. Z., 5, 4-23.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./fuel_emission.html" class="pagination-link" aria-label="🔥 Fuel and Emission">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./addons.html" class="pagination-link" aria-label="Add-ons">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/contrail.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/contrail.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

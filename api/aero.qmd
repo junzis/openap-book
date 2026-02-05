@@ -1,0 +1,93 @@
+# 🌡️ aero
+
+Aeronautical calculations: atmosphere model (ISA), airspeed conversions, and physical constants.
+
+:::{.callout-note}
+All inputs and outputs are in **SI units** (meters, m/s, Pa, K) — unlike performance classes which use kt/ft.
+:::
+
+**Constants**
+
+Physical and conversion constants are available as module-level variables:
+
+| Constant | Value | Description |
+|----------|-------|-------------|
+| `kts` | 0.514444 | knot to m/s |
+| `ft` | 0.3048 | feet to m |
+| `fpm` | 0.00508 | ft/min to m/s |
+| `inch` | 0.0254 | inch to m |
+| `sqft` | 0.09290304 | square feet to m^2 |
+| `nm` | 1852.0 | nautical mile to m |
+| `lbs` | 0.453592 | pound to kg |
+| `g0` | 9.80665 | gravity (m/s^2) |
+| `R` | 287.05287 | gas constant (m^2/(s^2*K)) |
+| `p0` | 101325.0 | sea level pressure (Pa) |
+| `rho0` | 1.225 | sea level density (kg/m^3) |
+| `T0` | 288.15 | sea level temperature (K) |
+| `gamma` | 1.40 | specific heat ratio |
+| `beta` | -0.0065 | ISA temp gradient (K/m) |
+| `r_earth` | 6371000.0 | earth radius (m) |
+| `a0` | 340.294 | sea level speed of sound (m/s) |
+
+**Atmosphere functions**
+
+### `atmos(h, dT=0)`
+
+Compute pressure, density, and temperature at altitude.
+
+- `h`: Altitude (m)
+- `dT`: ISA temperature shift (K). Default 0.
+- Returns: tuple of (pressure [Pa], density [kg/m^3], temperature [K])
+
+### `temperature(h, dT=0)`, `pressure(h, dT=0)`, `density(h, dT=0)`, `vsound(h, dT=0)`
+
+Individual atmosphere properties.
+
+- Same parameters as `atmos`
+- Returns the respective property
+
+### `h_isa(p, dT=0)`
+
+Compute ISA altitude from pressure.
+
+- `p`: Pressure (Pa)
+- Returns: Altitude (m)
+
+**Airspeed conversions**
+
+### `cas2tas(v_cas, h, dT=0)`, `tas2cas(v_tas, h, dT=0)`
+
+### `mach2tas(mach, h, dT=0)`, `tas2mach(v_tas, h, dT=0)`
+
+### `eas2tas(v_eas, h, dT=0)`, `tas2eas(v_tas, h, dT=0)`
+
+### `mach2cas(mach, h, dT=0)`, `cas2mach(v_cas, h, dT=0)`
+
+All speeds in m/s, altitude in m, dT in K. Mach is dimensionless.
+
+### `crossover_alt(v_cas, mach, dT=0)`
+
+Compute crossover altitude for constant CAS and Mach.
+
+- `v_cas`: CAS (m/s)
+- `mach`: Mach number
+- Returns: altitude (m)
+
+**Usage note**
+
+Functions are available both as module-level (`openap.aero.cas2tas(...)`) and via class (`openap.Aero(backend=...).cas2tas(...)`). The class form supports CasADi/JAX backends.
+
+Example:
+
+```{python}
+from openap import aero
+
+# Atmosphere at 10000 m
+p, rho, T = aero.atmos(10000)
+print(f"Pressure: {p:.0f} Pa, Density: {rho:.4f} kg/m3, Temp: {T:.1f} K")
+
+# Convert 250 kt CAS to TAS at 10000 m
+v_cas = 250 * aero.kts  # convert knots to m/s
+v_tas = aero.cas2tas(v_cas, 10000)
+print(f"TAS: {v_tas:.1f} m/s ({v_tas/aero.kts:.1f} kt)")
+```

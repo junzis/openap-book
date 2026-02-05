@@ -1,0 +1,83 @@
+# ⚡ Thrust
+
+Thrust model based on a simplified two-shaft turbofan model.
+
+```{python}
+from openap import Thrust
+thrust = Thrust("A320")
+```
+
+### `Thrust(ac, eng=None, backend=None)`
+
+Initialize a thrust model for a specific aircraft and engine combination.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `ac` | `str` | ICAO aircraft type (e.g., "A320") |
+| `eng` | `str`, optional | Engine type (e.g., "CFM56-5A3"). Default: aircraft's default engine |
+| `backend` | `MathBackend`, optional | Computation backend. Default: NumpyBackend |
+
+### `takeoff(tas, alt=0, dT=0)`
+
+Calculate total thrust at takeoff condition.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `tas` | float | kt | True airspeed |
+| `alt` | float | ft | Runway altitude. Default: 0 |
+| `dT` | float | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** Total thrust (N)
+
+```{python}
+thrust.takeoff(tas=100, alt=0)
+```
+
+### `cruise(tas, alt, dT=0)`
+
+Calculate thrust at cruise condition.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `tas` | float | kt | True airspeed |
+| `alt` | float | ft | Altitude |
+| `dT` | float | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** Total thrust (N)
+
+```{python}
+thrust.cruise(tas=450, alt=35000)
+```
+
+### `climb(tas, alt, roc, dT=0)`
+
+Calculate thrust during climb.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `tas` | float | kt | True airspeed |
+| `alt` | float | ft | Altitude |
+| `roc` | float | ft/min | Rate of climb |
+| `dT` | float | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** Total thrust (N)
+
+```{python}
+thrust.climb(tas=250, alt=10000, roc=2000)
+```
+
+### `descent_idle(tas, alt, dT=0)`
+
+Calculate idle thrust during descent. Idle thrust is approximated as 7% of maximum available thrust.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `tas` | float | kt | True airspeed |
+| `alt` | float | ft | Altitude |
+| `dT` | float | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** Total thrust (N)
+
+```{python}
+thrust.descent_idle(tas=300, alt=20000)
+```

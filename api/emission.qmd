@@ -1,0 +1,127 @@
+# 💨 Emission
+
+Emission model based on the ICAO emission databank. Uses the Boeing Fuel Flow Method 2 (BFFM2) for altitude corrections.
+
+### `Emission(ac, eng=None, backend=None)`
+
+Create an emission model instance.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ac` | str | - | ICAO aircraft type (e.g. "A320") |
+| `eng` | str, optional | - | Engine type. Default: aircraft's default engine |
+| `backend` | MathBackend, optional | - | Computation backend. Default: NumpyBackend |
+
+**Fuel-proportional emissions**
+
+These methods only need fuel flow as input (no altitude correction):
+
+### `co2(ffac)`
+
+Compute CO2 emission.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ffac` | float/array | kg/s | Total fuel flow for all engines |
+
+**Returns:** CO2 emission (g/s)
+
+### `h2o(ffac)`
+
+Compute H2O emission.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ffac` | float/array | kg/s | Total fuel flow for all engines |
+
+**Returns:** H2O emission (g/s)
+
+### `soot(ffac)`
+
+Compute soot emission.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ffac` | float/array | kg/s | Total fuel flow for all engines |
+
+**Returns:** Soot emission (g/s)
+
+### `sox(ffac)`
+
+Compute SOx emission.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ffac` | float/array | kg/s | Total fuel flow for all engines |
+
+**Returns:** SOx emission (g/s)
+
+**Altitude-corrected emissions**
+
+These methods use BFFM2 to correct for altitude effects:
+
+### `nox(ffac, tas, alt=0, dT=0)`
+
+Compute NOx emission.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ffac` | float/array | kg/s | Total fuel flow for all engines |
+| `tas` | float/array | kt | True airspeed |
+| `alt` | float/array | ft | Altitude. Default: 0 |
+| `dT` | float/array | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** NOx emission (g/s)
+
+### `co(ffac, tas, alt=0, dT=0)`
+
+Compute CO emission.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ffac` | float/array | kg/s | Total fuel flow for all engines |
+| `tas` | float/array | kt | True airspeed |
+| `alt` | float/array | ft | Altitude. Default: 0 |
+| `dT` | float/array | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** CO emission (g/s)
+
+### `hc(ffac, tas, alt=0, dT=0)`
+
+Compute HC emission.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ffac` | float/array | kg/s | Total fuel flow for all engines |
+| `tas` | float/array | kt | True airspeed |
+| `alt` | float/array | ft | Altitude. Default: 0 |
+| `dT` | float/array | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** HC emission (g/s)
+
+Example:
+
+```{python}
+from openap import FuelFlow, Emission
+
+# Create fuel flow and emission models
+fuelflow = FuelFlow("A320")
+emission = Emission("A320")
+
+# Flight conditions at cruise
+mass = 60000  # kg
+tas = 250     # kt
+alt = 30000   # ft
+
+# Compute fuel flow
+ff = fuelflow.enroute(mass, tas, alt)
+print(f"Fuel flow: {ff:.4f} kg/s")
+
+# Compute CO2 emission (fuel-proportional)
+co2 = emission.co2(ff)
+print(f"CO2 emission: {co2:.2f} g/s")
+
+# Compute NOx emission (altitude-corrected)
+nox = emission.nox(ff, tas, alt)
+print(f"NOx emission: {nox:.4f} g/s")
+```

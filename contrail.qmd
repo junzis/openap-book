@@ -1,0 +1,292 @@
+# Contrails
+
+Contrails (condensation trails) are line-shaped ice clouds produced by aircraft engine exhaust. The `openap.contrail` module provides functions to calculate contrail formation conditions and their climate impact through radiative forcing.
+
+## Overview
+
+The module includes functions for:
+
+- **Saturation pressure**: Water vapor saturation over liquid water and ice (Murphy & Koop 2005)
+- **Relative humidity**: Conversions between specific humidity and relative humidity
+- **Critical temperature**: Schmidt-Appleman criterion for contrail formation
+- **Radiative forcing**: Shortwave (cooling) and longwave (warming) effects
+
+```{python}
+from openap import contrail
+```
+
+## Saturation Pressure
+
+Saturation vapor pressure is the pressure at which water vapor is in equilibrium with liquid water or ice at a given temperature. These functions use the Murphy & Koop (2005) formulations.
+
+### Over liquid water
+
+Valid for temperatures from 123 K to 332 K:
+
+```{python}
+import numpy as np
+
+# Temperature in Kelvin (typical cruise altitude: ~220 K)
+T = np.array([210, 220, 230, 240])
+
+# Saturation pressure over liquid water (Pa)
+p_sat_water = contrail.saturation_pressure_over_water(T)
+
+for t, p in zip(T, p_sat_water):
+    print(f"T = {t} K: {p:.2f} Pa")
+```
+
+### Over ice
+
+Valid for temperatures from 110 K to 273 K:
+
+```{python}
+# Saturation pressure over ice (Pa)
+p_sat_ice = contrail.saturation_pressure_over_ice(T)
+
+for t, p in zip(T, p_sat_ice):
+    print(f"T = {t} K: {p:.2f} Pa")
+```
+
+The ratio of these pressures determines contrail persistence:
+
+```{python}
+ratio = p_sat_water / p_sat_ice
+for t, r in zip(T, ratio):
+    print(f"T = {t} K: p_water/p_ice = {r:.3f}")
+```
+
+## Relative Humidity
+
+Convert between specific humidity (kg water / kg air) and relative humidity.
+
+```{python}
+# Typical cruise conditions
+specific_humidity = 0.00005  # kg/kg (very dry at cruise altitude)
+pressure = 25000  # Pa (~FL350)
+temperature = 220  # K
+
+# Relative humidity with respect to ice
+rhi = contrail.relative_humidity(specific_humidity, pressure, temperature, to="ice")
+print(f"Relative humidity (ice): {rhi:.1%}")
+
+# Relative humidity with respect to water
+rhw = contrail.relative_humidity(specific_humidity, pressure, temperature, to="water")
+print(f"Relative humidity (water): {rhw:.1%}")
+```
+
+### Converting between water and ice reference
+
+When atmospheric data provides relative humidity with respect to water, you can convert to ice:
+
+```{python}
+# Convert RH w.r.t. water to RH w.r.t. ice
+rhi_converted = contrail.rhw2rhi(rhw, temperature)
+print(f"RH (water) = {rhw:.1%} -> RH (ice) = {rhi_converted:.1%}")
+```
+
+## Schmidt-Appleman Criterion
+
+The Schmidt-Appleman criterion determines when contrails can form. It calculates the critical temperature below which the aircraft exhaust plume becomes saturated with respect to water, allowing ice crystals to form.
+
+### Critical temperature for contrail formation
+
+```{python}
+# Pressure at different flight levels
+pressures = np.array([20000, 25000, 30000, 35000])  # Pa
+
+# Calculate critical temperature (default propulsion efficiency = 0.4)
+T_crit = contrail.critical_temperature_water(pressures)
+
+for p, t in zip(pressures, T_crit):
+    fl = round(44330 * (1 - (p/101325)**0.19) / 0.3048 / 100)
+    print(f"FL{fl:03d} ({p/100:.0f} hPa): T_crit = {t:.1f} K ({t-273.15:.1f} °C)")
+```
+
+### Effect of propulsion efficiency
+
+Modern engines with higher propulsion efficiency produce contrails more easily (higher critical temperature):
+
+```{python}
+pressure = 25000  # Pa
+
+# Different engine efficiencies
+efficiencies = [0.3, 0.35, 0.4, 0.45]
+
+for eta in efficiencies:
+    T_crit = contrail.critical_temperature_water(pressure, propulsion_efficiency=eta)
+    print(f"η = {eta}: T_crit = {T_crit:.1f} K ({T_crit-273.15:.1f} °C)")
+```
+
+### Persistent contrails
+
+Contrails persist when the atmosphere is supersaturated with respect to ice. The `critical_temperature_water_and_ice` function returns both thresholds:
+
+```{python}
+pressure = 25000  # Pa
+
+T_crit_water, T_crit_ice = contrail.critical_temperature_water_and_ice(pressure)
+
+print(f"Contrail formation: T < {T_crit_water:.1f} K ({T_crit_water-273.15:.1f} °C)")
+print(f"Contrail persistence: T < {T_crit_ice:.1f} K ({T_crit_ice-273.15:.1f} °C)")
+```
+
+## Radiative Forcing
+
+Contrails affect Earth's radiative balance through two mechanisms:
+
+- **Shortwave (SW)**: Reflect incoming solar radiation (cooling effect, negative RF)
+- **Longwave (LW)**: Trap outgoing thermal radiation (warming effect, positive RF)
+
+### Shortwave radiative forcing
+
+Depends on solar geometry and contrail optical properties:
+
+```{python}
+# Solar zenith angle (0° = overhead, 90° = horizon)
+zenith = np.array([0, 30, 60, 80, 100])  # degrees
+
+# Contrail optical depth (typical: 0.1-0.5)
+tau = 0.3
+
+# Background cirrus optical depth
+tau_c = 0.2
+
+rf_sw = contrail.rf_shortwave(zenith, tau, tau_c)
+
+for z, rf in zip(zenith, rf_sw):
+    status = "night" if z > 90 else "day"
+    print(f"Zenith = {z:3d}° ({status}): RF_SW = {rf:7.2f} W/m²")
+```
+
+Note that shortwave forcing is zero at night (zenith > 90°) and negative (cooling) during daytime.
+
+### Longwave radiative forcing
+
+Depends on outgoing longwave radiation (OLR) and temperature:
+
+```{python}
+# Outgoing longwave radiation (typical: 200-300 W/m²)
+olr = 250  # W/m²
+
+# Contrail temperature
+temperatures = np.array([210, 220, 230, 240])  # K
+
+rf_lw = contrail.rf_longwave(olr, temperatures)
+
+for t, rf in zip(temperatures, rf_lw):
+    print(f"T = {t} K: RF_LW = {rf:.1f} W/m²")
+```
+
+Longwave forcing is always positive (warming) and increases with colder contrails.
+
+### Net radiative forcing
+
+The net effect combines both components:
+
+```{python}
+# Daytime scenario
+zenith_day = 45  # degrees
+tau = 0.3
+tau_c = 0.2
+olr = 250  # W/m²
+temperature = 220  # K
+
+rf_net_day = contrail.rf_net(zenith_day, tau, tau_c, olr, temperature)
+rf_sw_day = contrail.rf_shortwave(zenith_day, tau, tau_c)
+rf_lw_day = contrail.rf_longwave(olr, temperature)
+
+print(f"Daytime (zenith = {zenith_day}°):")
+print(f"  SW: {rf_sw_day:.1f} W/m² (cooling)")
+print(f"  LW: {rf_lw_day:.1f} W/m² (warming)")
+print(f"  Net: {rf_net_day:.1f} W/m²")
+```
+
+```{python}
+# Nighttime scenario
+zenith_night = 120  # degrees (sun below horizon)
+
+rf_net_night = contrail.rf_net(zenith_night, tau, tau_c, olr, temperature)
+rf_sw_night = contrail.rf_shortwave(zenith_night, tau, tau_c)
+
+print(f"\nNighttime (zenith = {zenith_night}°):")
+print(f"  SW: {rf_sw_night:.1f} W/m² (no cooling)")
+print(f"  LW: {rf_lw_day:.1f} W/m² (warming)")
+print(f"  Net: {rf_net_night:.1f} W/m²")
+```
+
+This explains why nighttime contrails have a stronger warming effect—there's no shortwave cooling to offset the longwave warming.
+
+## Contrail Optical Evolution
+
+Contrails evolve over time, spreading and changing their optical properties:
+
+```{python}
+ages = [0.5, 1.5, 3, 5, 8]  # hours
+
+print("Age (h) | tau   | width (m) | tau_c")
+print("--------|-------|-----------|------")
+
+for age in ages:
+    tau, width, tau_c = contrail.contrail_optical_properties(age)
+    print(f"  {age:4.1f}  | {tau:.2f}  |   {width:5.0f}   | {tau_c:.3f}")
+```
+
+## Practical Example: Contrail Formation Check
+
+Determine if contrails will form for a given flight condition:
+
+```{python}
+import openap
+
+# Flight conditions
+altitude = 35000  # ft
+temperature_isa_deviation = 0  # K
+
+# Get atmospheric conditions
+h_m = altitude * openap.aero.ft
+pressure = openap.aero.pressure(h_m)
+temperature = openap.aero.temperature(h_m, temperature_isa_deviation)
+
+# Calculate critical temperature
+T_crit = contrail.critical_temperature_water(pressure, propulsion_efficiency=0.4)
+
+# Check formation
+will_form = temperature < T_crit
+
+print(f"Flight level: FL{altitude//100}")
+print(f"Pressure: {pressure:.0f} Pa ({pressure/100:.0f} hPa)")
+print(f"Ambient temperature: {temperature:.1f} K ({temperature-273.15:.1f} °C)")
+print(f"Critical temperature: {T_crit:.1f} K ({T_crit-273.15:.1f} °C)")
+print(f"Contrails will form: {will_form}")
+```
+
+## Loading OLR Data
+
+For climate impact calculations with real atmospheric data, use `load_olr` to interpolate OLR from netCDF files:
+
+```python
+# Load OLR data (requires xarray)
+olr_values = contrail.load_olr(
+    filepath="path/to/olr_data.nc",
+    lat=52.3,    # latitude
+    lon=4.8,     # longitude
+    time="2024-01-15T12:00:00"
+)
+```
+
+## Physical Constants
+
+The module provides several physical constants used in the calculations:
+
+| Constant | Value | Unit | Description |
+|----------|-------|------|-------------|
+| `ei_water` | 1.2232 | kg/kg | Water vapor emission index |
+| `spec_combustion_heat` | 43×10⁶ | J/kg | Specific combustion heat of jet fuel |
+| `gas_constant_water_vapor` | 461.51 | J/(kg·K) | Gas constant for water vapor |
+| `gas_constant_dry_air` | 287.05 | J/(kg·K) | Gas constant for dry air |
+
+## References
+
+- Murphy, D. M. and Koop, T. (2005). Review of the vapour pressures of ice and supercooled water for atmospheric applications. Q. J. R. Meteorol. Soc., 131, 1539-1565.
+- Schumann, U. (1996). On conditions for contrail formation from aircraft exhausts. Meteorol. Z., 5, 4-23.

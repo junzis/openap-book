@@ -1,0 +1,81 @@
+# 🔥 FuelFlow
+
+Fuel flow model based on the ICAO emission databank.
+
+```{python}
+from openap import FuelFlow
+```
+
+### `FuelFlow(ac, eng=None, backend=None)`
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `ac` | `str` | ICAO aircraft type (e.g., "A320") |
+| `eng` | `str`, optional | Engine type. Default: aircraft's default engine. |
+| `backend` | `MathBackend`, optional | Computation backend. Default: NumpyBackend. |
+
+```{python}
+fuelflow = FuelFlow("A320")
+```
+
+### `enroute(mass, tas, alt, vs=0, acc=0, dT=0, limit=True)`
+
+Compute fuel flow during climb, cruise, or descent (clean configuration, no flaps/gear).
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `mass` | float/array | kg | Aircraft mass |
+| `tas` | float/array | kt | True airspeed |
+| `alt` | float/array | ft | Altitude |
+| `vs` | float/array | ft/min | Vertical rate. Default 0. |
+| `acc` | float/array | m/s² | Acceleration. Default 0. |
+| `dT` | float/array | K | ISA temperature deviation. Default 0. |
+| `limit` | bool | — | Apply thrust limits. Default True. |
+
+**Returns:** Fuel flow (kg/s)
+
+```{python}
+fuelflow.enroute(mass=60000, tas=250, alt=30000)
+```
+
+### `takeoff(tas, alt=None, throttle=1)`
+
+Compute fuel flow at takeoff.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `tas` | float/array | kt | True airspeed |
+| `alt` | float/array | ft | Airport altitude. Default: sea level. |
+| `throttle` | float/array | — | Throttle setting, 0 to 1. Default 1 (full thrust). |
+
+**Returns:** Fuel flow (kg/s)
+
+```{python}
+fuelflow.takeoff(tas=100, alt=0)
+```
+
+### `at_thrust(total_ac_thrust)`
+
+Compute fuel flow at a given total aircraft thrust.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `total_ac_thrust` | float/array | N | Total net thrust |
+
+**Returns:** Fuel flow (kg/s)
+
+```{python}
+fuelflow.at_thrust(total_ac_thrust=50000)
+```
+
+### `plot_model(plot=True)`
+
+Plot the engine fuel model.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `plot` | bool | Display plot or return pyplot object. Default True. |
+
+```{python}
+fuelflow.plot_model()
+```

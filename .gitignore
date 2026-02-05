@@ -13,3 +13,5 @@ _freeze/
 .DS_Store
 .Rhistoryt
 .Rhistory
+
+**/*.quarto_ipynb

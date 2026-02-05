@@ -1,0 +1,171 @@
+# ✈️ FlightGenerator
+
+Generate synthetic flight trajectories using the WRAP kinematic model.
+
+### `FlightGenerator(ac, random_seed=42, use_synonym=False)`
+
+Initialize the trajectory generator for a specific aircraft type.
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `ac` | str | - | ICAO aircraft type (e.g. "A320") |
+| `random_seed` | int | - | Random seed for noise generation. Default 42. |
+| `use_synonym` | bool | - | Use synonym if aircraft not found. Default False. |
+
+**Example:**
+
+```{python}
+from openap import FlightGenerator
+
+gen = FlightGenerator("A320")
+```
+
+### `enable_noise()`
+
+Enable noise in generated trajectories based on ADS-B Version 1&2, NACv=3 and NACp=10.
+
+**Parameters:** None
+
+**Returns:** None
+
+**Example:**
+
+```{python}
+from openap import FlightGenerator
+
+gen = FlightGenerator("A320")
+gen.enable_noise()
+```
+
+### `climb(**kwargs)`
+
+Generate climb trajectory from takeoff to cruise altitude.
+
+**Keyword Arguments:**
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `dt` | int | s | Time step. Default 1. |
+| `cas_const_cl` | float | kt | Constant CAS for climb. |
+| `mach_const_cl` | float | - | Constant Mach for climb. |
+| `alt_cr` | float | ft | Target cruise altitude. |
+| `random` | bool | - | Use random parameters. Default False. |
+
+**Returns:** `pd.DataFrame` with columns: `t`, `h`, `s`, `v`, `vs`, `seg`, `altitude`, `vertical_rate`, `groundspeed`, etc.
+
+**Example:**
+
+```{python}
+from openap import FlightGenerator
+
+gen = FlightGenerator("A320")
+climb_traj = gen.climb(dt=10, cas_const_cl=280, mach_const_cl=0.78, alt_cr=35000)
+climb_traj.head()
+```
+
+### `descent(**kwargs)`
+
+Generate descent trajectory from cruise altitude to landing.
+
+**Keyword Arguments:**
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `dt` | int | s | Time step. Default 1. |
+| `cas_const_de` | float | kt | Constant CAS for descent. |
+| `mach_const_de` | float | - | Constant Mach for descent. |
+| `alt_cr` | float | ft | Top of descent altitude. |
+| `random` | bool | - | Use random parameters. Default False. |
+| `withcr` | bool | - | Include short cruise segment (60s). Default True. |
+
+**Returns:** `pd.DataFrame` with columns: `t`, `h`, `s`, `v`, `vs`, `seg`, `altitude`, `vertical_rate`, `groundspeed`, etc.
+
+**Example:**
+
+```{python}
+from openap import FlightGenerator
+
+gen = FlightGenerator("A320")
+descent_traj = gen.descent(dt=10, cas_const_de=280, mach_const_de=0.78, alt_cr=35000)
+descent_traj.head()
+```
+
+### `cruise(**kwargs)`
+
+Generate cruise trajectory at constant altitude and Mach number.
+
+**Keyword Arguments:**
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `dt` | int | s | Time step. Default 1. |
+| `range_cr` | float | km | Cruise range. |
+| `alt_cr` | float | ft | Cruise altitude. |
+| `mach_cr` | float | - | Cruise Mach number. |
+| `random` | bool | - | Use random parameters. Default False. |
+
+**Returns:** `pd.DataFrame` with columns: `t`, `h`, `s`, `v`, `vs`, `altitude`, `vertical_rate`, `groundspeed`, etc.
+
+**Example:**
+
+```{python}
+from openap import FlightGenerator
+
+gen = FlightGenerator("A320")
+cruise_traj = gen.cruise(dt=60, range_cr=2000, alt_cr=35000, mach_cr=0.78)
+cruise_traj.head()
+```
+
+### `complete(**kwargs)`
+
+Generate a complete flight trajectory (climb + cruise + descent).
+
+**Keyword Arguments:**
+
+Combines all keyword arguments from `climb()`, `cruise()`, and `descent()` methods:
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `dt` | int | s | Time step. Default 1. |
+| `cas_const_cl` | float | kt | Constant CAS for climb. |
+| `mach_const_cl` | float | - | Constant Mach for climb. |
+| `cas_const_de` | float | kt | Constant CAS for descent. |
+| `mach_const_de` | float | - | Constant Mach for descent. |
+| `range_cr` | float | km | Cruise range. |
+| `alt_cr` | float | ft | Cruise altitude. |
+| `mach_cr` | float | - | Cruise Mach number. |
+| `random` | bool | - | Use random parameters. Default False. |
+
+**Returns:** `pd.DataFrame` with columns: `t`, `h`, `s`, `v`, `vs`, `altitude`, `vertical_rate`, `groundspeed`.
+
+**Example:**
+
+```{python}
+from openap import FlightGenerator
+
+gen = FlightGenerator("A320")
+flight = gen.complete(random=False)
+flight.head()
+```
+
+**Complete Workflow Example**
+
+Generate a complete flight with random parameters and visualize:
+
+```{python}
+from openap import FlightGenerator
+
+# Create generator for A320
+gen = FlightGenerator("A320", random_seed=42)
+
+# Enable noise to simulate realistic ADS-B data
+gen.enable_noise()
+
+# Generate complete flight with random parameters
+flight = gen.complete(dt=10, random=True)
+
+# Display summary
+print(f"Flight duration: {flight.t.iloc[-1]:.0f} seconds")
+print(f"Total distance: {flight.s.iloc[-1]/1000:.0f} km")
+print(f"Max altitude: {flight.altitude.max():.0f} ft")
+```

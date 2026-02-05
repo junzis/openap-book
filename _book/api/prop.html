@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>9&nbsp; 🍳 Simple optimal flights – The OpenAP Handbook</title>
+<title>13&nbsp; 🪬 prop – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,15 +59,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../optimize/wind.html" rel="next">
-<link href="../optimize/index.html" rel="prev">
+<link href="../api/thrust.html" rel="next">
+<link href="../api/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -106,9 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <link rel="shortcut icon" href="../assets/favicon.svg">
 
 
@@ -124,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/prop.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -255,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link active">
+  <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
@@ -290,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/prop.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/prop.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
   </div>
 </li>
@@ -378,18 +375,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#quick-start" id="toc-quick-start" class="nav-link active" data-scroll-target="#quick-start"><span class="header-section-number">9.1</span> Quick start</a></li>
-  <li><a href="#other-objective-functions" id="toc-other-objective-functions" class="nav-link" data-scroll-target="#other-objective-functions"><span class="header-section-number">9.2</span> Other objective functions</a></li>
-  <li><a href="#different-flight-phases" id="toc-different-flight-phases" class="nav-link" data-scroll-target="#different-flight-phases"><span class="header-section-number">9.3</span> Different flight phases</a></li>
+  <li><a href="#available_aircraftuse_synonymfalse" id="toc-available_aircraftuse_synonymfalse" class="nav-link active" data-scroll-target="#available_aircraftuse_synonymfalse"><span class="header-section-number">13.0.1</span> <code>available_aircraft(use_synonym=False)</code></a></li>
+  <li><a href="#aircraftac-use_synonymfalse" id="toc-aircraftac-use_synonymfalse" class="nav-link" data-scroll-target="#aircraftac-use_synonymfalse"><span class="header-section-number">13.0.2</span> <code>aircraft(ac, use_synonym=False)</code></a></li>
+  <li><a href="#aircraft_engine_optionsac" id="toc-aircraft_engine_optionsac" class="nav-link" data-scroll-target="#aircraft_engine_optionsac"><span class="header-section-number">13.0.3</span> <code>aircraft_engine_options(ac)</code></a></li>
+  <li><a href="#search_engineeng" id="toc-search_engineeng" class="nav-link" data-scroll-target="#search_engineeng"><span class="header-section-number">13.0.4</span> <code>search_engine(eng)</code></a></li>
+  <li><a href="#engineeng" id="toc-engineeng" class="nav-link" data-scroll-target="#engineeng"><span class="header-section-number">13.0.5</span> <code>engine(eng)</code></a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/basic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/basic.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/api/prop.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/api/prop.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/basic.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/prop.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></h1>
 </div>
 
 
@@ -406,238 +405,328 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quick-start" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">9.1</span> Quick start</h2>
-<p>Example code to generate a fuel-optimal flight between two airports. First, we need to set up a few parameters, including <code>origin</code>, <code>destination</code>, <code>actype</code>, and <code>m0</code> (initial mass).</p>
-<p>The initial mass <code>m0</code> can be the fraction of the maximum take-off mass (between 0 and 1), or it can be the mass in <code>kg</code> (for example, <code>65000</code> kg).</p>
-<div id="0265334c" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>actype <span class="op">=</span> <span class="st">"A320"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> <span class="st">"EHAM"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> <span class="st">"LGAV"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># initial mass as the faction of maximum takeoff mass</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>m0 <span class="op">=</span> <span class="fl">0.85</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>prop</code> module provides access to aircraft and engine property data.</p>
+<div id="4194b53a" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> prop</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In this simple example, we will generate a complete flight using <code>top.CompleteFlight()</code>. We will generate a fuel-optimal flight by setting <code>objective</code> to <code>"fuel"</code> in the trajectory generation function.</p>
-<div id="d9587ec7" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0<span class="op">=</span>m0)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>flight.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<section id="available_aircraftuse_synonymfalse" class="level3" data-number="13.0.1">
+<h3 data-number="13.0.1" class="anchored" data-anchor-id="available_aircraftuse_synonymfalse"><span class="header-section-number">13.0.1</span> <code>available_aircraft(use_synonym=False)</code></h3>
+<p>Get a list of available aircraft types in OpenAP.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 20%">
+<col style="width: 43%">
+</colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ts</th>
-<th data-quarto-table-cell-role="th">x</th>
-<th data-quarto-table-cell-role="th">y</th>
-<th data-quarto-table-cell-role="th">h</th>
-<th data-quarto-table-cell-role="th">latitude</th>
-<th data-quarto-table-cell-role="th">longitude</th>
-<th data-quarto-table-cell-role="th">altitude</th>
-<th data-quarto-table-cell-role="th">mach</th>
-<th data-quarto-table-cell-role="th">tas</th>
-<th data-quarto-table-cell-role="th">vertical_rate</th>
-<th data-quarto-table-cell-role="th">heading</th>
-<th data-quarto-table-cell-role="th">mass</th>
-<th data-quarto-table-cell-role="th">fuel</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>0.0</td>
-<td>-652425.011696</td>
-<td>840651.921623</td>
-<td>30.480000</td>
-<td>52.316584</td>
-<td>4.746242</td>
-<td>100.0</td>
-<td>0.3000</td>
-<td>198.38</td>
-<td>1155.0</td>
-<td>129.51</td>
-<td>66300.000000</td>
-<td>323.467557</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>240.0</td>
-<td>-633557.291544</td>
-<td>825095.442439</td>
-<td>1436.228097</td>
-<td>52.198625</td>
-<td>5.049372</td>
-<td>4712.0</td>
-<td>0.5000</td>
-<td>325.34</td>
-<td>1655.0</td>
-<td>137.01</td>
-<td>65976.532443</td>
-<td>331.368938</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>479.0</td>
-<td>-606696.232046</td>
-<td>796275.571353</td>
-<td>3450.725380</td>
-<td>51.969890</td>
-<td>5.489660</td>
-<td>11321.0</td>
-<td>0.6869</td>
-<td>436.31</td>
-<td>2155.0</td>
-<td>137.02</td>
-<td>65645.163505</td>
-<td>336.864499</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>719.0</td>
-<td>-571079.731509</td>
-<td>758059.040224</td>
-<td>6073.971848</td>
-<td>51.664098</td>
-<td>6.066591</td>
-<td>19928.0</td>
-<td>0.7589</td>
-<td>466.37</td>
-<td>1655.0</td>
-<td>137.02</td>
-<td>65308.299006</td>
-<td>310.576620</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>959.0</td>
-<td>-532698.817232</td>
-<td>716876.379079</td>
-<td>8088.469130</td>
-<td>51.331487</td>
-<td>6.679653</td>
-<td>26537.0</td>
-<td>0.7970</td>
-<td>476.69</td>
-<td>1155.0</td>
-<td>137.03</td>
-<td>64997.722386</td>
-<td>270.762600</td>
+<td><code>use_synonym</code></td>
+<td><code>bool</code></td>
+<td>Include synonyms in the list. Default: <code>False</code></td>
 </tr>
 </tbody>
 </table>
-
-</div>
-</div>
-</div>
-<p>In the previous table, we have the final fuel-optimal trajectory. Next, we can visualize the altitude, speed, and vertical rate.</p>
-<div id="fb2ab478" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the plot styles</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"font"</span>, size<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"font"</span>, family<span class="op">=</span><span class="st">"Ubuntu"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"lines"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>matplotlib.rc(<span class="st">"grid"</span>, color<span class="op">=</span><span class="st">"darkgray"</span>, linestyle<span class="op">=</span><span class="st">":"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># function to make plot nicer</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_ax(ax):</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_label_coords(<span class="op">-</span><span class="fl">0.1</span>, <span class="fl">1.05</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.label.set_rotation(<span class="dv">0</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.label.set_ha(<span class="st">"left"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    ax.grid()</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2, ax3) <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax1.plot(flight.ts, flight.altitude)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax2.plot(flight.ts, flight.tas)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax3.plot(flight.ts, flight.vertical_rate)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="dv">0</span>, <span class="dv">40000</span>)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="dv">0</span>, <span class="dv">600</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax3.set_ylim(<span class="op">-</span><span class="dv">3000</span>, <span class="dv">3000</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"altitude (ft)"</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"true airspeed (kts)"</span>)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>ax3.set_ylabel(<span class="st">"vertical rate (ft/min)"</span>)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>ax3.set_xlabel(<span class="st">"time(s)"</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> (ax1, ax2, ax3):</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    format_ax(ax)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="basic_files/figure-html/cell-4-output-1.png" width="467" height="371" class="figure-img"></p>
-</figure>
-</div>
+<p><strong>Returns:</strong> <code>List[str]</code> — List of ICAO aircraft type codes</p>
+<div id="d1cca8a3" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get first 10 available aircraft types</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>prop.available_aircraft()[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>['a19n',
+ 'a20n',
+ 'a21n',
+ 'a318',
+ 'a319',
+ 'a320',
+ 'a321',
+ 'a332',
+ 'a333',
+ 'a343']</code></pre>
 </div>
 </div>
 </section>
-<section id="other-objective-functions" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="other-objective-functions"><span class="header-section-number">9.2</span> Other objective functions</h2>
-<p>Instead of the default objective functions, you can also specify different objective functions as follows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cost index, between 0 - 100</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"ci:30"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># global warming potential</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gwp100"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># global temperature potential</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gtp100"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The final <code>flight</code> object is a pandas DataFrame.</p>
+<section id="aircraftac-use_synonymfalse" class="level3" data-number="13.0.2">
+<h3 data-number="13.0.2" class="anchored" data-anchor-id="aircraftac-use_synonymfalse"><span class="header-section-number">13.0.2</span> <code>aircraft(ac, use_synonym=False)</code></h3>
+<p>Get detailed performance parameters for a specific aircraft type.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 20%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ac</code></td>
+<td><code>str</code></td>
+<td>ICAO aircraft type code (e.g., “A320”)</td>
+</tr>
+<tr class="even">
+<td><code>use_synonym</code></td>
+<td><code>bool</code></td>
+<td>Use synonym if aircraft not found. Default: <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>Dict[str, Any]</code> — Dictionary containing performance parameters including maximum takeoff weight (mtow), maximum landing weight (mlw), operating empty weight (oew), dimensions, engine information, and other aircraft specifications.</p>
+<div id="21eb1d39" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get aircraft details for A320</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>aircraft_data <span class="op">=</span> prop.aircraft(<span class="st">"A320"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>pprint(aircraft_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'aircraft': 'Airbus A320',
+ 'ceiling': 12500,
+ 'cruise': {'height': 11000, 'mach': 0.78, 'range': 5000},
+ 'drag': {'cd0': 0.018, 'e': 0.799, 'gears': 0.017, 'k': 0.039},
+ 'engine': {'default': 'CFM56-5B4',
+            'mount': 'wing',
+            'number': 2,
+            'options': {'A320-111': 'CFM56-5-A1',
+                        'A320-211': 'CFM56-5-A1',
+                        'A320-212': 'CFM56-5A3',
+                        'A320-214': 'CFM56-5B4',
+                        'A320-215': 'CFM56-5B5',
+                        'A320-216': 'CFM56-5B6',
+                        'A320-231': 'V2500-A1',
+                        'A320-232': 'V2527-A5',
+                        'A320-233': 'V2527E-A5'},
+            'type': 'turbofan'},
+ 'flaps': {'Sf/S': 0.17,
+           'area': 21.1,
+           'bf/b': 0.78,
+           'cf/c': 0.176,
+           'lambda_f': 0.9,
+           'type': 'single-slotted'},
+ 'fuel': {'engine': 'CFM56-5B4/P', 'fuel_coef': 2.65942225},
+ 'fuselage': {'height': 4.14, 'length': 37.57, 'width': 3.95},
+ 'limits': {'MFC': 24210,
+            'MLW': 66000,
+            'MMO': 0.82,
+            'MTOW': 78000,
+            'OEW': 42600,
+            'VMO': 350,
+            'ceiling': 12500},
+ 'mfc': 24210,
+ 'mlw': 66000,
+ 'mmo': 0.82,
+ 'mtow': 78000,
+ 'oew': 42600,
+ 'pax': {'high': 170, 'low': 140, 'max': 180},
+ 'vmo': 350,
+ 'wing': {'area': 124, 'mac': 4.1935, 'span': 35.8, 'sweep': 25, 't/c': None}}</code></pre>
+</div>
+</div>
 </section>
-<section id="different-flight-phases" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="different-flight-phases"><span class="header-section-number">9.3</span> Different flight phases</h2>
-<p>Instead of generating a complete flight, we can also generate cruise, climb, and descent flights using <code>top.Crusie</code>, <code>top.Climb</code>, and <code>top.Descent</code> classes.</p>
-<div id="08aa2bee" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cruise_flight <span class="op">=</span> top.Cruise(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>climb_flight <span class="op">=</span> top.Climb(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>descent_flight <span class="op">=</span> top.Descent(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="aircraft_engine_optionsac" class="level3" data-number="13.0.3">
+<h3 data-number="13.0.3" class="anchored" data-anchor-id="aircraft_engine_optionsac"><span class="header-section-number">13.0.3</span> <code>aircraft_engine_options(ac)</code></h3>
+<p>Get the list of engine options available for a specific aircraft type.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ac</code></td>
+<td><code>str</code></td>
+<td>ICAO aircraft type code (e.g., “A320”)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>List[str]</code> — List of engine type strings</p>
+<div id="3071ce08" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get engine options for A320</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>prop.aircraft_engine_options(<span class="st">"A320"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>['CFM56-5-A1',
+ 'CFM56-5-A1',
+ 'CFM56-5A3',
+ 'CFM56-5B4',
+ 'CFM56-5B5',
+ 'CFM56-5B6',
+ 'V2500-A1',
+ 'V2527-A5',
+ 'V2527E-A5']</code></pre>
 </div>
-<p>Let’s visulize these trajectories:</p>
-<div id="57c80095" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> (<span class="st">"cruise flight"</span>, <span class="st">"climb flight"</span>, <span class="st">"descent flight"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flight <span class="kw">in</span> <span class="bu">enumerate</span>([cruise_flight, climb_flight, descent_flight]):</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ax1, ax2, ax3 <span class="op">=</span> axes[:, i]</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax1.plot(flight.ts, flight.altitude)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ax2.plot(flight.ts, flight.tas)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax3.plot(flight.ts, flight.vertical_rate)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">"altitude (ft)"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">"true airspeed (kts)"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylabel(<span class="st">"vertical rate (ft/min)"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="dv">0</span>, <span class="dv">40000</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylim(<span class="dv">0</span>, <span class="dv">600</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylim(<span class="op">-</span><span class="dv">3000</span>, <span class="dv">3000</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(labels[i], pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ax3.set_xlabel(<span class="st">"time(s)"</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes.flatten():</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    format_ax(ax)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="basic_files/figure-html/cell-6-output-1.png" width="947" height="372" class="figure-img"></p>
-</figure>
 </div>
+</section>
+<section id="search_engineeng" class="level3" data-number="13.0.4">
+<h3 data-number="13.0.4" class="anchored" data-anchor-id="search_engineeng"><span class="header-section-number">13.0.4</span> <code>search_engine(eng)</code></h3>
+<p>Search for engines that match the given prefix string.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>eng</code></td>
+<td><code>str</code></td>
+<td>Engine type prefix (e.g., “CFM56”)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>List[str]</code> or <code>None</code> — List of matching engine types, or <code>None</code> if no matches found</p>
+<div id="4cca3316" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for CFM56 engines</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>prop.search_engine(<span class="st">"CFM56"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>['CFM56-2A',
+ 'CFM56-2B-1',
+ 'CFM56-2-C5',
+ 'CFM56-3-B1',
+ 'CFM56-3B-2',
+ 'CFM56-3C-1',
+ 'CFM56-5-A1',
+ 'CFM56-5A3',
+ 'CFM56-5A4',
+ 'CFM56-5A5',
+ 'CFM56-5B1',
+ 'CFM56-5B1/2',
+ 'CFM56-5B1/2P',
+ 'CFM56-5B1/3',
+ 'CFM56-5B1/P',
+ 'CFM56-5B2',
+ 'CFM56-5B2/2',
+ 'CFM56-5B2/2P',
+ 'CFM56-5B2/3',
+ 'CFM56-5B2/P',
+ 'CFM56-5B3/2P',
+ 'CFM56-5B3/3',
+ 'CFM56-5B3/P',
+ 'CFM56-5B4',
+ 'CFM56-5B4/2',
+ 'CFM56-5B4/2P',
+ 'CFM56-5B4/3',
+ 'CFM56-5B4/P',
+ 'CFM56-5B5/3',
+ 'CFM56-5B5/P',
+ 'CFM56-5B6/2',
+ 'CFM56-5B6/2P',
+ 'CFM56-5B6/3',
+ 'CFM56-5B6/P',
+ 'CFM56-5B7/3',
+ 'CFM56-5B7/P',
+ 'CFM56-5B8/3',
+ 'CFM56-5B8/P',
+ 'CFM56-5B9/2P',
+ 'CFM56-5B9/3',
+ 'CFM56-5B9/P',
+ 'CFM56-5C2',
+ 'CFM56-5C2/P',
+ 'CFM56-5C3',
+ 'CFM56-5C3/P',
+ 'CFM56-5C4',
+ 'CFM56-5C4/P',
+ 'CFM56-7B18',
+ 'CFM56-7B18/3',
+ 'CFM56-7B20',
+ 'CFM56-7B20/2',
+ 'CFM56-7B20/3',
+ 'CFM56-7B20E',
+ 'CFM56-7B22',
+ 'CFM56-7B22/2',
+ 'CFM56-7B22/3',
+ 'CFM56-7B22E',
+ 'CFM56-7B22E/B1',
+ 'CFM56-7B24',
+ 'CFM56-7B24/2',
+ 'CFM56-7B24/3',
+ 'CFM56-7B24E',
+ 'CFM56-7B24E/B1',
+ 'CFM56-7B26',
+ 'CFM56-7B26/2',
+ 'CFM56-7B26/3',
+ 'CFM56-7B26E',
+ 'CFM56-7B26E/B1',
+ 'CFM56-7B26E/B2',
+ 'CFM56-7B26E/B2F',
+ 'CFM56-7B26E/F',
+ 'CFM56-7B27',
+ 'CFM56-7B27/2',
+ 'CFM56-7B27/3',
+ 'CFM56-7B27AE',
+ 'CFM56-7B27E',
+ 'CFM56-7B27E/B1',
+ 'CFM56-7B27E/B1F',
+ 'CFM56-7B27E/B3',
+ 'CFM56-7B27E/F']</code></pre>
+</div>
+</div>
+</section>
+<section id="engineeng" class="level3" data-number="13.0.5">
+<h3 data-number="13.0.5" class="anchored" data-anchor-id="engineeng"><span class="header-section-number">13.0.5</span> <code>engine(eng)</code></h3>
+<p>Get detailed parameters for a specific engine type.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>eng</code></td>
+<td><code>str</code></td>
+<td>Engine type (e.g., “CFM56-5B6”)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>Dict[str, Any]</code> — Dictionary containing engine specifications including thrust, fuel flow, specific fuel consumption, and other performance parameters.</p>
+<div id="a1656272" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get engine details for CFM56-5B4</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>engine_data <span class="op">=</span> prop.engine(<span class="st">"CFM56-5B4"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pprint(engine_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'bpr': 5.9,
+ 'cruise_alt': 35000.0,
+ 'cruise_mach': 0.8,
+ 'cruise_sfc': 0.0154,
+ 'cruise_thrust': 22241.0,
+ 'ei_co_app': 2.33,
+ 'ei_co_co': 0.5,
+ 'ei_co_idl': 31.9,
+ 'ei_co_to': 0.5,
+ 'ei_hc_app': 0.13,
+ 'ei_hc_co': 0.1,
+ 'ei_hc_idl': 3.87,
+ 'ei_hc_to': 0.1,
+ 'ei_nox_app': 10.0,
+ 'ei_nox_co': 23.3,
+ 'ei_nox_idl': 4.3,
+ 'ei_nox_to': 28.7,
+ 'ff_app': 0.326,
+ 'ff_co': 0.961,
+ 'ff_idl': 0.107,
+ 'ff_to': 1.166,
+ 'fuel_ch': np.float64(5.2e-07),
+ 'fuel_lto': 421.0,
+ 'manufacturer': 'CFM International',
+ 'max_thrust': 117900.0,
+ 'name': 'CFM56-5B4',
+ 'pr': 27.1,
+ 'type': 'TF',
+ 'uid': '2CM014'}</code></pre>
 </div>
 </div>
 
@@ -1047,13 +1136,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../optimize/index.html" class="pagination-link" aria-label="🦸 Trajectory Optimizer">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🦸 Trajectory Optimizer</span>
+      <a href="../api/index.html" class="pagination-link" aria-label="📖 API Reference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">📖 API Reference</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../optimize/wind.html" class="pagination-link" aria-label="🌪️ Wind optimal flights">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/thrust.html" class="pagination-link" aria-label="⚡ Thrust">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1062,4 +1151,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/basic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/basic.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/api/prop.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/api/prop.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

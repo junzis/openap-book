@@ -1,0 +1,195 @@
+# ☁️ contrail
+
+Contrail formation prediction and radiative forcing calculations.
+
+**Module constants**
+
+| Constant | Value | Description |
+|----------|-------|-------------|
+| `ei_water` | 1.2232 | Water vapor emission index (kg/kg fuel) |
+| `spec_combustion_heat` | 43e6 | Specific combustion heat (J/kg) |
+| `spec_air_heat_capacity` | 1004 | Specific heat capacity of air (J/(kg*K)) |
+| `DEFAULT_PROPULSION_EFFICIENCY` | 0.4 | Default propulsion efficiency |
+
+**Saturation pressure**
+
+### `saturation_pressure_over_water(temperature)`
+
+Calculate saturation vapor pressure over liquid water using the Murphy & Koop (2005) formulation, valid for temperatures from 123 K to 332 K.
+
+**Parameters:**
+
+- `temperature`: Air temperature (K). Can be scalar or array.
+
+**Returns:** Saturation vapor pressure over water (Pa).
+
+**Reference:** Murphy, D. M. and Koop, T. (2005). Review of the vapour pressures of ice and supercooled water for atmospheric applications. Q. J. R. Meteorol. Soc., 131, 1539-1565.
+
+### `saturation_pressure_over_ice(temperature)`
+
+Calculate saturation vapor pressure over ice using the Murphy & Koop (2005) formulation, valid for temperatures from 110 K to 273 K.
+
+**Parameters:**
+
+- `temperature`: Air temperature (K). Can be scalar or array.
+
+**Returns:** Saturation vapor pressure over ice (Pa).
+
+**Reference:** Murphy, D. M. and Koop, T. (2005). Review of the vapour pressures of ice and supercooled water for atmospheric applications. Q. J. R. Meteorol. Soc., 131, 1539-1565.
+
+**Humidity**
+
+### `relative_humidity(specific_humidity, pressure, temperature, to="ice")`
+
+Calculate relative humidity from specific humidity.
+
+**Parameters:**
+
+- `specific_humidity`: Specific humidity (kg/kg)
+- `pressure`: Air pressure (Pa)
+- `temperature`: Air temperature (K)
+- `to`: Reference phase, either "ice" or "water". Default: "ice"
+
+**Returns:** Relative humidity (dimensionless, where 1.0 = 100%)
+
+### `rhw2rhi(relative_humidity_water, temperature)`
+
+Convert relative humidity with respect to water to relative humidity with respect to ice.
+
+**Parameters:**
+
+- `relative_humidity_water`: Relative humidity w.r.t. water (dimensionless)
+- `temperature`: Air temperature (K)
+
+**Returns:** Relative humidity w.r.t. ice (dimensionless)
+
+**Schmidt-Appleman criterion**
+
+### `critical_temperature_water(pressure, propulsion_efficiency=0.4)`
+
+Calculate critical temperature below which contrails can form (water saturation), based on the Schmidt-Appleman criterion.
+
+**Parameters:**
+
+- `pressure`: Air pressure (Pa). Can be scalar or array.
+- `propulsion_efficiency`: Overall propulsion efficiency (0-1). Default: 0.4. Higher efficiency means higher critical temperature (contrails form more easily).
+
+**Returns:** Critical temperature (K). Contrails can form when the ambient temperature is below this value.
+
+**Reference:** Schumann, U. (1996). On conditions for contrail formation from aircraft exhausts. Meteorol. Z., 5, 4-23.
+
+### `critical_temperature_water_and_ice(pressure, propulsion_efficiency=0.4)`
+
+Calculate both water and ice critical temperatures for contrail formation and persistence.
+
+**Parameters:**
+
+- `pressure`: Air pressure (Pa). Scalar only (uses root finding).
+- `propulsion_efficiency`: Overall propulsion efficiency (0-1). Default: 0.4.
+
+**Returns:** Tuple of (crit_temp_water, crit_temp_ice) in Kelvin.
+- `crit_temp_water`: Temperature below which contrails can form
+- `crit_temp_ice`: Temperature below which contrails can persist (if ice supersaturation exists)
+
+**Reference:** Schumann, U. (1996). On conditions for contrail formation from aircraft exhausts. Meteorol. Z., 5, 4-23.
+
+**Radiative forcing**
+
+### `rf_shortwave(zenith, tau, tau_c)`
+
+Calculate shortwave (solar) radiative forcing from contrails. Shortwave forcing is typically negative (cooling effect) during daytime.
+
+**Parameters:**
+
+- `zenith`: Solar zenith angle (degrees). 0 = sun overhead, 90 = horizon, >90 = nighttime
+- `tau`: Contrail optical depth (dimensionless)
+- `tau_c`: Background cirrus optical depth (dimensionless)
+
+**Returns:** Shortwave radiative forcing (W/m²). Negative values indicate cooling (reflection of incoming solar radiation). Returns 0 for nighttime (zenith > 90).
+
+### `rf_longwave(olr, temperature)`
+
+Calculate longwave (thermal infrared) radiative forcing from contrails. Longwave forcing is typically positive (warming effect).
+
+**Parameters:**
+
+- `olr`: Outgoing longwave radiation at top of atmosphere (W/m²). Can be obtained from satellite data or reanalysis.
+- `temperature`: Contrail/ambient temperature (K)
+
+**Returns:** Longwave radiative forcing (W/m²). Positive values indicate warming (trapping of outgoing thermal radiation).
+
+### `rf_net(zenith, tau, tau_c, olr, temperature)`
+
+Calculate net radiative forcing from contrails by combining shortwave (cooling) and longwave (warming) forcing.
+
+**Parameters:**
+
+- `zenith`: Solar zenith angle (degrees)
+- `tau`: Contrail optical depth (dimensionless)
+- `tau_c`: Background cirrus optical depth (dimensionless)
+- `olr`: Outgoing longwave radiation (W/m²)
+- `temperature`: Contrail/ambient temperature (K)
+
+**Returns:** Net radiative forcing (W/m²). Positive = warming, negative = cooling.
+
+**Utilities**
+
+### `contrail_optical_properties(age_hours)`
+
+Get contrail optical properties based on age. Models contrail evolution from young thin trails to aged artificial cirrus.
+
+Optical property evolution (cumulative values):
+
+| Age (hours) | tau  | width (m) | tau_c |
+|-------------|------|-----------|-------|
+| 0-1         | 0.40 | 500       | 0.360 |
+| 1-2         | 0.60 | 1500      | 0.540 |
+| 2-4         | 0.68 | 3500      | 0.612 |
+| 4-6         | 0.70 | 6500      | 0.630 |
+| 6+          | 0.71 | 10500     | 0.639 |
+
+**Parameters:**
+
+- `age_hours`: Contrail age in hours. Can be scalar or array.
+
+**Returns:** Tuple of (tau, width_m, tau_c):
+- `tau`: Contrail optical depth (dimensionless)
+- `width_m`: Contrail width (meters)
+- `tau_c`: Cirrus optical depth (dimensionless)
+
+### `load_olr(filepath, lat, lon, time)`
+
+Load OLR data from a netCDF file and interpolate to specified locations and times. Requires xarray (optional dependency).
+
+**Parameters:**
+
+- `filepath`: Path to netCDF file containing OLR data. Expected variables: 'olr' or 'OLR', with dimensions (time, lat/latitude, lon/longitude)
+- `lat`: Latitude(s) to interpolate (degrees)
+- `lon`: Longitude(s) to interpolate (degrees)
+- `time`: Timestamp(s) for temporal interpolation. Can be datetime, pandas Timestamp, or array of timestamps
+
+**Returns:** OLR values (W/m²) at the specified locations and times.
+
+**Raises:** `ImportError` if xarray is not installed.
+
+Example:
+
+Computing the critical temperature at typical cruise pressure and checking if contrail formation is possible:
+
+```{python}
+from openap import contrail
+
+# Typical cruise pressure (~FL350)
+p = 23842  # Pa
+
+# Critical temperature for contrail formation
+T_crit = contrail.critical_temperature_water(p)
+print(f"Critical temperature: {T_crit:.1f} K ({T_crit - 273.15:.1f} °C)")
+
+# Check contrail formation at different ambient temperatures
+T_ambient = 220  # K (-53°C)
+if T_ambient < T_crit:
+    print(f"Contrails can form at {T_ambient:.1f} K")
+else:
+    print(f"Contrails cannot form at {T_ambient:.1f} K")
+```

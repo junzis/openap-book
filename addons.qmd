@@ -1,16 +1,104 @@
-# 🪤 Add-ons
+# Add-ons
 
-## BADA 4 
-
-The OpenAP library can also be used to interact with BADA performance models. 
+OpenAP can interface with EUROCONTROL's BADA (Base of Aircraft Data) performance models. Both BADA3 and BADA4 are supported, providing alternative drag, thrust, and fuel flow calculations.
 
 :::{.callout-important}
-In order to user this, you must first obtain a lincense and BADA4 data from EUROCONTROL.
+To use these modules, you must first obtain a license and BADA data from EUROCONTROL.
 :::
 
-The code for calculating drag, thrust, and fuel models from BADA4 are implemented in OpenAP. The interface is similar to the one used for the open-source OpenAP models. 
+## BADA3
 
-To use the BADA4 models, you first need to import the module from addons, and then specify the path to the BADA4 tables on your local system.
+BADA3 uses a coefficient-based model with different parameters for various flight phases. The data is stored in OPF (Operations Performance File) format.
+
+### Setup
+
+```python
+from openap.addon import bada3
+
+bada_path = "path/to/bada_3.x"
+```
+
+### Drag
+
+Calculate drag force in clean and non-clean configurations:
+
+```python
+drag = bada3.Drag("A320", bada_path)
+
+# Clean configuration (cruise)
+drag.clean(mass=60000, tas=300, alt=35_000)  # kg, kts, ft -> N
+
+# Non-clean configuration (approach or landing)
+drag.nonclean(mass=60000, tas=150, alt=3_000, phase="AP")  # approach
+drag.nonclean(mass=60000, tas=140, alt=1_000, phase="LD", landing_gear=True)  # landing
+```
+
+The `phase` parameter accepts:
+
+- `"AP"` - Approach configuration
+- `"LD"` - Landing configuration
+
+### Thrust
+
+BADA3 provides thrust calculations for different flight phases:
+
+```python
+thrust = bada3.Thrust("A320", bada_path)
+
+# Maximum climb thrust
+thrust.climb(tas=280, alt=20_000)  # kts, ft -> N
+
+# Maximum cruise thrust (95% of climb thrust)
+thrust.cruise(tas=450, alt=35_000)
+
+# Takeoff thrust
+thrust.takeoff(tas=150, alt=0)
+
+# Idle (descent) thrust - requires configuration
+thrust.idle(tas=300, alt=25_000, config="CR")  # cruise descent
+thrust.idle(tas=200, alt=5_000, config="AP")   # approach
+thrust.idle(tas=150, alt=1_000, config="LD")   # landing
+```
+
+The `config` parameter for idle thrust:
+
+- `"CR"` - Cruise/clean configuration
+- `"AP"` - Approach configuration
+- `"LD"` - Landing configuration
+
+### Fuel Flow
+
+```python
+fuel = bada3.FuelFlow("A320", bada_path)
+
+# Enroute fuel flow (cruise, corrected)
+fuel.enroute(mass=60000, tas=450, alt=35_000)  # kg, kts, ft -> kg/s
+
+# Nominal fuel flow (before cruise correction)
+fuel.nominal(mass=60000, tas=450, alt=35_000, vs=0)
+
+# Idle fuel flow
+fuel.idle(mass=60000, tas=300, alt=25_000)
+
+# Approach/landing fuel flow
+fuel.approach(mass=60000, tas=150, alt=3_000)
+```
+
+### ISA Temperature Deviation
+
+All thrust and fuel calculations support ISA temperature deviation using the `dT` parameter:
+
+```python
+# Hot day scenario (+15K above ISA)
+thrust.climb(tas=280, alt=20_000, dT=15)
+fuel.enroute(mass=60000, tas=450, alt=35_000, vs=500, dT=15)
+```
+
+## BADA4
+
+BADA4 uses a more sophisticated polynomial model with higher fidelity, especially for modern aircraft. The data is stored in XML format.
+
+### Setup
 
 ```python
 from openap.addon import bada4
@@ -19,52 +107,51 @@ bada_path = "path/to/bada_4.x/tables"
 ```
 
 ### Drag
-In the following example, we show how to use the BADA4 models to calculate the drag of an aircraft at a specific flight condition with clean configuration.
 
 ```python
 drag = bada4.Drag("A320", bada_path)
 
-drag.clean(mass=60000, tas=300, alt=12_000)  # kg, kt, ft -> N
+drag.clean(mass=60000, tas=300, alt=35_000)  # kg, kts, ft -> N
 ```
 
-Note that the aircraft type can be ICAO typecode like `A320` or with subtypes like `A320-231`.
+The aircraft type can be ICAO typecode like `A320` or with subtypes like `A320-231`.
 
 ### Thrust
-
-To calculate the _maximum_ thrust at climb conditions, you can use the following code:
 
 ```python
 thrust = bada4.Thrust("A320", bada_path)
 
-thrust.climb(tas=250, alt=10_000)  # kg, kt, ft -> N
+# Maximum climb thrust (MCMB rating)
+thrust.climb(tas=280, alt=20_000)
+
+# Maximum cruise thrust (MCRZ rating)
+thrust.cruise(tas=450, alt=35_000)
+
+# Takeoff thrust
+thrust.takeoff(tas=150, alt=0)
+
+# Idle thrust (LIDL rating)
+thrust.idle(tas=300, alt=25_000)
 ```
 
-For max thrust at cruise conditions:
+### Fuel Flow
 
 ```python
-thrust.cruise(tas=350, alt=30_000)
+fuel = bada4.FuelFlow("A320", bada_path)
+
+# Enroute fuel flow
+fuel.enroute(mass=60000, tas=450, alt=35_000)  # kg, kts, ft -> kg/s
+
+# Idle fuel flow
+fuel.idle(mass=60000, tas=300, alt=25_000)
 ```
 
-For idle thrust:
+The enroute method automatically switches to idle fuel flow when vertical speed is below -250 ft/min.
 
-```python
-thrust.idle(tas=250, alt=15_000)
-```
-
-### Fuel
-
-The fuel model interface is also similar to OpenAP's own fuel flow model interfaces. An example:
-
-```python
-fuel_bada = bada4.FuelFlow("A320", bada_path)
-
-fuel_bada.enroute(mass=60000, tas=350, alt=35_000)  # kg, kt, ft -> kg/s
-```
-
-### Vectorized calculations
+## Vectorized Calculations
 
 :::{.callout-tip}
-The input parameters can be provided as list or numpy arrays. All the calcualtions are verctorized and hence extremly fast.
+All BADA models support vectorized calculations. Input parameters can be provided as lists or numpy arrays for fast batch processing.
 :::
 
 In the following example, we show how to calculate the fuel flow from a flight data file obtained from opensky state vectors. First, we read the data file and calculate the time step between each row. 

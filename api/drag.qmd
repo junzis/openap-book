@@ -1,0 +1,54 @@
+# 🌬️ Drag
+
+Drag model based on drag polar coefficients.
+
+```{python}
+from openap import Drag
+drag = Drag("A320")
+```
+
+### `Drag(ac, wave_drag=False, backend=None)`
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `ac` | `str` | ICAO aircraft type (e.g., "A320") |
+| `wave_drag` | `bool` | Enable wave drag model (experimental). Default: False |
+| `backend` | `MathBackend`, optional | Computation backend. Default: NumpyBackend |
+
+### `clean(mass, tas, alt, vs=0, dT=0)`
+
+Compute drag at clean configuration (cruise, climb, descent — no flaps, gear up).
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `mass` | float | kg | Aircraft mass |
+| `tas` | float | kt | True airspeed |
+| `alt` | float | ft | Altitude |
+| `vs` | float | ft/min | Vertical rate. Default: 0 |
+| `dT` | float | K | ISA temperature deviation. Default: 0 |
+
+**Returns:** Total drag (N)
+
+```{python}
+drag.clean(mass=60000, tas=250, alt=30000)
+```
+
+### `nonclean(mass, tas, alt, flap_angle, vs=0, dT=0, landing_gear=False)`
+
+Compute drag at non-clean configuration (flaps deployed, gear extended).
+
+| Parameter | Type | Unit | Description |
+|-----------|------|------|-------------|
+| `mass` | float | kg | Aircraft mass |
+| `tas` | float | kt | True airspeed |
+| `alt` | float | ft | Altitude |
+| `flap_angle` | float | degree | Flap deflection angle |
+| `vs` | float | ft/min | Vertical rate. Default: 0 |
+| `dT` | float | K | ISA temperature deviation. Default: 0 |
+| `landing_gear` | bool | — | Landing gear extended? Default: False |
+
+**Returns:** Total drag (N)
+
+```{python}
+drag.nonclean(mass=60000, tas=180, alt=5000, flap_angle=20, landing_gear=True)
+```

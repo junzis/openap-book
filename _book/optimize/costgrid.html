@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>10&nbsp; 🙀 Using cost grids – The OpenAP Handbook</title>
+<title>11&nbsp; 🙀 Using cost grids – The OpenAP Handbook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../optimize/wind.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ade4f9005d343dcf87927695bea7f6f3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-82f5f95ae74b4834605088d8c0b5b820.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -138,7 +139,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">The OpenAP Handbook</a> 
@@ -230,8 +232,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../contrail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../addons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🪤 Add-ons</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></span></a>
   </div>
 </li>
       </ul>
@@ -248,25 +256,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/costgrid.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../optimize/contrails.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../api/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📖 API Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/prop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/thrust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/drag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/fuelflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/emission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/wrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/flightphase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/flightgenerator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/aero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/geo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/contrail.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/backends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,17 +378,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#cost-grid-in-3d" id="toc-cost-grid-in-3d" class="nav-link active" data-scroll-target="#cost-grid-in-3d"><span class="header-section-number">10.1</span> Cost grid in 3D</a></li>
-  <li><a href="#cost-grid-in-4d" id="toc-cost-grid-in-4d" class="nav-link" data-scroll-target="#cost-grid-in-4d"><span class="header-section-number">10.2</span> Cost grid in 4D</a></li>
+  <li><a href="#cost-grid-in-3d" id="toc-cost-grid-in-3d" class="nav-link active" data-scroll-target="#cost-grid-in-3d"><span class="header-section-number">11.1</span> Cost grid in 3D</a></li>
+  <li><a href="#cost-grid-in-4d" id="toc-cost-grid-in-4d" class="nav-link" data-scroll-target="#cost-grid-in-4d"><span class="header-section-number">11.2</span> Cost grid in 4D</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/costgrid.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/costgrid.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/costgrid.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></h1>
 </div>
 
 
@@ -317,12 +408,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In many trajectory optimization scenarios, the cost function is area-dependent. For example, we may need to avoid areas of convective weather or regions with sensitive climate conditions. In these cases, the TOP optimizer considers a 3D or 4D cost grid as part of the objective function.</p>
 <p>To find the optimal set of control variables (i.e., speed, heading, and vertical rate), the cost grid is converted into an interpolant. This allows the non-linear optimal control process to evaluate the combined cost based on flight states (time, positions, and altitudes) throughout the entire trajectory. Subject to the constraints defined in the flight dynamics, the optimizer computes a trajectory that minimizes the total cost across the airspace.</p>
 <p>Practically, in order to prevent the trajectory from completely deviating from the fuel-optimal route, the cost is combined with the fuel cost to provide a more realistic trajectory. In this chapter, I will explain how one can use a predefined cost grid (in both 3D and 4D) to perform the optimization of trajectories.</p>
-<section id="cost-grid-in-3d" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="cost-grid-in-3d"><span class="header-section-number">10.1</span> Cost grid in 3D</h2>
+<section id="cost-grid-in-3d" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="cost-grid-in-3d"><span class="header-section-number">11.1</span> Cost grid in 3D</h2>
 <p>To demonstrate the use of 3D cost in flight optimization, we will first set up an example cost grid. The example flight we want to optimize is still based on the one from previous chapters, flight with the origin of <code>EHAM</code> and the destination of <code>LGAV</code>.</p>
 <p>We first generate an artificial 2D cost grid using a Gaussian function, with the <code>x</code> range of <code>(-10, 10)</code> and <code>y</code> range of <code>(-5, 5)</code>. Then the range is transformed to the longitude and latitude bounds for our flight. The 2D cost grids at different levels are dependent on the altitude, where the higher the altitude, the higher the cost.</p>
 <div id="eea2b697" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -344,13 +435,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> np.interp(y, (<span class="bu">min</span>(y), <span class="bu">max</span>(y)), (<span class="dv">35</span>, <span class="dv">60</span>))</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> np.interp(z, (<span class="bu">min</span>(z), <span class="bu">max</span>(z)), (<span class="dv">0</span>, <span class="dv">40_000</span>))</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>lons, lats, alts <span class="op">=</span> np.meshgrid(lon, lat, alt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>lons, lats, alts <span class="op">=</span> np.meshgrid(lon, lat, alt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can visualize the cost grid at different altitude as follows:</p>
 <div id="aa49568b" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code used for visulization</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), subplot_kw<span class="op">=</span>{<span class="st">"projection"</span>: <span class="st">"3d"</span>})</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes.flatten()):</span>
@@ -369,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"latitude"</span>)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    ax.set_zlabel(<span class="st">"cost"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -395,17 +486,17 @@ Note
 </div>
 <p>Example of the cost grid as a<code>pd.DataFrame</code>:</p>
 <div id="71436277" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_cost_3d <span class="op">=</span> pd.DataFrame(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_cost_3d <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    np.array([lons, lats, alts, costs3d]).reshape(<span class="dv">4</span>, <span class="op">-</span><span class="dv">1</span>).T,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"longitude"</span>, <span class="st">"latitude"</span>, <span class="st">"altitude"</span>, <span class="st">"cost"</span>],</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>).assign(height<span class="op">=</span><span class="kw">lambda</span> x: x.altitude <span class="op">*</span> <span class="fl">0.3048</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_cost_3d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_cost_3d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -418,7 +509,7 @@ Note
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>0.000000</td>
@@ -426,7 +517,7 @@ Note
 <td>0.000000</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>1290.322581</td>
@@ -434,7 +525,7 @@ Note
 <td>393.290323</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>2580.645161</td>
@@ -442,7 +533,7 @@ Note
 <td>786.580645</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
+<th data-quarto-table-cell-role="th">3</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>3870.967742</td>
@@ -450,7 +541,7 @@ Note
 <td>1179.870968</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
+<th data-quarto-table-cell-role="th">4</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>5161.290323</td>
@@ -458,7 +549,7 @@ Note
 <td>1573.161290</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
+<th data-quarto-table-cell-role="th">...</th>
 <td>...</td>
 <td>...</td>
 <td>...</td>
@@ -466,7 +557,7 @@ Note
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">51195</td>
+<th data-quarto-table-cell-role="th">51195</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>34838.709677</td>
@@ -474,7 +565,7 @@ Note
 <td>10618.838710</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">51196</td>
+<th data-quarto-table-cell-role="th">51196</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>36129.032258</td>
@@ -482,7 +573,7 @@ Note
 <td>11012.129032</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">51197</td>
+<th data-quarto-table-cell-role="th">51197</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>37419.354839</td>
@@ -490,7 +581,7 @@ Note
 <td>11405.419355</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">51198</td>
+<th data-quarto-table-cell-role="th">51198</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>38709.677419</td>
@@ -498,7 +589,7 @@ Note
 <td>11798.709677</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">51199</td>
+<th data-quarto-table-cell-role="th">51199</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>40000.000000</td>
@@ -514,7 +605,7 @@ Note
 </div>
 <p>With this grid cost, we need to define an <code>interpolant</code> based on this grid and an <code>objective</code> function which is a combination of the grid cost and fuel cost.</p>
 <div id="1394709c" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top, aero</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top, aero</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(<span class="st">"A320"</span>, <span class="st">"EHAM"</span>, <span class="st">"LGAV"</span>, m0<span class="op">=</span><span class="fl">0.85</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># optimizer.setup(debug=True)</span></span>
@@ -531,12 +622,12 @@ Note
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># generate optimal flight trajectory</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># interpolant is passed to trajectory(), and internally used by obj_grid()</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span>objective, interpolant<span class="op">=</span>interpolant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span>objective, interpolant<span class="op">=</span>interpolant)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once the optimization is complete, we can visualize the trajetory with the builtin <code>vis.trajectory()</code> function:</p>
 <div id="127d0783" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -549,7 +640,7 @@ Note
 <div id="734f6008" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the function flight_level_cost_3d() used for visulization</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flight_level_cost_3d(flight, df_cost):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flight_level_cost_3d(flight, df_cost):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> cartopy <span class="im">import</span> crs <span class="im">as</span> ccrs</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> cartopy.feature <span class="im">import</span> BORDERS</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -596,11 +687,11 @@ Note
 <span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>            ax.scatter(p.longitude, p.latitude, c<span class="op">=</span><span class="st">"k"</span>, transform<span class="op">=</span>proj)</span>
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="0170422f" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>flight_level_cost_3d(flight, df_cost_3d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>flight_level_cost_3d(flight, df_cost_3d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -611,7 +702,7 @@ Note
 </div>
 <p>Next, we modify the combined objective (grid and fuel) so that the weight of the grid cost is higher. And we can see that the optimized trajectory takes a longer detour to avoid regions with high grid cost with more fuel burnt.</p>
 <div id="5841a12e" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective_2(x, u, dt, <span class="op">**</span>kwargs):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective_2(x, u, dt, <span class="op">**</span>kwargs):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""The final objective is the compound of grid cost and fuel"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    grid_cost <span class="op">=</span> optimizer.obj_grid_cost(x, u, dt, time_dependent<span class="op">=</span><span class="va">True</span>, <span class="op">**</span>kwargs)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    fuel_cost <span class="op">=</span> optimizer.obj_fuel(x, u, dt, <span class="op">**</span>kwargs)</span>
@@ -620,7 +711,7 @@ Note
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>flight_2 <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span>objective_2, interpolant<span class="op">=</span>interpolant)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>flight_level_cost_3d(flight_2, df_cost_3d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>flight_level_cost_3d(flight_2, df_cost_3d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -630,12 +721,12 @@ Note
 </div>
 </div>
 </section>
-<section id="cost-grid-in-4d" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="cost-grid-in-4d"><span class="header-section-number">10.2</span> Cost grid in 4D</h2>
+<section id="cost-grid-in-4d" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="cost-grid-in-4d"><span class="header-section-number">11.2</span> Cost grid in 4D</h2>
 <p>The usage of 4D cost grid is similar to 3D cost grid. The only difference is that the 4D cost grid includes a time dimension.</p>
 <p>In the following example, we extend the 3D cost grid by adding a time dimension. The time dimension can be represented as a sequence of 3D cost grids at different time steps.</p>
 <div id="8af22173" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -666,13 +757,13 @@ Note
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> np.interp(y, (<span class="bu">min</span>(y), <span class="bu">max</span>(y)), (<span class="dv">35</span>, <span class="dv">60</span>))</span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> np.interp(z, (<span class="bu">min</span>(z), <span class="bu">max</span>(z)), (<span class="dv">0</span>, <span class="dv">40_000</span>))</span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>lons, lats, alts, tss <span class="op">=</span> np.meshgrid(lon, lat, alt, ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>lons, lats, alts, tss <span class="op">=</span> np.meshgrid(lon, lat, alt, ts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The 4D cost grid can be visualized at different time steps and altitudes as follows. Each rows represent the cost grid at different flight levels, and each column represents the cost grid at different time steps.</p>
 <div id="0f0b0dc6" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code used for visulization</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">18</span>), subplot_kw<span class="op">=</span>{<span class="st">"projection"</span>: <span class="st">"3d"</span>})</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes.flatten()):</span>
@@ -692,7 +783,7 @@ Note
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"latitude"</span>)</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    ax.set_zlabel(<span class="st">"cost"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -704,17 +795,17 @@ Note
 </div>
 <p>Similar to the 3D cost grid, we can construct the 4D cost grid as a <code>pd.DataFrame</code>. The <code>DataFrame</code> has the columns <code>height</code>, <code>latitude</code>, <code>longitude</code>, and <code>ts</code>. The <code>height</code> unit must be in meters.</p>
 <div id="24852dcf" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_cost_4d <span class="op">=</span> pd.DataFrame(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_cost_4d <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    np.array([lons, lats, alts, tss, costs4d]).reshape(<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>).T,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"longitude"</span>, <span class="st">"latitude"</span>, <span class="st">"altitude"</span>, <span class="st">"ts"</span>, <span class="st">"cost"</span>],</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>).assign(height<span class="op">=</span><span class="kw">lambda</span> x: x.altitude <span class="op">*</span> <span class="fl">0.3048</span>)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df_cost_4d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df_cost_4d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -728,7 +819,7 @@ Note
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>0.0</td>
@@ -737,7 +828,7 @@ Note
 <td>0.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>0.0</td>
@@ -746,7 +837,7 @@ Note
 <td>0.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>0.0</td>
@@ -755,7 +846,7 @@ Note
 <td>0.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
+<th data-quarto-table-cell-role="th">3</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>0.0</td>
@@ -764,7 +855,7 @@ Note
 <td>0.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
+<th data-quarto-table-cell-role="th">4</th>
 <td>-10.0</td>
 <td>35.0</td>
 <td>0.0</td>
@@ -773,7 +864,7 @@ Note
 <td>0.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
+<th data-quarto-table-cell-role="th">...</th>
 <td>...</td>
 <td>...</td>
 <td>...</td>
@@ -782,7 +873,7 @@ Note
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">409595</td>
+<th data-quarto-table-cell-role="th">409595</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>40000.0</td>
@@ -791,7 +882,7 @@ Note
 <td>12192.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">409596</td>
+<th data-quarto-table-cell-role="th">409596</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>40000.0</td>
@@ -800,7 +891,7 @@ Note
 <td>12192.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">409597</td>
+<th data-quarto-table-cell-role="th">409597</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>40000.0</td>
@@ -809,7 +900,7 @@ Note
 <td>12192.0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">409598</td>
+<th data-quarto-table-cell-role="th">409598</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>40000.0</td>
@@ -818,7 +909,7 @@ Note
 <td>12192.0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">409599</td>
+<th data-quarto-table-cell-role="th">409599</th>
 <td>40.0</td>
 <td>60.0</td>
 <td>40000.0</td>
@@ -835,7 +926,7 @@ Note
 </div>
 <p>With the 4D cost grid, we can again define an <code>interpolant</code> based on this grid and an <code>objective</code> function which is a combination of the grid cost and fuel cost.</p>
 <div id="1b4850e4" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top, aero</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top, aero</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(<span class="st">"A320"</span>, <span class="st">"EHAM"</span>, <span class="st">"LGAV"</span>, m0<span class="op">=</span><span class="fl">0.85</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># optimizer.setup(debug=True)</span></span>
@@ -854,12 +945,12 @@ Note
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the flight trajectory</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># interpolant is passed to trajectory(), and internally used by obj_grid()</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span>objective, interpolant<span class="op">=</span>interpolant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span>objective, interpolant<span class="op">=</span>interpolant)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once the optimization is complete, we can visualize the trajetory with the builtin <code>vis.trajectory()</code> function:</p>
 <div id="4fbacc24" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top.vis.trajectory(flight)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -872,7 +963,7 @@ Note
 <div id="882623d7" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the function flight_level_cost_4d() used for visulization</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flight_level_cost_4d(flight, df_cost):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flight_level_cost_4d(flight, df_cost):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> cartopy <span class="im">import</span> crs <span class="im">as</span> ccrs</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> cartopy.feature <span class="im">import</span> BORDERS</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -920,11 +1011,11 @@ Note
 <span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>            ax.scatter(p.longitude, p.latitude, c<span class="op">=</span><span class="st">"k"</span>, transform<span class="op">=</span>proj)</span>
 <span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="4e999419" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flight_level_cost_4d(flight, df_cost_4d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flight_level_cost_4d(flight, df_cost_4d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -989,13 +1080,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1340,12 +1432,12 @@ Note
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../optimize/wind.html" class="pagination-link" aria-label="🌪️ Wind optimal flights">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../optimize/contrails.html" class="pagination-link" aria-label="🥠 Contrails">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

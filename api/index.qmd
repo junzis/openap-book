@@ -1,0 +1,16 @@
+# 📖 API Reference
+
+This section provides a complete reference for every public module, class, and function in OpenAP.
+
+**Conventions**
+
+- **Speed**: knots (kt) for airspeed inputs in performance models
+- **Altitude**: feet (ft) for altitude inputs in performance models
+- **Vertical rate**: feet per minute (ft/min)
+- **Mass**: kilograms (kg)
+- **Force (thrust/drag)**: Newtons (N)
+- **Fuel flow**: kg/s
+- **Emissions**: g/s
+- **Aero/Geo modules**: SI units (meters, m/s, Pa, K, degrees)
+
+All performance classes (`Thrust`, `Drag`, `FuelFlow`, `Emission`) accept an optional `backend` parameter to switch between NumPy (default), CasADi, or JAX computation. See [Backends](backends.qmd) for details.

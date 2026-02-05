@@ -39,6 +39,7 @@ book:
         - flight_phases.qmd
         - trajectory_gen.qmd
         - fuel_emission.qmd
+        - contrail.qmd
         - addons.qmd
     - part: optimize/index.qmd
       chapters:
@@ -46,6 +47,20 @@ book:
         - optimize/wind.qmd
         - optimize/costgrid.qmd
         - optimize/contrails.qmd
+    - part: api/index.qmd
+      chapters:
+        - api/prop.qmd
+        - api/thrust.qmd
+        - api/drag.qmd
+        - api/fuelflow.qmd
+        - api/emission.qmd
+        - api/wrap.qmd
+        - api/flightphase.qmd
+        - api/flightgenerator.qmd
+        - api/aero.qmd
+        - api/geo.qmd
+        - api/contrail.qmd
+        - api/backends.qmd
     - references.qmd
 
 bibliography: references.bib
