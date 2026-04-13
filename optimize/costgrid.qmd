@@ -89,7 +89,8 @@ With this grid cost, we need to define an `interpolant` based on this grid and a
 
 
 ```{python}
-from openap import top, aero
+import opentop as top
+from openap import aero
 
 optimizer = top.CompleteFlight("A320", "EHAM", "LGAV", m0=0.85)
 # optimizer.setup(debug=True)
@@ -283,7 +284,8 @@ df_cost_4d
 With the 4D cost grid, we can again define an `interpolant` based on this grid and an `objective` function which is a combination of the grid cost and fuel cost.
 
 ```{python}
-from openap import top, aero
+import opentop as top
+from openap import aero
 
 optimizer = top.CompleteFlight("A320", "EHAM", "LGAV", m0=0.85)
 # optimizer.setup(debug=True)

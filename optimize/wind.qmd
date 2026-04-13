@@ -2,7 +2,7 @@
 
 Flight trajectory optimization considering wind conditions is crucial for efficient flight planning. Wind can significantly impact flight time, fuel consumption, and overall flight efficiency. For example, a favorable tailwind can help reduce flight time and fuel burn, while headwinds can have the opposite effect.
 
-There are two main approaches to incorporate wind data when using 'openap.top' trajectory optimization:
+There are two main approaches to incorporate wind data when using `opentop` trajectory optimization:
 
 1. The first approach uses the FastMeteo API to access ERA meteorological data stored in cloud-optimized Zarr format on Google Cloud Storage. This method provides efficient access to wind data through API calls without requiring large local datasets. It's particularly suitable for single flight optimizations where direct data access is preferred.
 
@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 import openap
 
-from openap import top
+import opentop as top
 
 import warnings
 

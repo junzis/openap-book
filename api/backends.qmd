@@ -20,7 +20,7 @@ print(f"Fuel flow: {fuel_flow:.2f} kg/s")
 
 **CasadiBackend**
 
-The CasADi backend enables symbolic computation, automatic differentiation, and seamless integration with nonlinear programming (NLP) solvers such as IPOPT. This backend is essential for trajectory optimization and is used by the `openap-top` package.
+The CasADi backend enables symbolic computation, automatic differentiation, and seamless integration with nonlinear programming (NLP) solvers such as IPOPT. This backend is essential for trajectory optimization and is used by the `opentop` package.
 
 **Installation:**
 ```bash

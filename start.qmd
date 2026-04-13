@@ -58,19 +58,23 @@ mamba install openap -c conda-forge
 ```
 
 
-### openap-top
+### opentop
 
-If you want to use the optimization function, you need to install `openap-top` in addition to `openap`, Install the stable release as:
+If you want to use the optimization function, you need to install `opentop` in addition to `openap`. Install the stable release as:
 
 ```sh
-pip install --upgrade openap-top
+pip install --upgrade opentop
 ```
 
-Or, install the development version from my GitHub:
+Or, install the development version from GitHub:
 
 ```sh
 pip install --upgrade git+https://github.com/junzis/openap-top
 ```
+
+:::{.callout-note}
+Prior to v2.0, `opentop` shipped as `openap.top`, a namespace extension of `openap`. v2.0 drops that and installs as a top-level `opentop` package instead.
+:::
 
 ## Import
 
@@ -86,8 +90,8 @@ from openap.gen import FlightGenerator
 from openap.fuel import FuelFlow
 from openap.emission import Emission
 
-# when opeap-top is installed
-from openap.top import CompleteFlight, Climb, Cruise, Descent, MultiPhase
+# when opentop is installed
+from opentop import CompleteFlight, Climb, Cruise, Descent, MultiPhase
 ```
 
 You can also import these Classes directly from the `openap` package as:

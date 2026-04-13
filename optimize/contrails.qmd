@@ -244,10 +244,10 @@ In addition to the default combined effect of contrail and CO2, we will build a 
 
 ```{python}
 
-from openap import top
+import opentop as top
 
 optimizer = top.Cruise("A320", "EHAM", "LGAV", m0=0.85)
-optimizer.setup(debug=False, max_iteration=2000)
+optimizer.setup(debug=False, max_iter=2000)
 
 flight_fuel_optimal = optimizer.trajectory(objective="fuel")
 
@@ -434,10 +434,10 @@ The following code will run the optimization for all the scenarios and visualize
 
 ```{python}
 
-from openap import top
+import opentop as top
 
 optimizer = top.Cruise("A320", "EHAM", "LGAV", m0=0.85)
-optimizer.setup(debug=False, max_iteration=2000)
+optimizer.setup(debug=False, max_iter=2000)
 
 interpolant = top.tools.interpolant_from_dataframe(df_cost)
 

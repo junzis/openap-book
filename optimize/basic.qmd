@@ -8,7 +8,7 @@ The initial mass `m0` can be the fraction of the maximum take-off mass (between 
 
 
 ```{python}
-from openap import top
+import opentop as top
 
 actype = "A320"
 origin = "EHAM"
@@ -91,7 +91,7 @@ The final `flight` object is a pandas DataFrame.
 
 ## Different flight phases
 
-Instead of generating a complete flight, we can also generate cruise, climb, and descent flights using `top.Crusie`, `top.Climb`, and `top.Descent` classes.
+Instead of generating a complete flight, we can also generate cruise, climb, and descent flights using `top.Cruise`, `top.Climb`, and `top.Descent` classes.
 
 ```{python}
 cruise_flight = top.Cruise(actype, origin, destination, m0=m0).trajectory()

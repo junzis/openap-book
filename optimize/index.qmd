@@ -42,13 +42,11 @@ The following chapters demonstrate various optimization scenarios and practical 
 
 ## Install
 
-The `opeanp.top` library is designed to be a module inside the `openap` scope. You can install the most recent release thorugh pip:
+The `opentop` library builds on top of `openap`. You can install the most recent release through pip:
 
 ```sh
-pip install --upgrade openap-top
+pip install --upgrade opentop
 ```
-
-This will install `openap.top` and related dependencies. 
 
 Alternatively, if you want to install the most recent development version (usually it is also recommended to update `openap` to the latest dev version):
 
@@ -56,6 +54,10 @@ Alternatively, if you want to install the most recent development version (usual
 pip install --upgrade git+https://github.com/junzis/openap
 pip install --upgrade git+https://github.com/junzis/openap-top
 ```
+
+:::{.callout-note}
+Prior to v2.0, `opentop` shipped as `openap.top`, a namespace extension of `openap`. v2.0 drops that and installs as a top-level `opentop` package instead.
+:::
 
 
 ## Paper

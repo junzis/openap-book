@@ -3,7 +3,7 @@
 
 OpenAP is an open-source aircraft performance library that aims to support air transportation research and simulations. It provides aircraft performance models and relevant data, allowing users to calculate key flight parameters such as drag, thrust, and fuel consumption. 
 
-The library also enables users to estimate aircraft emissions, generate flight trajectories based on kinematic parameters, and identify different flight phases. With its modular Python code, OpenAP can be used for various applications, from basic performance calculations to complex trajectory optimization (with the `openap.top` extension). The library combines both empirical data collected from literature, and parameters derived from open sources data. The model and associated Python library has been fairly widely used in academic research, flight simulation, and air traffic management studies.
+The library also enables users to estimate aircraft emissions, generate flight trajectories based on kinematic parameters, and identify different flight phases. With its modular Python code, OpenAP can be used for various applications, from basic performance calculations to complex trajectory optimization (with the `opentop` companion package). The library combines both empirical data collected from literature, and parameters derived from open sources data. The model and associated Python library has been fairly widely used in academic research, flight simulation, and air traffic management studies.
 
 OpenAP library has two parts: OpenAP model data and Python modules. The model data includes aircraft, engine, drag polar, kinematic, and navigation data. The Python modules provide functionalities for computing aircraft performance, emissions, and trajectories. The library is designed to be user-friendly, flexible, and extensible, allowing users to easily integrate it into their projects.
 
@@ -77,8 +77,8 @@ from openap.gen import FlightGenerator
 from openap.fuel import FuelFlow
 from openap.emission import Emission
 
-# when opeap-top is installed
-from openap.top import CompleteFlight, Climb, Cruise, Descent, MultiPhase
+# when opentop is installed
+from opentop import CompleteFlight, Climb, Cruise, Descent, MultiPhase
 ```
 
 You can also import these Classes directly from the `openap` package as:
