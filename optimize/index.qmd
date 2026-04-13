@@ -33,10 +33,11 @@ The optimizer also supports other aircraft types in the OpenAP library, but the 
 The following chapters demonstrate various optimization scenarios and practical applications:
 
 
-- [Chapter 7](basic.qmd): explains how you can easily generate fuel and other simple cost-optimal trajectories.
-- [Chapter 8](wind.qmd): provides two approaches to obtaining wind fields and using them in your optimization.
-- [Chapter 9](costgrid.qmd): dives deeper into optimization with more complex 3D or 4D grids.
-- [Chapter 10](contrails.qmd): provides a concrete example of flight optimization considering contrails.
+- [Simple optimal flights](basic.qmd): explains how you can easily generate fuel and other simple cost-optimal trajectories.
+- [Wind optimal flights](wind.qmd): provides two approaches to obtaining wind fields and using them in your optimization.
+- [Using cost grids](costgrid.qmd): dives deeper into optimization with more complex 3D or 4D grids.
+- [Contrails](contrails.qmd): provides a concrete example of flight optimization considering contrails.
+- [Command-line interface](cli.qmd): running the optimizer and precomputing grid caches from the shell.
 
 
 

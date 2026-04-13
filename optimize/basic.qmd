@@ -14,7 +14,7 @@ actype = "A320"
 origin = "EHAM"
 destination = "LGAV"
 
-# initial mass as the faction of maximum takeoff mass
+# initial mass as the fraction of maximum takeoff mass
 m0 = 0.85 
 
 ```
@@ -99,6 +99,47 @@ cruise_flight = top.Cruise(actype, origin, destination, m0=m0).trajectory()
 climb_flight = top.Climb(actype, origin, destination, m0=m0).trajectory()
 
 descent_flight = top.Descent(actype, origin, destination, m0=m0).trajectory()
+```
+
+There is also a `top.MultiPhase` optimizer which solves the three phases sequentially as independent problems (climb → cruise → descent), passing each phase's terminal state as the next phase's initial state. This is typically more robust than `CompleteFlight` on longer routes where the full problem is harder to converge:
+
+```python
+multiphase_flight = top.MultiPhase(actype, origin, destination, m0=m0).trajectory(
+    objective="fuel"
+)
+```
+
+`MultiPhase` also accepts a per-phase objective as a 3-tuple:
+
+```python
+# cost index 60 for climb, 10 for cruise, 20 for descent
+multiphase_flight = top.MultiPhase(actype, origin, destination, m0=m0).trajectory(
+    objective=("ci:60", "ci:10", "ci:20")
+)
+```
+
+## Choosing a different engine
+
+By default, the optimizer uses the default engine of the aircraft type. Pass `engine="..."` to use any other engine from the OpenAP prop database:
+
+```python
+optimizer = top.CompleteFlight(actype, origin, destination, m0, engine="CFM56-5B4")
+```
+
+## Inspecting the result
+
+The DataFrame returned by `.trajectory()` includes a `fuel_cost` column (kg of fuel burned per trajectory segment) and a `grid_cost` column (per-segment grid cost when an interpolant is supplied, otherwise `NaN`):
+
+```python
+flight["fuel_cost"].sum()  # total fuel in kg
+```
+
+The optimizer object exposes the solver state after the solve:
+
+```python
+optimizer.objective_value   # final objective value
+optimizer.solver            # ca.OptiSol
+optimizer.solver.stats()    # iter_count, success, return_status, ...
 ```
 
 Let's visulize these trajectories:

@@ -40,14 +40,6 @@ m0 = 0.85
 Next, we need to get an example wind field data using the `fastmeteo` library. Note the selected ERA5 data will be cached temporarily at `/tmp/era5-zarr`.
 
 ```{python}
-
-actype = "A320"
-origin = "EHAM"
-destination = "LGAV"
-
-# initial mass as the faction of maximum takeoff mass
-m0 = 0.85
-
 # get the boundary of the wind field
 o = openap.nav.airport(origin)
 d = openap.nav.airport(destination)
@@ -61,7 +53,7 @@ lonmax = round(max(o["lon"], d["lon"])) + 4
 latitudes = np.arange(latmin, latmax, 0.5)
 longitudes = np.arange(lonmin, lonmax, 1)
 altitudes = np.arange(1000, 46000, 2000)
-timestamps = pd.date_range("2021-05-01 08:00:00", "2021-05-01 11:00:00", freq="1H")
+timestamps = pd.date_range("2021-05-01 08:00:00", "2021-05-01 11:00:00", freq="1h")
 
 latitudes, longitudes, altitudes, times = np.meshgrid(
     latitudes, longitudes, altitudes, timestamps

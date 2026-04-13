@@ -87,13 +87,28 @@ df_cost_3d
 
 With this grid cost, we need to define an `interpolant` based on this grid and an `objective` function which is a combination of the grid cost and fuel cost.
 
+:::{.callout-tip}
+## Tip: cache the interpolant for larger grids
+
+For the toy 40×40×32 grid in this chapter, `interpolant_from_dataframe` is quick. For a realistic regional weather or contrail grid, building a cubic B-spline interpolant can take several minutes, and any `CompleteFlight` solve that queries it benefits from the smoother derivatives that a B-spline provides. Use `cached_interpolant_from_dataframe` to build the interpolant once and cache it to disk:
+
+```python
+from opentop.tools import cached_interpolant_from_dataframe
+
+interpolant = cached_interpolant_from_dataframe(
+    df_cost_3d, "cache/grid.casadi", shape="bspline"
+)
+```
+
+See the [CLI chapter](cli.qmd) for `opentop gengrid`, which produces the same cache from a command line.
+:::
+
 
 ```{python}
 import opentop as top
 from openap import aero
 
 optimizer = top.CompleteFlight("A320", "EHAM", "LGAV", m0=0.85)
-# optimizer.setup(debug=True)
 
 interpolant = top.tools.interpolant_from_dataframe(df_cost_3d)
 
@@ -288,7 +303,6 @@ import opentop as top
 from openap import aero
 
 optimizer = top.CompleteFlight("A320", "EHAM", "LGAV", m0=0.85)
-# optimizer.setup(debug=True)
 
 interpolant = top.tools.interpolant_from_dataframe(df_cost_4d)
 
