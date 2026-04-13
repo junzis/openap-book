@@ -47,6 +47,7 @@ book:
         - optimize/wind.qmd
         - optimize/costgrid.qmd
         - optimize/contrails.qmd
+        - optimize/cli.qmd
     - part: api/index.qmd
       chapters:
         - api/prop.qmd

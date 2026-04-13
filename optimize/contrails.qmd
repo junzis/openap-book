@@ -241,6 +241,24 @@ For the CO2 emissions, we use the conversion factor of `7.03e-15 K/kg` to conver
 
 In addition to the default combined effect of contrail and CO2, we will build a fuel optimal trajectory as a comparison. The fuel optimal trajectory is obtained by setting the contrail cost to zero.
 
+:::{.callout-tip}
+## Tip: precompute the interpolant for contrail + CO2 solves
+
+For the `Cruise` example below, `interpolant_from_dataframe(df_cost)` is quick to build. For `CompleteFlight` solves over large, high-resolution contrail grids it can take several minutes, and linear interpolation additionally has discontinuous derivatives at every grid-cell boundary — IPOPT's line search can oscillate on the resulting blended objective.
+
+The recommended path is to precompute a cubic B-spline interpolant once and cache it to disk:
+
+```python
+from opentop.tools import cached_interpolant_from_dataframe
+
+interpolant = cached_interpolant_from_dataframe(
+    df_cost, "cache/contrail.casadi", shape="bspline"
+)
+```
+
+The first call builds the B-spline and writes the result to `cache/contrail.casadi`; subsequent calls load the cache in under a second. The same cache can be produced from the command line with `opentop gengrid` — see the [CLI chapter](cli.qmd) for details.
+:::
+
 
 ```{python}
 
@@ -257,6 +275,7 @@ interpolant = top.tools.interpolant_from_dataframe(df_cost)
 def objective(x, u, dt, **kwargs):
     scale_contrail = kwargs.get("scale_contrail", 1)
     scale_co2 = kwargs.get("scale_co2", 1)
+
 
     xp, yp, h, m, ts = x[0], x[1], x[2], x[3], x[4]
     mach, vs, psi = u[0], u[1], u[2]

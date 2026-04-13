@@ -1,0 +1,100 @@
+# 💻 Command-line interface
+
+Starting with v2.0, installing `opentop` also installs an executable of the same name that exposes the optimizer directly from the shell. It is useful for batch runs, quick sanity checks, and integrating `opentop` into pipelines that are easier to express in bash than in Python.
+
+The CLI has two subcommands:
+
+- `opentop optimize` — run a trajectory optimization end-to-end
+- `opentop gengrid` — precompute a cached CasADi interpolant from a raw cost-grid parquet file
+
+All options are discoverable via `--help`:
+
+```sh
+opentop --help
+opentop optimize --help
+opentop gengrid --help
+```
+
+## `opentop optimize`
+
+The minimal invocation specifies origin, destination, and aircraft type:
+
+```sh
+opentop optimize EHAM EDDF -a A320
+```
+
+This runs a fuel-optimal `CompleteFlight` solve and prints a concise summary (solver status, iteration count, objective value, fuel burn, max altitude, flight time) to stdout. Pass `-o flight.parquet` to also save the full trajectory DataFrame.
+
+### Selecting the flight phase
+
+Use `--phase` to restrict the solve to a single phase:
+
+```sh
+opentop optimize EHAM LGAV -a A320 --phase cruise
+opentop optimize EHAM LGAV -a A320 --phase climb
+opentop optimize EHAM LGAV -a A320 --phase descent
+```
+
+The default is `all`, which runs the `CompleteFlight` optimizer.
+
+### Selecting an objective
+
+The `--obj` flag accepts any built-in objective name:
+
+| expression | meaning |
+|---|---|
+| `fuel` | minimum fuel burn (default) |
+| `time` | minimum flight time |
+| `ci:N` | cost index `N` (any integer) |
+| `gwp20`, `gwp50`, `gwp100` | global warming potential horizons |
+| `gtp20`, `gtp50`, `gtp100` | global temperature potential horizons |
+| `grid` | custom 4D grid cost (requires `--grid FILE`) |
+
+Blended objectives are written as a weighted sum:
+
+```sh
+opentop optimize EHAM EDDF -a A320 --phase all \
+    --obj "0.3*fuel+0.7*grid" \
+    --grid contrail.casadi
+```
+
+Any weights are accepted; they do not need to sum to 1 (but doing so keeps their interpretation as relative weights straightforward).
+
+### Other useful flags
+
+| flag | purpose |
+|---|---|
+| `--m0` | initial mass as a fraction of MTOW (default `0.85`) |
+| `--max-iter` | IPOPT iteration cap (default `1500`) |
+| `-o`, `--output` | write the trajectory DataFrame to a parquet file |
+| `-v`, `--debug` | print the full IPOPT log |
+
+## `opentop gengrid`
+
+Cost grids — especially those used for contrail avoidance — are typically distributed as large parquet files with columns `longitude`, `latitude`, `height`, `cost`, and optionally `ts`. Each call to `opentop optimize --grid raw.parquet` would rebuild the interpolant from scratch (minutes for a cubic B-spline over a typical regional grid). `opentop gengrid` builds the interpolant once and serializes it to disk:
+
+```sh
+opentop gengrid --in raw_grid.parquet --out contrail.casadi \
+    --bbox 35:57,-9:7 \
+    --time 2022-02-20T10:00,2022-02-20T14:00 \
+    --shape bspline
+```
+
+The resulting `.casadi` file loads in under a second, so keep it on disk and reference it from `opentop optimize --grid contrail.casadi`.
+
+### Options
+
+| flag | purpose |
+|---|---|
+| `--in` | input grid file (parquet) |
+| `--out` | output `.casadi` cache file |
+| `--bbox` | spatial slice as `LAT_MIN:LAT_MAX,LON_MIN:LON_MAX` |
+| `--time` | temporal slice as `START,STOP` (ISO timestamps, UTC assumed) |
+| `--shape` | `bspline` (default, smooth derivatives) or `linear` (faster but non-smooth) |
+| `--pad-altitudes` | extend coverage with zero-cost rows from 0 to FL480 (on by default) |
+
+### Why the B-spline and altitude padding matter
+
+For complete-flight solves with a cost grid, the optimizer queries the interpolant along the full trajectory — including climb and descent, which cross altitude bands that are typically absent from contrail grids (which usually only cover FL200–FL440). Without padding, the interpolant extrapolates outside its data range and can produce fake negative costs that the optimizer will happily exploit. `--pad-altitudes` adds zero-cost rows from 0 to FL480 so the interpolant returns a physically correct 0 outside the data band.
+
+Similarly, linear interpolants have discontinuous derivatives at every grid-cell boundary. IPOPT's line search can oscillate on non-convex blended objectives when the gradient jumps around; the cubic B-spline (`--shape bspline`) has continuous derivatives and is strongly preferred for `CompleteFlight` solves with grid costs.
