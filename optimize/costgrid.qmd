@@ -109,6 +109,7 @@ import opentop as top
 from openap import aero
 
 optimizer = top.CompleteFlight("A320", "EHAM", "LGAV", m0=0.85)
+# optimizer.setup(debug=True)
 
 interpolant = top.tools.interpolant_from_dataframe(df_cost_3d)
 
@@ -303,6 +304,7 @@ import opentop as top
 from openap import aero
 
 optimizer = top.CompleteFlight("A320", "EHAM", "LGAV", m0=0.85)
+# optimizer.setup(debug=True)
 
 interpolant = top.tools.interpolant_from_dataframe(df_cost_4d)
 
