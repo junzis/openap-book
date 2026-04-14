@@ -241,6 +241,16 @@ For the CO2 emissions, we use the conversion factor of `7.03e-15 K/kg` to conver
 
 In addition to the default combined effect of contrail and CO2, we will build a fuel optimal trajectory as a comparison. The fuel optimal trajectory is obtained by setting the contrail cost to zero.
 
+:::{.callout-important}
+## `auto_rescale_objective=True` is essential for climate-metric objectives
+
+The objective below combines contrail ATR20 (in K/km, multiplied by airspeed to give K/s) and CO2 (fuel-flow kg/s multiplied by 7.03e-15 K/kg to give K/s). The total is tiny — somewhere around 10⁻¹² K/s per collocation segment.
+
+IPOPT's default convergence tolerances (`tol`, `acceptable_tol`) are calibrated for objectives on the order of 1. When the physical objective is at 10⁻¹², the tolerances are trivially satisfied at any feasible point: the solver reports `Solve_Succeeded` in a handful of iterations, but the optimum it returns is barely distinguishable from the initial guess. All scenarios below would collapse to the same trajectory.
+
+`auto_rescale_objective=True` evaluates the symbolic objective at the initial guess, divides the whole objective by that value, and multiplies back into `objective_value` so callers still see the physical number. IPOPT then works against an `O(1)` objective where its tolerances mean what they say. Use this whenever the natural magnitude of the objective is far from 1 — climate-metric examples are the canonical case.
+:::
+
 :::{.callout-tip}
 ## Tip: precompute the interpolant for contrail + CO2 solves
 
@@ -293,6 +303,7 @@ flight = optimizer.trajectory(
     objective=objective,
     interpolant=interpolant,
     initial_guess=flight_fuel_optimal,
+    auto_rescale_objective=True,
     return_failed=True,
 )
 
@@ -400,6 +411,7 @@ flight = optimizer.trajectory(
     initial_guess=flight_fuel_optimal,
     h_min=flight_fuel_optimal.h.min() - 600,
     h_max=flight_fuel_optimal.h.max() + 600,
+    auto_rescale_objective=True,
     return_failed=True,
 )
 
@@ -472,6 +484,7 @@ for scenario, weights in more_scenarios.items():
         h_max=flight_fuel_optimal.h.max() + 600,
         scale_contrail=weights[0],
         scale_co2=weights[1],
+        auto_rescale_objective=True,
         return_failed=True,
     )
     more_results[scenario] = flight

@@ -447,13 +447,13 @@ div.csl-indent {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">'https://opendap.4tu.nl/thredds/fileServer/data2/djht/bea8a3fe-e34c-4598-9f94-c5a5c63348e5/1/contrail_original.nc'</span>, <span class="st">'tmp/contrail.nc'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, we will read the data and convert it to a cost grid. We will use only the data from December 18, 2015 as example, which is also the date used in the paper.</p>
-<div id="7ee6eb07" class="cell" data-execution_count="1">
+<div id="6d8d51f3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(<span class="st">"tmp/contrail.nc"</span>).sel(time<span class="op">=</span><span class="st">"2015-12-18"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this dataset, the levels are defined using L31 model from ECMWF. In order to convert the pressure levels to height, we use the following corresponding pressure altitude in <code>hPa</code>, which will be used to calculate the height in <code>m</code>:</p>
-<div id="7dac318f" class="cell" data-execution_count="2">
+<div id="fe396490" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>L31 level to pressure in hPa</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>level_pressure <span class="op">=</span> [</span>
@@ -506,7 +506,7 @@ Note
 <p>A few things to pay attention to: - longitude from ECMWF data is in the range of 0 to 360, we need to convert it to -180 to 180. - The height is in <code>hPa</code>, we need to convert it to <code>m</code>. - We will only use the data below 15,000m (below FL500). - The cost dataframe must contain the following minimum columns: ‘latitude’, ‘longitude’, ‘height’, ‘cost’.</p>
 </div>
 </div>
-<div id="8a6d22b3" class="cell" data-execution_count="3">
+<div id="018ca38b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openap</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -601,7 +601,7 @@ Note
 </div>
 </div>
 <p>Before we use the data for optimization, let’s reproduce the example from the paper with the cost grid for Europe at 250 hPa, which is approximately 10,700m. The selected EU region is defined as 30-70 latitude and -20 to 40 longitude.</p>
-<div id="42e2cc43" class="cell" data-execution_count="4">
+<div id="5faaa145" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cartopy <span class="im">import</span> crs <span class="im">as</span> ccrs</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cartopy.feature <span class="im">import</span> BORDERS</span>
@@ -669,7 +669,7 @@ Note
 <p>It is also practical to smooth the grid, most importantly the vertical axis, so that the optimization can be more stable. The Gaussian filter helps to prevent sharp discontinuities in the cost grid, thus improving the gradient calculation.</p>
 </div>
 </div>
-<div id="eee02ef9" class="cell" data-execution_count="5">
+<div id="fc27d119" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.ndimage <span class="im">import</span> gaussian_filter</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_cost <span class="op">=</span> df_cost_world.query(</span>
@@ -686,7 +686,7 @@ Note
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df_cost <span class="op">=</span> df_cost.assign(cost<span class="op">=</span>cost_.flatten())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, we can plot the smoothed cost grid for different heights.</p>
-<div id="a50e601e" class="cell" data-execution_count="6">
+<div id="680b8ec6" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>), subplot_kw<span class="op">=</span><span class="bu">dict</span>(projection<span class="op">=</span>proj))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>heights <span class="op">=</span> df_cost.height.unique()</span>
@@ -741,6 +741,21 @@ Note
 <p>The unit of the contrail temperature response from the paper is in <code>K/km</code>; however, the optimizer requires the cost to be divided by time, thus we need to convert the unit to <code>K/s</code>. In this case, we first define the cost to be not time-dependent. Then, we multiply the cost by the true airspeed of the aircraft with a conversion factor of <code>1e-3</code>, which is the speed of the aircraft in <code>km/s</code>.</p>
 <p>For the CO2 emissions, we use the conversion factor of <code>7.03e-15 K/kg</code> to convert the fuel flow (<code>kg/s</code>) to temperature response (<code>K/s</code>).</p>
 <p>In addition to the default combined effect of contrail and CO2, we will build a fuel optimal trajectory as a comparison. The fuel optimal trajectory is obtained by setting the contrail cost to zero.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><code>auto_rescale_objective=True</code> is essential for climate-metric objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The objective below combines contrail ATR20 (in K/km, multiplied by airspeed to give K/s) and CO2 (fuel-flow kg/s multiplied by 7.03e-15 K/kg to give K/s). The total is tiny — somewhere around 10⁻¹² K/s per collocation segment.</p>
+<p>IPOPT’s default convergence tolerances (<code>tol</code>, <code>acceptable_tol</code>) are calibrated for objectives on the order of 1. When the physical objective is at 10⁻¹², the tolerances are trivially satisfied at any feasible point: the solver reports <code>Solve_Succeeded</code> in a handful of iterations, but the optimum it returns is barely distinguishable from the initial guess. All scenarios below would collapse to the same trajectory.</p>
+<p><code>auto_rescale_objective=True</code> evaluates the symbolic objective at the initial guess, divides the whole objective by that value, and multiplies back into <code>objective_value</code> so callers still see the physical number. IPOPT then works against an <code>O(1)</code> objective where its tolerances mean what they say. Use this whenever the natural magnitude of the objective is far from 1 — climate-metric examples are the canonical case.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -761,7 +776,7 @@ Note
 <p>The first call builds the B-spline and writes the result to <code>cache/contrail.casadi</code>; subsequent calls load the cache in under a second. The same cache can be produced from the command line with <code>opentop gengrid</code> — see the <a href="../optimize/cli.html">CLI chapter</a> for details.</p>
 </div>
 </div>
-<div id="5d7f639d" class="cell" data-execution_count="7">
+<div id="46423d50" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> opentop <span class="im">as</span> top</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.Cruise(<span class="st">"A320"</span>, <span class="st">"EHAM"</span>, <span class="st">"LGAV"</span>, m0<span class="op">=</span><span class="fl">0.85</span>)</span>
@@ -793,15 +808,16 @@ Note
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    objective<span class="op">=</span>objective,</span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    interpolant<span class="op">=</span>interpolant,</span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    initial_guess<span class="op">=</span>flight_fuel_optimal,</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    return_failed<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"fuel_optimal"</span>] <span class="op">=</span> flight_fuel_optimal</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    auto_rescale_objective<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    return_failed<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"fuel_optimal"</span>] <span class="op">=</span> flight_fuel_optimal</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next we can visualize the final flight trajectory. Note that the cost grid at FL350 is shown in the background.</p>
-<div id="fb1f8918" class="cell" data-execution_count="8">
+<div id="ff95c547" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code of plot_flight() used for visulization</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_flight(results, df_cost, scenarios<span class="op">=</span><span class="va">None</span>):</span>
@@ -866,7 +882,7 @@ Note
 <span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="97a40c18" class="cell" data-execution_count="9">
+<div id="f5c757ed" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>cacluate extra fuel</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>accf_fuel <span class="op">=</span> results[<span class="st">"accf_optimal"</span>].fuel_cost.<span class="bu">sum</span>()</span>
@@ -876,7 +892,7 @@ Note
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>extra_fuel_percent <span class="op">=</span> <span class="bu">int</span>(((accf_fuel <span class="op">/</span> fuel_fuel <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="754728f2" class="cell" data-execution_count="10">
+<div id="7bf4f155" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_flight(results, df_cost)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -886,23 +902,24 @@ Note
 </div>
 </div>
 </div>
-<p>In this example, we can see that the optimal trajectory considering <strong>both</strong> contrail and CO2 climate effects fly at a very low altitude to avoide regions with high contrail cost. This comes with a great cost in terms of fuel, which is significantly higher than the fuel optimal trajectory. The extra fuel cost is about 1450 kg, which accounts for about 21% extra fuel when compared to the optimal case.</p>
+<p>In this example, we can see that the optimal trajectory considering <strong>both</strong> contrail and CO2 climate effects fly at a very low altitude to avoide regions with high contrail cost. This comes with a great cost in terms of fuel, which is significantly higher than the fuel optimal trajectory. The extra fuel cost is about 1630 kg, which accounts for about 23% extra fuel when compared to the optimal case.</p>
 <p>To perform a more fair comparison, we will constraint the altitude of the desired trajectory to be within the range of the fuel optimal trajectory. This can be done by setting the <code>h_min</code> and <code>h_max</code> arguments in the <code>optimizer.trajectory()</code> function. A margion of 600 meters is added to the minimum and maximum altitude of the fuel optimal trajectory.</p>
-<div id="fa4e4142" class="cell" data-execution_count="11">
+<div id="bdc4e5d1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    objective<span class="op">=</span>objective,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    interpolant<span class="op">=</span>interpolant,</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    initial_guess<span class="op">=</span>flight_fuel_optimal,</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    h_min<span class="op">=</span>flight_fuel_optimal.h.<span class="bu">min</span>() <span class="op">-</span> <span class="dv">600</span>,</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    h_max<span class="op">=</span>flight_fuel_optimal.h.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">600</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    return_failed<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"fuel_optimal"</span>] <span class="op">=</span> flight_fuel_optimal</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    auto_rescale_objective<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    return_failed<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"fuel_optimal"</span>] <span class="op">=</span> flight_fuel_optimal</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>results[<span class="st">"accf_optimal"</span>] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="36551c8f" class="cell" data-execution_count="12">
+<div id="8a70abb8" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>cacluate extra fuel</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>accf_fuel <span class="op">=</span> results[<span class="st">"accf_optimal"</span>].fuel_cost.<span class="bu">sum</span>()</span>
@@ -912,7 +929,7 @@ Note
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>extra_fuel_percent <span class="op">=</span> <span class="bu">int</span>(((accf_fuel <span class="op">/</span> fuel_fuel <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fcf8ab6c" class="cell" data-execution_count="13">
+<div id="23aad9df" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plot_flight(results, df_cost)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -923,14 +940,14 @@ Note
 </div>
 </div>
 <p>Even in this constrained trajectory, we can see that the <em>sub-optimal</em> trajectory considering both contrail and CO2 climate effects differs largely from the fuel optimal trajectory. A large lateral deviation is observed in both the altitude and the route to avoid regions with high contrail cost.</p>
-<p>This deviation costs about 560 kg of fuel, which accounts for about 8% extra fuel when compared to the optimal case. This is a still a significant amount of fuel, results in greater monetary cost and excess CO2 emissions.</p>
+<p>This deviation costs about 570 kg of fuel, which accounts for about 8% extra fuel when compared to the optimal case. This is a still a significant amount of fuel, results in greater monetary cost and excess CO2 emissions.</p>
 </section>
 <section id="uncertainties-that-makes-or-breaks-the-optimization" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="uncertainties-that-makes-or-breaks-the-optimization"><span class="header-section-number">12.4</span> Uncertainties that makes or breaks the optimization</h2>
 <p>In recent studies regarding operational contrail mitigation, we often miss the fact that the contrail cost is highly uncertain. In the paper <em>The contribution of global aviation to anthropogenic climate forcing for 2000 to 2018</em> <a href="https://doi.org/10.1016/j.atmosenv.2020.117834"><span class="citation" data-cites="lee2021contribution"><span class="nocase">Lee et al.</span> (<span>2021</span>)</span></a>, the authors have pointed out that the uncertainties in the effective radiative forcing caused by contrail cirrus can be between 17 and 98 mW/m2. This is a huge range, but many studies only consider the mean value of 57.4.</p>
 <p>This large scale of uncertainties can lead to completely different optimal trajectories. In the following example, we will show how the optimization results can be affected by the uncertainties in the contrail cost.</p>
 <p>First of all, different scenarios and scaling factors for contrail and CO2 are defined as follows:</p>
-<div id="e57ad834" class="cell" data-execution_count="14">
+<div id="14872cec" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>more_scenarios <span class="op">=</span> {</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"fuel_optimal"</span>: [<span class="dv">0</span>, <span class="dv">1</span>],</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accf_optimal"</span>: [<span class="dv">1</span>, <span class="dv">1</span>],</span>
@@ -942,7 +959,7 @@ Note
 </div>
 <p>In the above scenarios, for example, <code>lo_contrail_high_co2</code> refers to scaling the contrail impact to a lower bound of 29.3% of the default value, while the CO2 cost is scaled to the upper bound of 116.6% of the default value. In this case, the contrail has a significantly lower impact than what has been assumed in the default case, while the CO2 cost is slightly higher.</p>
 <p>The following code will run the optimization for all the scenarios and visualize the results. Note that the altitude constraints are still applied to the optimizations.</p>
-<div id="f13803c6" class="cell" data-execution_count="15">
+<div id="962edfd3" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> opentop <span class="im">as</span> top</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.Cruise(<span class="st">"A320"</span>, <span class="st">"EHAM"</span>, <span class="st">"LGAV"</span>, m0<span class="op">=</span><span class="fl">0.85</span>)</span>
@@ -962,9 +979,10 @@ Note
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        h_max<span class="op">=</span>flight_fuel_optimal.h.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">600</span>,</span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        scale_contrail<span class="op">=</span>weights[<span class="dv">0</span>],</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        scale_co2<span class="op">=</span>weights[<span class="dv">1</span>],</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        return_failed<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    more_results[scenario] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        auto_rescale_objective<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        return_failed<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    more_results[scenario] <span class="op">=</span> flight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>runing scenario: fuel_optimal
 runing scenario: accf_optimal
@@ -974,7 +992,7 @@ runing scenario: hi_contrail_lo_co2
 runing scenario: hi_contrail_hi_co2</code></pre>
 </div>
 </div>
-<div id="d8936363" class="cell" data-execution_count="16">
+<div id="7d797a52" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plot_flight(more_results, df_cost)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
