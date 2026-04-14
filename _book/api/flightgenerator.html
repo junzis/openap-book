@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>20&nbsp; ✈️ FlightGenerator – The OpenAP Handbook</title>
+<title>21&nbsp; ✈️ FlightGenerator – The OpenAP Handbook</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -70,15 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../api/flightphase.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-82f5f95ae74b4834605088d8c0b5b820.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-be53bf7e978fd1d4320ce864d03ceca8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -124,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/flightgenerator.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/flightgenerator.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -277,6 +279,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../optimize/cli.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">💻 Command-line interface</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -291,73 +299,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/prop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/thrust.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/drag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/fuelflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/emission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/wrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/flightphase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/flightgenerator.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/aero.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/geo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/contrail.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/backends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,21 +386,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#flightgeneratorac-random_seed42-use_synonymfalse" id="toc-flightgeneratorac-random_seed42-use_synonymfalse" class="nav-link active" data-scroll-target="#flightgeneratorac-random_seed42-use_synonymfalse"><span class="header-section-number">20.0.1</span> <code>FlightGenerator(ac, random_seed=42, use_synonym=False)</code></a></li>
-  <li><a href="#enable_noise" id="toc-enable_noise" class="nav-link" data-scroll-target="#enable_noise"><span class="header-section-number">20.0.2</span> <code>enable_noise()</code></a></li>
-  <li><a href="#climbkwargs" id="toc-climbkwargs" class="nav-link" data-scroll-target="#climbkwargs"><span class="header-section-number">20.0.3</span> <code>climb(**kwargs)</code></a></li>
-  <li><a href="#descentkwargs" id="toc-descentkwargs" class="nav-link" data-scroll-target="#descentkwargs"><span class="header-section-number">20.0.4</span> <code>descent(**kwargs)</code></a></li>
-  <li><a href="#cruisekwargs" id="toc-cruisekwargs" class="nav-link" data-scroll-target="#cruisekwargs"><span class="header-section-number">20.0.5</span> <code>cruise(**kwargs)</code></a></li>
-  <li><a href="#completekwargs" id="toc-completekwargs" class="nav-link" data-scroll-target="#completekwargs"><span class="header-section-number">20.0.6</span> <code>complete(**kwargs)</code></a></li>
+  <li><a href="#flightgeneratorac-random_seed42-use_synonymfalse" id="toc-flightgeneratorac-random_seed42-use_synonymfalse" class="nav-link active" data-scroll-target="#flightgeneratorac-random_seed42-use_synonymfalse"><span class="header-section-number">21.0.1</span> <code>FlightGenerator(ac, random_seed=42, use_synonym=False)</code></a></li>
+  <li><a href="#enable_noise" id="toc-enable_noise" class="nav-link" data-scroll-target="#enable_noise"><span class="header-section-number">21.0.2</span> <code>enable_noise()</code></a></li>
+  <li><a href="#climbkwargs" id="toc-climbkwargs" class="nav-link" data-scroll-target="#climbkwargs"><span class="header-section-number">21.0.3</span> <code>climb(**kwargs)</code></a></li>
+  <li><a href="#descentkwargs" id="toc-descentkwargs" class="nav-link" data-scroll-target="#descentkwargs"><span class="header-section-number">21.0.4</span> <code>descent(**kwargs)</code></a></li>
+  <li><a href="#cruisekwargs" id="toc-cruisekwargs" class="nav-link" data-scroll-target="#cruisekwargs"><span class="header-section-number">21.0.5</span> <code>cruise(**kwargs)</code></a></li>
+  <li><a href="#completekwargs" id="toc-completekwargs" class="nav-link" data-scroll-target="#completekwargs"><span class="header-section-number">21.0.6</span> <code>complete(**kwargs)</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/api/flightgenerator.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/api/flightgenerator.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/flightgenerator.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/flightgenerator.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></h1>
 </div>
 
 
@@ -410,8 +418,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Generate synthetic flight trajectories using the WRAP kinematic model.</p>
-<section id="flightgeneratorac-random_seed42-use_synonymfalse" class="level3" data-number="20.0.1">
-<h3 data-number="20.0.1" class="anchored" data-anchor-id="flightgeneratorac-random_seed42-use_synonymfalse"><span class="header-section-number">20.0.1</span> <code>FlightGenerator(ac, random_seed=42, use_synonym=False)</code></h3>
+<section id="flightgeneratorac-random_seed42-use_synonymfalse" class="level3" data-number="21.0.1">
+<h3 data-number="21.0.1" class="anchored" data-anchor-id="flightgeneratorac-random_seed42-use_synonymfalse"><span class="header-section-number">21.0.1</span> <code>FlightGenerator(ac, random_seed=42, use_synonym=False)</code></h3>
 <p>Initialize the trajectory generator for a specific aircraft type.</p>
 <table class="caption-top table">
 <colgroup>
@@ -456,8 +464,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> FlightGenerator(<span class="st">"A320"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="enable_noise" class="level3" data-number="20.0.2">
-<h3 data-number="20.0.2" class="anchored" data-anchor-id="enable_noise"><span class="header-section-number">20.0.2</span> <code>enable_noise()</code></h3>
+<section id="enable_noise" class="level3" data-number="21.0.2">
+<h3 data-number="21.0.2" class="anchored" data-anchor-id="enable_noise"><span class="header-section-number">21.0.2</span> <code>enable_noise()</code></h3>
 <p>Enable noise in generated trajectories based on ADS-B Version 1&amp;2, NACv=3 and NACp=10.</p>
 <p><strong>Parameters:</strong> None</p>
 <p><strong>Returns:</strong> None</p>
@@ -469,8 +477,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>gen.enable_noise()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="climbkwargs" class="level3" data-number="20.0.3">
-<h3 data-number="20.0.3" class="anchored" data-anchor-id="climbkwargs"><span class="header-section-number">20.0.3</span> <code>climb(**kwargs)</code></h3>
+<section id="climbkwargs" class="level3" data-number="21.0.3">
+<h3 data-number="21.0.3" class="anchored" data-anchor-id="climbkwargs"><span class="header-section-number">21.0.3</span> <code>climb(**kwargs)</code></h3>
 <p>Generate climb trajectory from takeoff to cruise altitude.</p>
 <p><strong>Keyword Arguments:</strong></p>
 <table class="caption-top table">
@@ -640,8 +648,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="descentkwargs" class="level3" data-number="20.0.4">
-<h3 data-number="20.0.4" class="anchored" data-anchor-id="descentkwargs"><span class="header-section-number">20.0.4</span> <code>descent(**kwargs)</code></h3>
+<section id="descentkwargs" class="level3" data-number="21.0.4">
+<h3 data-number="21.0.4" class="anchored" data-anchor-id="descentkwargs"><span class="header-section-number">21.0.4</span> <code>descent(**kwargs)</code></h3>
 <p>Generate descent trajectory from cruise altitude to landing.</p>
 <p><strong>Keyword Arguments:</strong></p>
 <table class="caption-top table">
@@ -847,8 +855,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="cruisekwargs" class="level3" data-number="20.0.5">
-<h3 data-number="20.0.5" class="anchored" data-anchor-id="cruisekwargs"><span class="header-section-number">20.0.5</span> <code>cruise(**kwargs)</code></h3>
+<section id="cruisekwargs" class="level3" data-number="21.0.5">
+<h3 data-number="21.0.5" class="anchored" data-anchor-id="cruisekwargs"><span class="header-section-number">21.0.5</span> <code>cruise(**kwargs)</code></h3>
 <p>Generate cruise trajectory at constant altitude and Mach number.</p>
 <p><strong>Keyword Arguments:</strong></p>
 <table class="caption-top table">
@@ -942,8 +950,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="completekwargs" class="level3" data-number="20.0.6">
-<h3 data-number="20.0.6" class="anchored" data-anchor-id="completekwargs"><span class="header-section-number">20.0.6</span> <code>complete(**kwargs)</code></h3>
+<section id="completekwargs" class="level3" data-number="21.0.6">
+<h3 data-number="21.0.6" class="anchored" data-anchor-id="completekwargs"><span class="header-section-number">21.0.6</span> <code>complete(**kwargs)</code></h3>
 <p>Generate a complete flight trajectory (climb + cruise + descent).</p>
 <p><strong>Keyword Arguments:</strong></p>
 <p>Combines all keyword arguments from <code>climb()</code>, <code>cruise()</code>, and <code>descent()</code> methods:</p>
@@ -1533,12 +1541,12 @@ Max altitude: 35578 ft</code></pre>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../api/flightphase.html" class="pagination-link" aria-label="🏷️ FlightPhase">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../api/aero.html" class="pagination-link" aria-label="🌡️ aero">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

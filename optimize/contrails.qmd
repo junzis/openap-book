@@ -356,7 +356,7 @@ def plot_flight(results, df_cost, scenarios=None):
             flight.latitude,
             transform=ccrs.PlateCarree(),
             lw=2,
-            label=f"{scenario} | fuel: {int(flight.fuel.sum())} kg",
+            label=f"{scenario} | fuel: {int(flight.fuel_cost.sum())} kg",
         )
 
     for r, p in flight.iloc[[0, -1]].iterrows():
@@ -377,8 +377,8 @@ def plot_flight(results, df_cost, scenarios=None):
 # | code-fold: true
 # | code-summary: "cacluate extra fuel"
 
-accf_fuel = results["accf_optimal"].fuel.sum()
-fuel_fuel = results["fuel_optimal"].fuel.sum()
+accf_fuel = results["accf_optimal"].fuel_cost.sum()
+fuel_fuel = results["fuel_optimal"].fuel_cost.sum()
 
 extra_fuel = int((accf_fuel - fuel_fuel).round(-1))
 extra_fuel_percent = int(((accf_fuel / fuel_fuel - 1) * 100).round())
@@ -413,8 +413,8 @@ results["accf_optimal"] = flight
 # | code-fold: true
 # | code-summary: "cacluate extra fuel"
 
-accf_fuel = results["accf_optimal"].fuel.sum()
-fuel_fuel = results["fuel_optimal"].fuel.sum()
+accf_fuel = results["accf_optimal"].fuel_cost.sum()
+fuel_fuel = results["fuel_optimal"].fuel_cost.sum()
 
 extra_fuel = int((accf_fuel - fuel_fuel).round(-1))
 extra_fuel_percent = int(((accf_fuel / fuel_fuel - 1) * 100).round())

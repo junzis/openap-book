@@ -15,10 +15,11 @@ It is also possible to include 3D or 4D wind data in the optimization. The follo
 
 
 ```{python}
-import fastmeteo
 import numpy as np
 import pandas as pd
 import openap
+
+from fastmeteo.source import ArcoEra5
 
 import opentop as top
 
@@ -67,7 +68,7 @@ grid = pd.DataFrame().assign(
 )
 
 # obtain the wind based on the grid
-fmg = fastmeteo.Grid(local_store="/tmp/era5-zarr")
+fmg = ArcoEra5(local_store="/tmp/era5-zarr")
 
 meteo_data = fmg.interpolate(grid)
 ```
@@ -128,6 +129,7 @@ plt.show()
 You can also optimize the trajectory with grid atmospheric data, for example, `grib` or `nc` files downloaded from the ECMWF or GFS. In `TOP`, there is a built-in function `top.tools.read_grids()` that can be used to process grid data files into a `DataFrame` for the optimizer.
 
 ```{python}
+#| eval: false
 
 # read the downloaded ERA5 grib data, the arguments can be a list of files.
 wind = top.tools.read_grids("tmp/era5_2021-05-01_0800.grib")

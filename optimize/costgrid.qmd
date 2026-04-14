@@ -116,7 +116,7 @@ interpolant = top.tools.interpolant_from_dataframe(df_cost_3d)
 
 def objective(x, u, dt, **kwargs):
     """The final objective is the compound of grid cost and fuel"""
-    grid_cost = optimizer.obj_grid_cost(x, u, dt, time_dependent=True, **kwargs)
+    grid_cost = optimizer.obj_grid_cost(x, u, dt, n_dim=3, time_dependent=True, **kwargs)
     fuel_cost = optimizer.obj_fuel(x, u, dt, **kwargs)
     return grid_cost + fuel_cost * 2
 
@@ -203,7 +203,7 @@ Next, we modify the combined objective (grid and fuel) so that the weight of the
 
 def objective_2(x, u, dt, **kwargs):
     """The final objective is the compound of grid cost and fuel"""
-    grid_cost = optimizer.obj_grid_cost(x, u, dt, time_dependent=True, **kwargs)
+    grid_cost = optimizer.obj_grid_cost(x, u, dt, n_dim=3, time_dependent=True, **kwargs)
     fuel_cost = optimizer.obj_fuel(x, u, dt, **kwargs)
     return grid_cost * 2 + fuel_cost
 

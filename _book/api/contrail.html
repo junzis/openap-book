@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>23&nbsp; ☁️ contrail – The OpenAP Handbook</title>
+<title>24&nbsp; ☁️ contrail – The OpenAP Handbook</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -70,15 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../api/geo.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-82f5f95ae74b4834605088d8c0b5b820.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-be53bf7e978fd1d4320ce864d03ceca8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/contrail.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/contrail.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">☁️ contrail</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -274,6 +276,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../optimize/cli.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">💻 Command-line interface</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -288,73 +296,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/prop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/thrust.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/drag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/fuelflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/emission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/wrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/flightphase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/flightgenerator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/aero.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/geo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/contrail.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/backends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
   </div>
 </li>
       </ul>
@@ -375,26 +383,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#saturation_pressure_over_watertemperature" id="toc-saturation_pressure_over_watertemperature" class="nav-link active" data-scroll-target="#saturation_pressure_over_watertemperature"><span class="header-section-number">23.0.1</span> <code>saturation_pressure_over_water(temperature)</code></a></li>
-  <li><a href="#saturation_pressure_over_icetemperature" id="toc-saturation_pressure_over_icetemperature" class="nav-link" data-scroll-target="#saturation_pressure_over_icetemperature"><span class="header-section-number">23.0.2</span> <code>saturation_pressure_over_ice(temperature)</code></a></li>
-  <li><a href="#relative_humidityspecific_humidity-pressure-temperature-toice" id="toc-relative_humidityspecific_humidity-pressure-temperature-toice" class="nav-link" data-scroll-target="#relative_humidityspecific_humidity-pressure-temperature-toice"><span class="header-section-number">23.0.3</span> <code>relative_humidity(specific_humidity, pressure, temperature, to="ice")</code></a></li>
-  <li><a href="#rhw2rhirelative_humidity_water-temperature" id="toc-rhw2rhirelative_humidity_water-temperature" class="nav-link" data-scroll-target="#rhw2rhirelative_humidity_water-temperature"><span class="header-section-number">23.0.4</span> <code>rhw2rhi(relative_humidity_water, temperature)</code></a></li>
-  <li><a href="#critical_temperature_waterpressure-propulsion_efficiency0.4" id="toc-critical_temperature_waterpressure-propulsion_efficiency0.4" class="nav-link" data-scroll-target="#critical_temperature_waterpressure-propulsion_efficiency0.4"><span class="header-section-number">23.0.5</span> <code>critical_temperature_water(pressure, propulsion_efficiency=0.4)</code></a></li>
-  <li><a href="#critical_temperature_water_and_icepressure-propulsion_efficiency0.4" id="toc-critical_temperature_water_and_icepressure-propulsion_efficiency0.4" class="nav-link" data-scroll-target="#critical_temperature_water_and_icepressure-propulsion_efficiency0.4"><span class="header-section-number">23.0.6</span> <code>critical_temperature_water_and_ice(pressure, propulsion_efficiency=0.4)</code></a></li>
-  <li><a href="#rf_shortwavezenith-tau-tau_c" id="toc-rf_shortwavezenith-tau-tau_c" class="nav-link" data-scroll-target="#rf_shortwavezenith-tau-tau_c"><span class="header-section-number">23.0.7</span> <code>rf_shortwave(zenith, tau, tau_c)</code></a></li>
-  <li><a href="#rf_longwaveolr-temperature" id="toc-rf_longwaveolr-temperature" class="nav-link" data-scroll-target="#rf_longwaveolr-temperature"><span class="header-section-number">23.0.8</span> <code>rf_longwave(olr, temperature)</code></a></li>
-  <li><a href="#rf_netzenith-tau-tau_c-olr-temperature" id="toc-rf_netzenith-tau-tau_c-olr-temperature" class="nav-link" data-scroll-target="#rf_netzenith-tau-tau_c-olr-temperature"><span class="header-section-number">23.0.9</span> <code>rf_net(zenith, tau, tau_c, olr, temperature)</code></a></li>
-  <li><a href="#contrail_optical_propertiesage_hours" id="toc-contrail_optical_propertiesage_hours" class="nav-link" data-scroll-target="#contrail_optical_propertiesage_hours"><span class="header-section-number">23.0.10</span> <code>contrail_optical_properties(age_hours)</code></a></li>
-  <li><a href="#load_olrfilepath-lat-lon-time" id="toc-load_olrfilepath-lat-lon-time" class="nav-link" data-scroll-target="#load_olrfilepath-lat-lon-time"><span class="header-section-number">23.0.11</span> <code>load_olr(filepath, lat, lon, time)</code></a></li>
+  <li><a href="#saturation_pressure_over_watertemperature" id="toc-saturation_pressure_over_watertemperature" class="nav-link active" data-scroll-target="#saturation_pressure_over_watertemperature"><span class="header-section-number">24.0.1</span> <code>saturation_pressure_over_water(temperature)</code></a></li>
+  <li><a href="#saturation_pressure_over_icetemperature" id="toc-saturation_pressure_over_icetemperature" class="nav-link" data-scroll-target="#saturation_pressure_over_icetemperature"><span class="header-section-number">24.0.2</span> <code>saturation_pressure_over_ice(temperature)</code></a></li>
+  <li><a href="#relative_humidityspecific_humidity-pressure-temperature-toice" id="toc-relative_humidityspecific_humidity-pressure-temperature-toice" class="nav-link" data-scroll-target="#relative_humidityspecific_humidity-pressure-temperature-toice"><span class="header-section-number">24.0.3</span> <code>relative_humidity(specific_humidity, pressure, temperature, to="ice")</code></a></li>
+  <li><a href="#rhw2rhirelative_humidity_water-temperature" id="toc-rhw2rhirelative_humidity_water-temperature" class="nav-link" data-scroll-target="#rhw2rhirelative_humidity_water-temperature"><span class="header-section-number">24.0.4</span> <code>rhw2rhi(relative_humidity_water, temperature)</code></a></li>
+  <li><a href="#critical_temperature_waterpressure-propulsion_efficiency0.4" id="toc-critical_temperature_waterpressure-propulsion_efficiency0.4" class="nav-link" data-scroll-target="#critical_temperature_waterpressure-propulsion_efficiency0.4"><span class="header-section-number">24.0.5</span> <code>critical_temperature_water(pressure, propulsion_efficiency=0.4)</code></a></li>
+  <li><a href="#critical_temperature_water_and_icepressure-propulsion_efficiency0.4" id="toc-critical_temperature_water_and_icepressure-propulsion_efficiency0.4" class="nav-link" data-scroll-target="#critical_temperature_water_and_icepressure-propulsion_efficiency0.4"><span class="header-section-number">24.0.6</span> <code>critical_temperature_water_and_ice(pressure, propulsion_efficiency=0.4)</code></a></li>
+  <li><a href="#rf_shortwavezenith-tau-tau_c" id="toc-rf_shortwavezenith-tau-tau_c" class="nav-link" data-scroll-target="#rf_shortwavezenith-tau-tau_c"><span class="header-section-number">24.0.7</span> <code>rf_shortwave(zenith, tau, tau_c)</code></a></li>
+  <li><a href="#rf_longwaveolr-temperature" id="toc-rf_longwaveolr-temperature" class="nav-link" data-scroll-target="#rf_longwaveolr-temperature"><span class="header-section-number">24.0.8</span> <code>rf_longwave(olr, temperature)</code></a></li>
+  <li><a href="#rf_netzenith-tau-tau_c-olr-temperature" id="toc-rf_netzenith-tau-tau_c-olr-temperature" class="nav-link" data-scroll-target="#rf_netzenith-tau-tau_c-olr-temperature"><span class="header-section-number">24.0.9</span> <code>rf_net(zenith, tau, tau_c, olr, temperature)</code></a></li>
+  <li><a href="#contrail_optical_propertiesage_hours" id="toc-contrail_optical_propertiesage_hours" class="nav-link" data-scroll-target="#contrail_optical_propertiesage_hours"><span class="header-section-number">24.0.10</span> <code>contrail_optical_properties(age_hours)</code></a></li>
+  <li><a href="#load_olrfilepath-lat-lon-time" id="toc-load_olrfilepath-lat-lon-time" class="nav-link" data-scroll-target="#load_olrfilepath-lat-lon-time"><span class="header-section-number">24.0.11</span> <code>load_olr(filepath, lat, lon, time)</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/api/contrail.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/api/contrail.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/contrail.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/index.html">📖 API Reference</a></li><li class="breadcrumb-item"><a href="../api/contrail.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">☁️ contrail</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">☁️ contrail</span></h1>
 </div>
 
 
@@ -450,8 +458,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p><strong>Saturation pressure</strong></p>
-<section id="saturation_pressure_over_watertemperature" class="level3" data-number="23.0.1">
-<h3 data-number="23.0.1" class="anchored" data-anchor-id="saturation_pressure_over_watertemperature"><span class="header-section-number">23.0.1</span> <code>saturation_pressure_over_water(temperature)</code></h3>
+<section id="saturation_pressure_over_watertemperature" class="level3" data-number="24.0.1">
+<h3 data-number="24.0.1" class="anchored" data-anchor-id="saturation_pressure_over_watertemperature"><span class="header-section-number">24.0.1</span> <code>saturation_pressure_over_water(temperature)</code></h3>
 <p>Calculate saturation vapor pressure over liquid water using the Murphy &amp; Koop (2005) formulation, valid for temperatures from 123 K to 332 K.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -460,8 +468,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns:</strong> Saturation vapor pressure over water (Pa).</p>
 <p><strong>Reference:</strong> Murphy, D. M. and Koop, T. (2005). Review of the vapour pressures of ice and supercooled water for atmospheric applications. Q. J. R. Meteorol. Soc., 131, 1539-1565.</p>
 </section>
-<section id="saturation_pressure_over_icetemperature" class="level3" data-number="23.0.2">
-<h3 data-number="23.0.2" class="anchored" data-anchor-id="saturation_pressure_over_icetemperature"><span class="header-section-number">23.0.2</span> <code>saturation_pressure_over_ice(temperature)</code></h3>
+<section id="saturation_pressure_over_icetemperature" class="level3" data-number="24.0.2">
+<h3 data-number="24.0.2" class="anchored" data-anchor-id="saturation_pressure_over_icetemperature"><span class="header-section-number">24.0.2</span> <code>saturation_pressure_over_ice(temperature)</code></h3>
 <p>Calculate saturation vapor pressure over ice using the Murphy &amp; Koop (2005) formulation, valid for temperatures from 110 K to 273 K.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -471,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Reference:</strong> Murphy, D. M. and Koop, T. (2005). Review of the vapour pressures of ice and supercooled water for atmospheric applications. Q. J. R. Meteorol. Soc., 131, 1539-1565.</p>
 <p><strong>Humidity</strong></p>
 </section>
-<section id="relative_humidityspecific_humidity-pressure-temperature-toice" class="level3" data-number="23.0.3">
-<h3 data-number="23.0.3" class="anchored" data-anchor-id="relative_humidityspecific_humidity-pressure-temperature-toice"><span class="header-section-number">23.0.3</span> <code>relative_humidity(specific_humidity, pressure, temperature, to="ice")</code></h3>
+<section id="relative_humidityspecific_humidity-pressure-temperature-toice" class="level3" data-number="24.0.3">
+<h3 data-number="24.0.3" class="anchored" data-anchor-id="relative_humidityspecific_humidity-pressure-temperature-toice"><span class="header-section-number">24.0.3</span> <code>relative_humidity(specific_humidity, pressure, temperature, to="ice")</code></h3>
 <p>Calculate relative humidity from specific humidity.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -483,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Returns:</strong> Relative humidity (dimensionless, where 1.0 = 100%)</p>
 </section>
-<section id="rhw2rhirelative_humidity_water-temperature" class="level3" data-number="23.0.4">
-<h3 data-number="23.0.4" class="anchored" data-anchor-id="rhw2rhirelative_humidity_water-temperature"><span class="header-section-number">23.0.4</span> <code>rhw2rhi(relative_humidity_water, temperature)</code></h3>
+<section id="rhw2rhirelative_humidity_water-temperature" class="level3" data-number="24.0.4">
+<h3 data-number="24.0.4" class="anchored" data-anchor-id="rhw2rhirelative_humidity_water-temperature"><span class="header-section-number">24.0.4</span> <code>rhw2rhi(relative_humidity_water, temperature)</code></h3>
 <p>Convert relative humidity with respect to water to relative humidity with respect to ice.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -494,8 +502,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns:</strong> Relative humidity w.r.t. ice (dimensionless)</p>
 <p><strong>Schmidt-Appleman criterion</strong></p>
 </section>
-<section id="critical_temperature_waterpressure-propulsion_efficiency0.4" class="level3" data-number="23.0.5">
-<h3 data-number="23.0.5" class="anchored" data-anchor-id="critical_temperature_waterpressure-propulsion_efficiency0.4"><span class="header-section-number">23.0.5</span> <code>critical_temperature_water(pressure, propulsion_efficiency=0.4)</code></h3>
+<section id="critical_temperature_waterpressure-propulsion_efficiency0.4" class="level3" data-number="24.0.5">
+<h3 data-number="24.0.5" class="anchored" data-anchor-id="critical_temperature_waterpressure-propulsion_efficiency0.4"><span class="header-section-number">24.0.5</span> <code>critical_temperature_water(pressure, propulsion_efficiency=0.4)</code></h3>
 <p>Calculate critical temperature below which contrails can form (water saturation), based on the Schmidt-Appleman criterion.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -505,8 +513,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns:</strong> Critical temperature (K). Contrails can form when the ambient temperature is below this value.</p>
 <p><strong>Reference:</strong> Schumann, U. (1996). On conditions for contrail formation from aircraft exhausts. Meteorol. Z., 5, 4-23.</p>
 </section>
-<section id="critical_temperature_water_and_icepressure-propulsion_efficiency0.4" class="level3" data-number="23.0.6">
-<h3 data-number="23.0.6" class="anchored" data-anchor-id="critical_temperature_water_and_icepressure-propulsion_efficiency0.4"><span class="header-section-number">23.0.6</span> <code>critical_temperature_water_and_ice(pressure, propulsion_efficiency=0.4)</code></h3>
+<section id="critical_temperature_water_and_icepressure-propulsion_efficiency0.4" class="level3" data-number="24.0.6">
+<h3 data-number="24.0.6" class="anchored" data-anchor-id="critical_temperature_water_and_icepressure-propulsion_efficiency0.4"><span class="header-section-number">24.0.6</span> <code>critical_temperature_water_and_ice(pressure, propulsion_efficiency=0.4)</code></h3>
 <p>Calculate both water and ice critical temperatures for contrail formation and persistence.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -517,8 +525,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Reference:</strong> Schumann, U. (1996). On conditions for contrail formation from aircraft exhausts. Meteorol. Z., 5, 4-23.</p>
 <p><strong>Radiative forcing</strong></p>
 </section>
-<section id="rf_shortwavezenith-tau-tau_c" class="level3" data-number="23.0.7">
-<h3 data-number="23.0.7" class="anchored" data-anchor-id="rf_shortwavezenith-tau-tau_c"><span class="header-section-number">23.0.7</span> <code>rf_shortwave(zenith, tau, tau_c)</code></h3>
+<section id="rf_shortwavezenith-tau-tau_c" class="level3" data-number="24.0.7">
+<h3 data-number="24.0.7" class="anchored" data-anchor-id="rf_shortwavezenith-tau-tau_c"><span class="header-section-number">24.0.7</span> <code>rf_shortwave(zenith, tau, tau_c)</code></h3>
 <p>Calculate shortwave (solar) radiative forcing from contrails. Shortwave forcing is typically negative (cooling effect) during daytime.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -528,8 +536,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Returns:</strong> Shortwave radiative forcing (W/m²). Negative values indicate cooling (reflection of incoming solar radiation). Returns 0 for nighttime (zenith &gt; 90).</p>
 </section>
-<section id="rf_longwaveolr-temperature" class="level3" data-number="23.0.8">
-<h3 data-number="23.0.8" class="anchored" data-anchor-id="rf_longwaveolr-temperature"><span class="header-section-number">23.0.8</span> <code>rf_longwave(olr, temperature)</code></h3>
+<section id="rf_longwaveolr-temperature" class="level3" data-number="24.0.8">
+<h3 data-number="24.0.8" class="anchored" data-anchor-id="rf_longwaveolr-temperature"><span class="header-section-number">24.0.8</span> <code>rf_longwave(olr, temperature)</code></h3>
 <p>Calculate longwave (thermal infrared) radiative forcing from contrails. Longwave forcing is typically positive (warming effect).</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -538,8 +546,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Returns:</strong> Longwave radiative forcing (W/m²). Positive values indicate warming (trapping of outgoing thermal radiation).</p>
 </section>
-<section id="rf_netzenith-tau-tau_c-olr-temperature" class="level3" data-number="23.0.9">
-<h3 data-number="23.0.9" class="anchored" data-anchor-id="rf_netzenith-tau-tau_c-olr-temperature"><span class="header-section-number">23.0.9</span> <code>rf_net(zenith, tau, tau_c, olr, temperature)</code></h3>
+<section id="rf_netzenith-tau-tau_c-olr-temperature" class="level3" data-number="24.0.9">
+<h3 data-number="24.0.9" class="anchored" data-anchor-id="rf_netzenith-tau-tau_c-olr-temperature"><span class="header-section-number">24.0.9</span> <code>rf_net(zenith, tau, tau_c, olr, temperature)</code></h3>
 <p>Calculate net radiative forcing from contrails by combining shortwave (cooling) and longwave (warming) forcing.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -552,8 +560,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns:</strong> Net radiative forcing (W/m²). Positive = warming, negative = cooling.</p>
 <p><strong>Utilities</strong></p>
 </section>
-<section id="contrail_optical_propertiesage_hours" class="level3" data-number="23.0.10">
-<h3 data-number="23.0.10" class="anchored" data-anchor-id="contrail_optical_propertiesage_hours"><span class="header-section-number">23.0.10</span> <code>contrail_optical_properties(age_hours)</code></h3>
+<section id="contrail_optical_propertiesage_hours" class="level3" data-number="24.0.10">
+<h3 data-number="24.0.10" class="anchored" data-anchor-id="contrail_optical_propertiesage_hours"><span class="header-section-number">24.0.10</span> <code>contrail_optical_properties(age_hours)</code></h3>
 <p>Get contrail optical properties based on age. Models contrail evolution from young thin trails to aged artificial cirrus.</p>
 <p>Optical property evolution (cumulative values):</p>
 <table class="caption-top table">
@@ -604,8 +612,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Returns:</strong> Tuple of (tau, width_m, tau_c): - <code>tau</code>: Contrail optical depth (dimensionless) - <code>width_m</code>: Contrail width (meters) - <code>tau_c</code>: Cirrus optical depth (dimensionless)</p>
 </section>
-<section id="load_olrfilepath-lat-lon-time" class="level3" data-number="23.0.11">
-<h3 data-number="23.0.11" class="anchored" data-anchor-id="load_olrfilepath-lat-lon-time"><span class="header-section-number">23.0.11</span> <code>load_olr(filepath, lat, lon, time)</code></h3>
+<section id="load_olrfilepath-lat-lon-time" class="level3" data-number="24.0.11">
+<h3 data-number="24.0.11" class="anchored" data-anchor-id="load_olrfilepath-lat-lon-time"><span class="header-section-number">24.0.11</span> <code>load_olr(filepath, lat, lon, time)</code></h3>
 <p>Load OLR data from a netCDF file and interpolate to specified locations and times. Requires xarray (optional dependency).</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -1047,12 +1055,12 @@ Contrails can form at 220.0 K</code></pre>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../api/geo.html" class="pagination-link" aria-label="🌍 geo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">🌍 geo</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../api/backends.html" class="pagination-link" aria-label="🔧 Backends">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

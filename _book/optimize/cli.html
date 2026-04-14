@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive guide on aircraft performance, emission, optimization calculations for air transport researchers and developers. Source code on GitHub.">
 
-<title>4&nbsp; ㊙️ Flight phase identification – The OpenAP Handbook</title>
+<title>13&nbsp; 💻 Command-line interface – The OpenAP Handbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -59,48 +59,28 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./trajectory_gen.html" rel="next">
-<link href="./kinematic.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-be53bf7e978fd1d4320ce864d03ceca8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../api/index.html" rel="next">
+<link href="../optimize/contrails.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-be53bf7e978fd1d4320ce864d03ceca8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,10 +108,10 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<link rel="shortcut icon" href="./assets/favicon.svg">
+<link rel="shortcut icon" href="../assets/favicon.svg">
 
 
-<link rel="stylesheet" href="assets/custom.css">
+<link rel="stylesheet" href="../assets/custom.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -143,7 +123,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./flight_phases.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/cli.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">💻 Command-line interface</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -157,12 +137,12 @@ div.csl-indent {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./assets/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./assets/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">The OpenAP Handbook</a> 
+      <a href="../">The OpenAP Handbook</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/junzis/openap-book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <div class="dropdown">
@@ -200,13 +180,13 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./openap.html" class="sidebar-item-text sidebar-link">
+            <a href="../openap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🚀 OpenAP</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -215,49 +195,49 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./aircraft_engine.html" class="sidebar-item-text sidebar-link">
+  <a href="../aircraft_engine.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">🪬 Aircraft and engines</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./drag_thrust.html" class="sidebar-item-text sidebar-link">
+  <a href="../drag_thrust.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">☯️ Drag and thrust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kinematic.html" class="sidebar-item-text sidebar-link">
+  <a href="../kinematic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">🌯 Kinematic models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./flight_phases.html" class="sidebar-item-text sidebar-link active">
+  <a href="../flight_phases.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trajectory_gen.html" class="sidebar-item-text sidebar-link">
+  <a href="../trajectory_gen.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./fuel_emission.html" class="sidebar-item-text sidebar-link">
+  <a href="../fuel_emission.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">🔥 Fuel and Emission</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./contrail.html" class="sidebar-item-text sidebar-link">
+  <a href="../contrail.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contrails</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./addons.html" class="sidebar-item-text sidebar-link">
+  <a href="../addons.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Add-ons</span></span></a>
   </div>
 </li>
@@ -265,7 +245,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./optimize/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../optimize/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🦸 Trajectory Optimizer</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -274,31 +254,31 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/basic.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/basic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🍳 Simple optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/wind.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/wind.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">🌪️ Wind optimal flights</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/costgrid.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/costgrid.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🙀 Using cost grids</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/contrails.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/contrails.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimize/cli.html" class="sidebar-item-text sidebar-link">
+  <a href="../optimize/cli.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">💻 Command-line interface</span></span></a>
   </div>
 </li>
@@ -306,7 +286,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./api/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../api/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📖 API Reference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -315,73 +295,73 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/prop.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/prop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/thrust.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/thrust.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/drag.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/drag.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/fuelflow.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/fuelflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/emission.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/emission.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/wrap.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/wrap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/flightphase.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/flightphase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/flightgenerator.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/flightgenerator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/aero.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/aero.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/geo.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/geo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/contrail.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/contrail.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/backends.html" class="sidebar-item-text sidebar-link">
+  <a href="../api/backends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
   </div>
 </li>
@@ -389,7 +369,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -403,16 +383,26 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#phase-labeling" id="toc-phase-labeling" class="nav-link active" data-scroll-target="#phase-labeling"><span class="header-section-number">4.1</span> Phase labeling</a></li>
+  <li><a href="#opentop-optimize" id="toc-opentop-optimize" class="nav-link active" data-scroll-target="#opentop-optimize"><span class="header-section-number">13.1</span> <code>opentop optimize</code></a>
+  <ul class="collapse">
+  <li><a href="#selecting-the-flight-phase" id="toc-selecting-the-flight-phase" class="nav-link" data-scroll-target="#selecting-the-flight-phase"><span class="header-section-number">13.1.1</span> Selecting the flight phase</a></li>
+  <li><a href="#selecting-an-objective" id="toc-selecting-an-objective" class="nav-link" data-scroll-target="#selecting-an-objective"><span class="header-section-number">13.1.2</span> Selecting an objective</a></li>
+  <li><a href="#other-useful-flags" id="toc-other-useful-flags" class="nav-link" data-scroll-target="#other-useful-flags"><span class="header-section-number">13.1.3</span> Other useful flags</a></li>
+  </ul></li>
+  <li><a href="#opentop-gengrid" id="toc-opentop-gengrid" class="nav-link" data-scroll-target="#opentop-gengrid"><span class="header-section-number">13.2</span> <code>opentop gengrid</code></a>
+  <ul class="collapse">
+  <li><a href="#options" id="toc-options" class="nav-link" data-scroll-target="#options"><span class="header-section-number">13.2.1</span> Options</a></li>
+  <li><a href="#why-the-b-spline-and-altitude-padding-matter" id="toc-why-the-b-spline-and-altitude-padding-matter" class="nav-link" data-scroll-target="#why-the-b-spline-and-altitude-padding-matter"><span class="header-section-number">13.2.2</span> Why the B-spline and altitude padding matter</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/flight_phases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/flight_phases.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/cli.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/cli.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./openap.html">🚀 OpenAP</a></li><li class="breadcrumb-item"><a href="./flight_phases.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../optimize/index.html">🦸 Trajectory Optimizer</a></li><li class="breadcrumb-item"><a href="../optimize/cli.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">💻 Command-line interface</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">㊙️ Flight phase identification</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">💻 Command-line interface</span></h1>
 </div>
 
 
@@ -429,87 +419,158 @@ div.csl-indent {
 </header>
 
 
-<p>OpenAP includes a module to identify flight phases based on flight data, such as ADS-B data. It uses the fuzzy logic, which is defined in my paper: <a href="http://resolver.tudelft.nl/uuid:af67a6bd-d812-474d-a304-7a594991390b"><span class="citation" data-cites="sun2017fdp">Sun et al. (<span>2017</span>)</span></a></p>
-<p>Note that the paper was published a while ago; some improvements have been made in the logic since then. I also added a new phase to indicate <code>level</code> segments in the flight during the climb and descent.</p>
-<section id="phase-labeling" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="phase-labeling"><span class="header-section-number">4.1</span> Phase labeling</h2>
-<p>We can use <code>FlightPhase.phaselabel(ts, alt, spd, roc)</code> function to identify the labels of a given set of flight states. The following flight phases are supported:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">GND</span><span class="kw">:</span><span class="at"> on-ground  </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CL</span><span class="kw">:</span><span class="at">  climb</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DE</span><span class="kw">:</span><span class="at">  descend</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">LVL</span><span class="kw">:</span><span class="at"> level flight</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">CR</span><span class="kw">:</span><span class="at">  cruise</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">NA</span><span class="kw">:</span><span class="at">  unlabeled</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note that the unit for all required parameters is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ts</span><span class="kw">:</span><span class="at">  timestamp      second</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">alt</span><span class="kw">:</span><span class="at"> altitude       ft</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">spd</span><span class="kw">:</span><span class="at"> speed          kts</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">roc</span><span class="kw">:</span><span class="at"> vertical rate  ft/min</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Following is an example labeling process based on a real flight:</p>
-<div id="83265cdc" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap.phase <span class="im">import</span> FlightPhase</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"assets/data/flight_a319_opensky.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"timestamp"</span>])</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> (df.timestamp <span class="op">-</span> df.timestamp.iloc[<span class="dv">0</span>]).dt.total_seconds()  <span class="co"># second</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>alt <span class="op">=</span> df.altitude.values  <span class="co"># ft</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>spd <span class="op">=</span> df.groundspeed.values  <span class="co"># kts</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>roc <span class="op">=</span> df.vertical_rate.values  <span class="co"># ft/min</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> FlightPhase()</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>fp.set_trajectory(ts, alt, spd, roc)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> fp.phaselabel()</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CL', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CL', 'CL', 'CR', 'CR', 'CL', 'CR', 'CL', 'CL', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'CR', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'DE', 'NA']</code></pre>
-</div>
-</div>
-<p>We can visualize the identified flight phases:</p>
-<div id="5e60d184" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>phasecolors <span class="op">=</span> {</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GND"</span>: <span class="st">"black"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CL"</span>: <span class="st">"green"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DE"</span>: <span class="st">"blue"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LVL"</span>: <span class="st">"cyan"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CR"</span>: <span class="st">"purple"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NA"</span>: <span class="st">"red"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [phasecolors[lbl] <span class="cf">for</span> lbl <span class="kw">in</span> labels]</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">311</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, alt, marker<span class="op">=</span><span class="st">"."</span>, c<span class="op">=</span>colors, lw<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"altitude (ft)"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">312</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, spd, marker<span class="op">=</span><span class="st">"."</span>, c<span class="op">=</span>colors, lw<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"speed (kt)"</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">313</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, roc, marker<span class="op">=</span><span class="st">"."</span>, c<span class="op">=</span>colors, lw<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"roc (fpm)"</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="flight_phases_files/figure-html/cell-3-output-1.png" width="613" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>Starting with v2.0, installing <code>opentop</code> also installs an executable of the same name that exposes the optimizer directly from the shell. It is useful for batch runs, quick sanity checks, and integrating <code>opentop</code> into pipelines that are easier to express in bash than in Python.</p>
+<p>The CLI has two subcommands:</p>
+<ul>
+<li><code>opentop optimize</code> — run a trajectory optimization end-to-end</li>
+<li><code>opentop gengrid</code> — precompute a cached CasADi interpolant from a raw cost-grid parquet file</li>
+</ul>
+<p>All options are discoverable via <code>--help</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> <span class="at">--help</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> optimize <span class="at">--help</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> gengrid <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="opentop-optimize" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="opentop-optimize"><span class="header-section-number">13.1</span> <code>opentop optimize</code></h2>
+<p>The minimal invocation specifies origin, destination, and aircraft type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> optimize EHAM EDDF <span class="at">-a</span> A320</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This runs a fuel-optimal <code>CompleteFlight</code> solve and prints a concise summary (solver status, iteration count, objective value, fuel burn, max altitude, flight time) to stdout. Pass <code>-o flight.parquet</code> to also save the full trajectory DataFrame.</p>
+<section id="selecting-the-flight-phase" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="selecting-the-flight-phase"><span class="header-section-number">13.1.1</span> Selecting the flight phase</h3>
+<p>Use <code>--phase</code> to restrict the solve to a single phase:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> optimize EHAM LGAV <span class="at">-a</span> A320 <span class="at">--phase</span> cruise</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> optimize EHAM LGAV <span class="at">-a</span> A320 <span class="at">--phase</span> climb</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> optimize EHAM LGAV <span class="at">-a</span> A320 <span class="at">--phase</span> descent</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The default is <code>all</code>, which runs the <code>CompleteFlight</code> optimizer.</p>
+</section>
+<section id="selecting-an-objective" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="selecting-an-objective"><span class="header-section-number">13.1.2</span> Selecting an objective</h3>
+<p>The <code>--obj</code> flag accepts any built-in objective name:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>expression</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>fuel</code></td>
+<td>minimum fuel burn (default)</td>
+</tr>
+<tr class="even">
+<td><code>time</code></td>
+<td>minimum flight time</td>
+</tr>
+<tr class="odd">
+<td><code>ci:N</code></td>
+<td>cost index <code>N</code> (any integer)</td>
+</tr>
+<tr class="even">
+<td><code>gwp20</code>, <code>gwp50</code>, <code>gwp100</code></td>
+<td>global warming potential horizons</td>
+</tr>
+<tr class="odd">
+<td><code>gtp20</code>, <code>gtp50</code>, <code>gtp100</code></td>
+<td>global temperature potential horizons</td>
+</tr>
+<tr class="even">
+<td><code>grid</code></td>
+<td>custom 4D grid cost (requires <code>--grid FILE</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Blended objectives are written as a weighted sum:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> optimize EHAM EDDF <span class="at">-a</span> A320 <span class="at">--phase</span> all <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--obj</span> <span class="st">"0.3*fuel+0.7*grid"</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--grid</span> contrail.casadi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Any weights are accepted; they do not need to sum to 1 (but doing so keeps their interpretation as relative weights straightforward).</p>
+</section>
+<section id="other-useful-flags" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="other-useful-flags"><span class="header-section-number">13.1.3</span> Other useful flags</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>flag</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--m0</code></td>
+<td>initial mass as a fraction of MTOW (default <code>0.85</code>)</td>
+</tr>
+<tr class="even">
+<td><code>--max-iter</code></td>
+<td>IPOPT iteration cap (default <code>1500</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>-o</code>, <code>--output</code></td>
+<td>write the trajectory DataFrame to a parquet file</td>
+</tr>
+<tr class="even">
+<td><code>-v</code>, <code>--debug</code></td>
+<td>print the full IPOPT log</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="opentop-gengrid" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="opentop-gengrid"><span class="header-section-number">13.2</span> <code>opentop gengrid</code></h2>
+<p>Cost grids — especially those used for contrail avoidance — are typically distributed as large parquet files with columns <code>longitude</code>, <code>latitude</code>, <code>height</code>, <code>cost</code>, and optionally <code>ts</code>. Each call to <code>opentop optimize --grid raw.parquet</code> would rebuild the interpolant from scratch (minutes for a cubic B-spline over a typical regional grid). <code>opentop gengrid</code> builds the interpolant once and serializes it to disk:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opentop</span> gengrid <span class="at">--in</span> raw_grid.parquet <span class="at">--out</span> contrail.casadi <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--bbox</span> 35:57,-9:7 <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--time</span> 2022-02-20T10:00,2022-02-20T14:00 <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--shape</span> bspline</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting <code>.casadi</code> file loads in under a second, so keep it on disk and reference it from <code>opentop optimize --grid contrail.casadi</code>.</p>
+<section id="options" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="options"><span class="header-section-number">13.2.1</span> Options</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>flag</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--in</code></td>
+<td>input grid file (parquet)</td>
+</tr>
+<tr class="even">
+<td><code>--out</code></td>
+<td>output <code>.casadi</code> cache file</td>
+</tr>
+<tr class="odd">
+<td><code>--bbox</code></td>
+<td>spatial slice as <code>LAT_MIN:LAT_MAX,LON_MIN:LON_MAX</code></td>
+</tr>
+<tr class="even">
+<td><code>--time</code></td>
+<td>temporal slice as <code>START,STOP</code> (ISO timestamps, UTC assumed)</td>
+</tr>
+<tr class="odd">
+<td><code>--shape</code></td>
+<td><code>bspline</code> (default, smooth derivatives) or <code>linear</code> (faster but non-smooth)</td>
+</tr>
+<tr class="even">
+<td><code>--pad-altitudes</code></td>
+<td>extend coverage with zero-cost rows from 0 to FL480 (on by default)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="why-the-b-spline-and-altitude-padding-matter" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="why-the-b-spline-and-altitude-padding-matter"><span class="header-section-number">13.2.2</span> Why the B-spline and altitude padding matter</h3>
+<p>For complete-flight solves with a cost grid, the optimizer queries the interpolant along the full trajectory — including climb and descent, which cross altitude bands that are typically absent from contrail grids (which usually only cover FL200–FL440). Without padding, the interpolant extrapolates outside its data range and can produce fake negative costs that the optimizer will happily exploit. <code>--pad-altitudes</code> adds zero-cost rows from 0 to FL480 so the interpolant returns a physically correct 0 outside the data band.</p>
+<p>Similarly, linear interpolants have discontinuous derivatives at every grid-cell boundary. IPOPT’s line search can oscillate on non-convex blended objectives when the gradient jumps around; the cubic B-spline (<code>--shape bspline</code>) has continuous derivatives and is strongly preferred for <code>CompleteFlight</code> solves with grid costs.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-sun2017fdp" class="csl-entry" role="listitem">
-Sun, J., Ellerbroek, J., &amp; Hoekstra, J. (2017). Flight extraction and phase identification for large automatic dependent surveillance–broadcast datasets. <em>Journal of Aerospace Information Systems</em>, <em>14</em>(10), 566–571. <a href="https://doi.org/10.2514/1.I010520">https://doi.org/10.2514/1.I010520</a>
-</div>
-</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -915,13 +976,13 @@ Sun, J., Ellerbroek, J., &amp; Hoekstra, J. (2017). Flight extraction and phase 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./kinematic.html" class="pagination-link" aria-label="🌯 Kinematic models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">🌯 Kinematic models</span></span>
+      <a href="../optimize/contrails.html" class="pagination-link" aria-label="🥠 Contrails">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./trajectory_gen.html" class="pagination-link" aria-label="💅 Trajectory generation">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">💅 Trajectory generation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/index.html" class="pagination-link" aria-label="📖 API Reference">
+        <span class="nav-page-text">📖 API Reference</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -930,4 +991,4 @@ Sun, J., Ellerbroek, J., &amp; Hoekstra, J. (2017). Flight extraction and phase 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/flight_phases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/flight_phases.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/cli.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/cli.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

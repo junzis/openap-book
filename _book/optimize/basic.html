@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>9&nbsp; 🍳 Simple optimal flights – The OpenAP Handbook</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -70,15 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../optimize/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-82f5f95ae74b4834605088d8c0b5b820.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-be53bf7e978fd1d4320ce864d03ceca8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <link rel="shortcut icon" href="../assets/favicon.svg">
@@ -277,6 +279,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">🥠 Contrails</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../optimize/cli.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">💻 Command-line interface</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -291,73 +299,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/prop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">🪬 prop</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/thrust.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">⚡ Thrust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/drag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🌬️ Drag</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/fuelflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">🔥 FuelFlow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/emission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">💨 Emission</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/wrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🌯 WRAP</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/flightphase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">🏷️ FlightPhase</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/flightgenerator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">✈️ FlightGenerator</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/aero.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌡️ aero</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/geo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">🌍 geo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/contrail.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">☁️ contrail</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../api/backends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">🔧 Backends</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,6 +389,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#quick-start" id="toc-quick-start" class="nav-link active" data-scroll-target="#quick-start"><span class="header-section-number">9.1</span> Quick start</a></li>
   <li><a href="#other-objective-functions" id="toc-other-objective-functions" class="nav-link" data-scroll-target="#other-objective-functions"><span class="header-section-number">9.2</span> Other objective functions</a></li>
   <li><a href="#different-flight-phases" id="toc-different-flight-phases" class="nav-link" data-scroll-target="#different-flight-phases"><span class="header-section-number">9.3</span> Different flight phases</a></li>
+  <li><a href="#choosing-a-different-engine" id="toc-choosing-a-different-engine" class="nav-link" data-scroll-target="#choosing-a-different-engine"><span class="header-section-number">9.4</span> Choosing a different engine</a></li>
+  <li><a href="#inspecting-the-result" id="toc-inspecting-the-result" class="nav-link" data-scroll-target="#inspecting-the-result"><span class="header-section-number">9.5</span> Inspecting the result</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/junzis/openap-book/edit/master/optimize/basic.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/junzis/openap-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/junzis/openap-book/blob/master/optimize/basic.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -410,18 +420,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="9.1" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">9.1</span> Quick start</h2>
 <p>Example code to generate a fuel-optimal flight between two airports. First, we need to set up a few parameters, including <code>origin</code>, <code>destination</code>, <code>actype</code>, and <code>m0</code> (initial mass).</p>
 <p>The initial mass <code>m0</code> can be the fraction of the maximum take-off mass (between 0 and 1), or it can be the mass in <code>kg</code> (for example, <code>65000</code> kg).</p>
-<div id="0265334c" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openap <span class="im">import</span> top</span>
+<div id="78e095a5" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> opentop <span class="im">as</span> top</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>actype <span class="op">=</span> <span class="st">"A320"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> <span class="st">"EHAM"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>destination <span class="op">=</span> <span class="st">"LGAV"</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># initial mass as the faction of maximum takeoff mass</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># initial mass as the fraction of maximum takeoff mass</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>m0 <span class="op">=</span> <span class="fl">0.85</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this simple example, we will generate a complete flight using <code>top.CompleteFlight()</code>. We will generate a fuel-optimal flight by setting <code>objective</code> to <code>"fuel"</code> in the trajectory generation function.</p>
-<div id="d9587ec7" class="cell" data-execution_count="2">
+<div id="cc4f1b07" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0<span class="op">=</span>m0)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"fuel"</span>)</span>
@@ -434,6 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mass</th>
 <th data-quarto-table-cell-role="th">ts</th>
 <th data-quarto-table-cell-role="th">x</th>
 <th data-quarto-table-cell-role="th">y</th>
@@ -445,90 +456,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">tas</th>
 <th data-quarto-table-cell-role="th">vertical_rate</th>
 <th data-quarto-table-cell-role="th">heading</th>
-<th data-quarto-table-cell-role="th">mass</th>
-<th data-quarto-table-cell-role="th">fuel</th>
+<th data-quarto-table-cell-role="th">fuel_cost</th>
+<th data-quarto-table-cell-role="th">grid_cost</th>
+<th data-quarto-table-cell-role="th">fuelflow</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
-<td>0.0</td>
-<td>-652425.011696</td>
-<td>840651.921623</td>
+<td>66299.999901</td>
+<td>0.0000</td>
+<td>-652425.011792</td>
+<td>840651.921719</td>
 <td>30.480000</td>
 <td>52.316584</td>
 <td>4.746242</td>
 <td>100.0</td>
-<td>0.3000</td>
-<td>198.38</td>
-<td>1155.0</td>
-<td>129.51</td>
-<td>66300.000000</td>
-<td>323.467557</td>
+<td>0.300000</td>
+<td>198.3755</td>
+<td>2418.0</td>
+<td>129.5056</td>
+<td>438.238564</td>
+<td>NaN</td>
+<td>1.872298</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
-<td>240.0</td>
-<td>-633557.291544</td>
-<td>825095.442439</td>
-<td>1436.228097</td>
-<td>52.198625</td>
-<td>5.049372</td>
-<td>4712.0</td>
-<td>0.5000</td>
-<td>325.34</td>
-<td>1655.0</td>
-<td>137.01</td>
-<td>65976.532443</td>
-<td>331.368938</td>
+<td>65856.885789</td>
+<td>234.0712</td>
+<td>-634430.718537</td>
+<td>825815.639165</td>
+<td>2905.430674</td>
+<td>52.204103</td>
+<td>5.035375</td>
+<td>9532.0</td>
+<td>0.500000</td>
+<td>319.7176</td>
+<td>1972.0</td>
+<td>136.9787</td>
+<td>347.152728</td>
+<td>NaN</td>
+<td>1.483132</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>479.0</td>
-<td>-606696.232046</td>
-<td>796275.571353</td>
-<td>3450.725380</td>
-<td>51.969890</td>
-<td>5.489660</td>
-<td>11321.0</td>
-<td>0.6869</td>
-<td>436.31</td>
-<td>2155.0</td>
-<td>137.02</td>
-<td>65645.163505</td>
-<td>336.864499</td>
+<td>65515.244192</td>
+<td>468.1423</td>
+<td>-608588.389717</td>
+<td>798123.740055</td>
+<td>5250.205971</td>
+<td>51.984433</td>
+<td>5.459106</td>
+<td>17225.0</td>
+<td>0.616216</td>
+<td>382.7162</td>
+<td>1472.0</td>
+<td>136.9787</td>
+<td>301.376539</td>
+<td>NaN</td>
+<td>1.287565</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
-<td>719.0</td>
-<td>-571079.731509</td>
-<td>758059.040224</td>
-<td>6073.971848</td>
-<td>51.664098</td>
-<td>6.066591</td>
-<td>19928.0</td>
-<td>0.7589</td>
-<td>466.37</td>
-<td>1655.0</td>
-<td>137.02</td>
-<td>65308.299006</td>
-<td>310.576620</td>
+<td>65221.763982</td>
+<td>702.2135</td>
+<td>-577523.383441</td>
+<td>764835.369122</td>
+<td>7000.440553</td>
+<td>51.718398</td>
+<td>5.963012</td>
+<td>22967.0</td>
+<td>0.704296</td>
+<td>427.5134</td>
+<td>1121.0</td>
+<td>136.9787</td>
+<td>272.399599</td>
+<td>NaN</td>
+<td>1.163877</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>959.0</td>
-<td>-532698.817232</td>
-<td>716876.379079</td>
-<td>8088.469130</td>
-<td>51.331487</td>
-<td>6.679653</td>
-<td>26537.0</td>
-<td>0.7970</td>
-<td>476.69</td>
-<td>1155.0</td>
-<td>137.03</td>
-<td>64997.722386</td>
-<td>270.762600</td>
+<td>64956.994546</td>
+<td>936.2846</td>
+<td>-542727.521179</td>
+<td>727549.119770</td>
+<td>8332.820410</td>
+<td>51.417914</td>
+<td>6.520452</td>
+<td>27339.0</td>
+<td>0.771567</td>
+<td>459.9134</td>
+<td>874.0</td>
+<td>136.9787</td>
+<td>252.127630</td>
+<td>NaN</td>
+<td>1.077207</td>
 </tr>
 </tbody>
 </table>
@@ -537,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In the previous table, we have the final fuel-optimal trajectory. Next, we can visualize the altitude, speed, and vertical rate.</p>
-<div id="fb2ab478" class="cell" data-execution_count="3">
+<div id="9765cc8f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -575,10 +597,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="basic_files/figure-html/cell-4-output-1.png" width="467" height="371" class="figure-img"></p>
+<p><img src="basic_files/figure-html/cell-4-output-2.png" width="467" height="368" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -587,55 +677,219 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="other-objective-functions" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="other-objective-functions"><span class="header-section-number">9.2</span> Other objective functions</h2>
 <p>Instead of the default objective functions, you can also specify different objective functions as follows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cost index, between 0 - 100</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"ci:30"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># global warming potential</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gwp100"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># global temperature potential</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gtp100"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cost index, between 0 - 100</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"ci:30"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># global warming potential</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gwp100"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># global temperature potential</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>flight <span class="op">=</span> optimizer.trajectory(objective<span class="op">=</span><span class="st">"gtp100"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The final <code>flight</code> object is a pandas DataFrame.</p>
 </section>
 <section id="different-flight-phases" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="different-flight-phases"><span class="header-section-number">9.3</span> Different flight phases</h2>
-<p>Instead of generating a complete flight, we can also generate cruise, climb, and descent flights using <code>top.Crusie</code>, <code>top.Climb</code>, and <code>top.Descent</code> classes.</p>
-<div id="08aa2bee" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cruise_flight <span class="op">=</span> top.Cruise(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>climb_flight <span class="op">=</span> top.Climb(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>descent_flight <span class="op">=</span> top.Descent(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Let’s visulize these trajectories:</p>
-<div id="57c80095" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> (<span class="st">"cruise flight"</span>, <span class="st">"climb flight"</span>, <span class="st">"descent flight"</span>)</span>
+<p>Instead of generating a complete flight, we can also generate cruise, climb, and descent flights using <code>top.Cruise</code>, <code>top.Climb</code>, and <code>top.Descent</code> classes.</p>
+<div id="d9e28203" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cruise_flight <span class="op">=</span> top.Cruise(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>climb_flight <span class="op">=</span> top.Climb(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flight <span class="kw">in</span> <span class="bu">enumerate</span>([cruise_flight, climb_flight, descent_flight]):</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ax1, ax2, ax3 <span class="op">=</span> axes[:, i]</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax1.plot(flight.ts, flight.altitude)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ax2.plot(flight.ts, flight.tas)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax3.plot(flight.ts, flight.vertical_rate)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">"altitude (ft)"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">"true airspeed (kts)"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylabel(<span class="st">"vertical rate (ft/min)"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="dv">0</span>, <span class="dv">40000</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylim(<span class="dv">0</span>, <span class="dv">600</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylim(<span class="op">-</span><span class="dv">3000</span>, <span class="dv">3000</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(labels[i], pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ax3.set_xlabel(<span class="st">"time(s)"</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes.flatten():</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    format_ax(ax)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>descent_flight <span class="op">=</span> top.Descent(actype, origin, destination, m0<span class="op">=</span>m0).trajectory()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>There is also a <code>top.MultiPhase</code> optimizer which solves the three phases sequentially as independent problems (climb → cruise → descent), passing each phase’s terminal state as the next phase’s initial state. This is typically more robust than <code>CompleteFlight</code> on longer routes where the full problem is harder to converge:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>multiphase_flight <span class="op">=</span> top.MultiPhase(actype, origin, destination, m0<span class="op">=</span>m0).trajectory(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    objective<span class="op">=</span><span class="st">"fuel"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>MultiPhase</code> also accepts a per-phase objective as a 3-tuple:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cost index 60 for climb, 10 for cruise, 20 for descent</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>multiphase_flight <span class="op">=</span> top.MultiPhase(actype, origin, destination, m0<span class="op">=</span>m0).trajectory(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    objective<span class="op">=</span>(<span class="st">"ci:60"</span>, <span class="st">"ci:10"</span>, <span class="st">"ci:20"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="choosing-a-different-engine" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="choosing-a-different-engine"><span class="header-section-number">9.4</span> Choosing a different engine</h2>
+<p>By default, the optimizer uses the default engine of the aircraft type. Pass <code>engine="..."</code> to use any other engine from the OpenAP prop database:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> top.CompleteFlight(actype, origin, destination, m0, engine<span class="op">=</span><span class="st">"CFM56-5B4"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="inspecting-the-result" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="inspecting-the-result"><span class="header-section-number">9.5</span> Inspecting the result</h2>
+<p>The DataFrame returned by <code>.trajectory()</code> includes a <code>fuel_cost</code> column (kg of fuel burned per trajectory segment) and a <code>grid_cost</code> column (per-segment grid cost when an interpolant is supplied, otherwise <code>NaN</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flight[<span class="st">"fuel_cost"</span>].<span class="bu">sum</span>()  <span class="co"># total fuel in kg</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The optimizer object exposes the solver state after the solve:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>optimizer.objective_value   <span class="co"># final objective value</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>optimizer.solver            <span class="co"># ca.OptiSol</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>optimizer.solver.stats()    <span class="co"># iter_count, success, return_status, ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s visulize these trajectories:</p>
+<div id="c705050b" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> (<span class="st">"cruise flight"</span>, <span class="st">"climb flight"</span>, <span class="st">"descent flight"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, flight <span class="kw">in</span> <span class="bu">enumerate</span>([cruise_flight, climb_flight, descent_flight]):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ax1, ax2, ax3 <span class="op">=</span> axes[:, i]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    ax1.plot(flight.ts, flight.altitude)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    ax2.plot(flight.ts, flight.tas)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    ax3.plot(flight.ts, flight.vertical_rate)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">"altitude (ft)"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">"true airspeed (kts)"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylabel(<span class="st">"vertical rate (ft/min)"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="dv">0</span>, <span class="dv">40000</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylim(<span class="dv">0</span>, <span class="dv">600</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    ax3.set_ylim(<span class="op">-</span><span class="dv">3000</span>, <span class="dv">3000</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(labels[i], pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    ax3.set_xlabel(<span class="st">"time(s)"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes.flatten():</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    format_ax(ax)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.
+findfont: Font family 'Ubuntu' not found.</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="basic_files/figure-html/cell-6-output-1.png" width="947" height="372" class="figure-img"></p>
+<p><img src="basic_files/figure-html/cell-6-output-2.png" width="948" height="369" class="figure-img"></p>
 </figure>
 </div>
 </div>
